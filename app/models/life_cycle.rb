@@ -1,0 +1,2 @@
+class LifeCycle < ApplicationRecord
+end

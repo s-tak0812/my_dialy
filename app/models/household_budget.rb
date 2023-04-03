@@ -1,0 +1,2 @@
+class HouseholdBudget < ApplicationRecord
+end

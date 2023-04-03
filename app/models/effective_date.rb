@@ -1,0 +1,2 @@
+class EffectiveDate < ApplicationRecord
+end
