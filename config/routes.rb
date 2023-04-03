@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'contacts/index'
+    get 'contacts/edit'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
+  namespace :admin do
+    get 'customers/index'
+    get 'customers/edit'
+  end
   namespace :public do
     get 'contacts/new'
   end
