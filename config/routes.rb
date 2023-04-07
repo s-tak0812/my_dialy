@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     # contacts
-    resources :contacts, only:[:index, :edit]
+    resources :contacts, only:[:index, :edit, :update]
 
     # customers
-    resources :customers, only:[:index, :edit]
+    resources :customers, only:[:index, :edit, :update, :destroy]
 
     get 'searches/search'
 
@@ -17,27 +17,31 @@ Rails.application.routes.draw do
 
   scope module: :public do
     # contacts
-    resources :contacts, only:[:new]
+    resources :contacts, only:[:new, :create]
 
     # effective_dates
     resources :effective_dates, only:[:index, :show]
 
     # schedules
-    resources :schedules, only:[:new, :edit]
+    resources :schedules, only:[:new, :create, :edit, :update, :destroy]
 
     # life_cycles
-    resources :life_cycles, only:[:new, :edit]
+    resources :life_cycles, only:[:new, :create, :edit, :update, :destroy]
 
     # household_budgets
-    resources :household_budgets, only:[:new, :edit]
+    resources :household_budgets, only:[:new, :create, :edit, :update, :destroy]
 
     # blogs
-    resources :blogs, only:[:new, :edit, :show]
+    resources :blogs, except:[:index]
 
     # customers
-    resources :customers, only:[:show, :edit]
+    get 'customers/mypage' => 'customers#show'
+    get 'customers/information/edit' => 'customers#edit'
+    patch 'customers/information' => 'customers#update'
+    get 'customers/soft_delete' => 'customers#soft_delete'
+    patch 'customers/drop' => 'customers#drop'
 
-    # home
+    # homes
     root to: 'homes#top'
     get 'about' => 'homes#about'
 
@@ -49,9 +53,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # 顧客用
-  devise_for :customers
+  devise_for :customers, controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions',
+    passwords: "public/passwords"
+    }
 
   # 管理者用
-  devise_for :admin
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
 
 end
