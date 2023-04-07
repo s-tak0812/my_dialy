@@ -2,7 +2,11 @@
 
 
 <ul>
-  <li><%= @customer.name %></li>
+  <li><%= image_tag @customer.get_profile_image, size:'100x100' %></li>
+  <li><%= @customer.last_name %></li>
+  <li><%= @customer.first_name %></li>
   <li><%= @customer.email %></li>
-  <li><%= @customer.nickname %></li>
+  <li><%= @customer.is_deleted %></li>
+  <li><%= link_to "edit", customers_information_edit_path %></li>
 </ul>
+
