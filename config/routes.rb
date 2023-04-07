@@ -1,45 +1,45 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get 'contacts/index'
-    get 'contacts/edit'
+    # contacts
+    resources :contacts, only:[:index, :edit]
 
-    get 'homes/top'
-
-    get 'customers/index'
-    get 'customers/edit'
+    # customers
+    resources :customers, only:[:index, :edit]
 
     get 'searches/search'
+
+    # homes
+    root to: 'homes#top'
 
   end
 
 
+  scope module: :public do
+    # contacts
+    resources :contacts, only:[:new]
 
+    # effective_dates
+    resources :effective_dates, only:[:index, :show]
 
-  namespace :public do
-    get 'contacts/new'
+    # schedules
+    resources :schedules, only:[:new, :edit]
 
-    get 'effective_dates/index'
-    get 'effective_dates/show'
+    # life_cycles
+    resources :life_cycles, only:[:new, :edit]
 
-    get 'schedules/new'
-    get 'schedules/edit'
+    # household_budgets
+    resources :household_budgets, only:[:new, :edit]
 
-    get 'life_cycles/new'
-    get 'life_cycles/edit'
+    # blogs
+    resources :blogs, only:[:new, :edit, :show]
 
-    get 'household_budgets/new'
-    get 'household_budgets/edit'
+    # customers
+    resources :customers, only:[:show, :edit]
 
-    get 'blogs/new'
-    get 'blogs/edit'
-    get 'blogs/show'
-
-    get 'customers/show'
-    get 'customers/edit'
-
-    get 'homes/top'
-    get 'homes/about'
+    # home
+    root to: 'homes#top'
+    get 'about' => 'homes#about'
 
     get 'searches/search'
 
