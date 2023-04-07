@@ -25,8 +25,8 @@ class Customer < ApplicationRecord
 
   # セキュリティ向上
   # is_deletedカラムがfalseのcustomerのみ認証する
-  # def active_for_authentication?
-  #   super && (self.is_deleted == false)
-  # end
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
 
 end
