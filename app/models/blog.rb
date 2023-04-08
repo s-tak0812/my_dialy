@@ -3,7 +3,6 @@ class Blog < ApplicationRecord
   belongs_to:effective_date
 
   with_options presence: true do
-    validates :customer_id
     validates :title
     validates :body
   end

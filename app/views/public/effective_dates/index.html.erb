@@ -1,2 +1,30 @@
 <h1>Public::EffectiveDates#index</h1>
-<p>Find me in app/views/public/effective_dates/index.html.erb</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>日</th>
+      <th>blog</th>
+      <th>収支</th>
+      <th>life</th>
+      <th>schedule</th>
+      <th>customer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @effective_dates.each do |d| %>
+      <tr>
+        <td><%= d.active_date %></td>
+        <td><%= d.blog_id %></td>
+        <td><%= d.household_budget_id %></td>
+        <td><%= d.life_cycle_id %></td>
+        <td><%= d.schedule_id %></td>
+        <td><%= d.customer_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
