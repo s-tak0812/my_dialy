@@ -5,6 +5,7 @@ class CreateSchedules < ActiveRecord::Migration[6.1]
       t.integer :title, null: false, default: 0
       t.time :start_time, null: false
       t.time :end_time, null: false
+      t.date :date, null: false
       t.timestamps
     end
   end
