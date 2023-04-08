@@ -1,2 +1,11 @@
 <h1>Public::Blogs#show</h1>
-<p>Find me in app/views/public/blogs/show.html.erb</p>
+
+
+<ul>
+  <li><%= @blog.date %></li>
+  <li><%= @blog.title %></li>
+  <% if @blog.image.present? %>
+    <li><%= image_tag @blog.image, size:'200x200' %></li>
+  <% end %>
+  <li><%= @blog.body %></li>
+</ul>

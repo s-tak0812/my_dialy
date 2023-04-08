@@ -17,7 +17,10 @@
               <%= link_to "マイページ", customers_mypage_path, class: 'nav-link btn pr-1 pl-1 ml-4' %>
             </li>
             <li class="nav-item">
-              <%= link_to "日一覧", effective_dates_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
+              <%= link_to "blog一覧", blogs_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "予定一覧", schedules_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
             </li>
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link btn pr-1 pl-1 ml-4' %>

@@ -3,7 +3,8 @@ class Public::BlogsController < ApplicationController
   before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
 
   def index
-
+    # @blogs = current_customer.blogs
+    @blogs = Blog.all
   end
 
   def new
@@ -14,13 +15,7 @@ class Public::BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.customer_id = current_customer.id
     if @blog.save
-      @effective_date = EffectiveDate.new(effective_date_params)
-      @effective_date.customer_id = current_customer.id
-      @effective_date.blog_id = @blog.id
-      @effective_date.active_date = params[:active_date]
-
-      @effective_date.save
-      redirect_to blog_path(@blog), notice: "You have created book successfully."
+      redirect_to blog_path(@blog), notice: "You have created blog successfully."
     else
       redirect_to customers_mypage_path
     end
@@ -31,7 +26,7 @@ class Public::BlogsController < ApplicationController
 
   def update
     if @blog.update(blog_params)
-      redirect_to blog_path(@blog), notice: "You have updated book successfully."
+      redirect_to blog_path(@blog), notice: "You have updated blog successfully."
     else
       render "edit"
     end
@@ -42,19 +37,16 @@ class Public::BlogsController < ApplicationController
   end
 
   def destroy
+    @blog = Blog.find(params[:id])
     @blog.destroy
-    redirect_to root_path
+    redirect_to blogs_path
   end
 
 
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :body, :image)
-  end
-
-  def effective_date_params
-    params.require(:effective_date).permit(:active_date, :customer_id, :blog_id)
+    params.require(:blog).permit(:title, :body, :date, :image)
   end
 
   def ensure_correct_customer

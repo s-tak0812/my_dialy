@@ -55,7 +55,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions',
     passwords: "public/passwords"
-    }
+  }
 
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

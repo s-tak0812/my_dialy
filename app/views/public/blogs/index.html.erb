@@ -1,0 +1,36 @@
+<h1>Public::Blogs#index</h1>
+
+<p id="notice"><%= notice %></p>
+
+<h1>自分の日記</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>cu_id</th>
+      <th>title</th>
+      <th>date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= blog.customer_id %></td>
+        <td><%= blog.title %></td>
+        <td><%= blog.date %></td>
+        <td><%= link_to 'Show', blog %></td>
+        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
+        <td><%= link_to 'Destroy',blog_path(blog), method: :delete, "data-confirm" => 'Are you sure?' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= month_calendar do |date| %>
+  <%= date.day %>
+
+<% end %>
