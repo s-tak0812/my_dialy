@@ -2,6 +2,10 @@ class Public::BlogsController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
 
+  def index
+
+  end
+
   def new
     @blog = Blog.new
   end

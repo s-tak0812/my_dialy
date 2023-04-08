@@ -19,9 +19,9 @@ Rails.application.routes.draw do
     # contacts
     resources :contacts, only:[:new, :create]
 
-
     # schedules
-    resources :schedules, only:[:new, :create, :edit, :update, :destroy]
+    get 'schedules/the_day' => 'schedules#the_day'
+    resources :schedules, only:[:index, :new, :create, :edit, :update, :destroy]
 
     # life_cycles
     resources :life_cycles, only:[:new, :create, :edit, :update, :destroy]
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :household_budgets, only:[:new, :create, :edit, :update, :destroy]
 
     # blogs
-    resources :blogs, except:[:index]
+    resources :blogs
 
     # customers
     get 'customers/mypage' => 'customers#show'
