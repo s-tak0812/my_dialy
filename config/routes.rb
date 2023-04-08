@@ -19,8 +19,6 @@ Rails.application.routes.draw do
     # contacts
     resources :contacts, only:[:new, :create]
 
-    # effective_dates
-    resources :effective_dates, only:[:index, :show]
 
     # schedules
     resources :schedules, only:[:new, :create, :edit, :update, :destroy]

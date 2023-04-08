@@ -8,7 +8,6 @@ class Customer < ApplicationRecord
   has_many:household_budgets
   has_many:life_cycles
   has_many:schedules
-  has_many:effective_dates
   has_many:contacts
 
   with_options presence: true do
