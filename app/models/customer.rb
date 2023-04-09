@@ -4,12 +4,11 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many:blogs
-  has_many:household_budgets
-  has_many:life_cycles
-  has_many:schedules
-  has_many:effective_dates
-  has_many:contacts
+  has_many:blogs, dependent: :destroy
+  has_many:household_budgets, dependent: :destroy
+  has_many:life_cycles, dependent: :destroy
+  has_many:schedules, dependent: :destroy
+  has_many:contacts, dependent: :destroy
 
   with_options presence: true do
     validates :last_name

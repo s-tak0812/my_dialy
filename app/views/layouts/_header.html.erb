@@ -1,0 +1,47 @@
+<header class="d-flex flex-column">
+  <div class="container-fluid">
+    <nav class="navbar">
+      <div>
+        <ul class="navbar-nav list-group list-group-horizontal" >
+          <% if admin_signed_in? %>
+            <!--管理者ログイン後-->
+            <li class="nav-item">
+              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn pr-2 pl-2 ml-4' %>
+            </li>
+          <% elsif customer_signed_in? %>
+            <!--顧客ログイン後-->
+            <li class="nav-item">
+              <%= link_to "マイページ", customers_mypage_path, class: 'nav-link btn pr-1 pl-1 ml-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "blog一覧", blogs_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "予定一覧", schedules_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link btn pr-1 pl-1 ml-4' %>
+            </li>
+          <% else %>
+            <!--ログイン前-->
+            <li class="nav-item">
+              <%= link_to "About", about_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "管理者ログイン", new_admin_session_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_customer_session_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>

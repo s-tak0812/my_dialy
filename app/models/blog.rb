@@ -1,4 +1,11 @@
 class Blog < ApplicationRecord
-  belongs_to:customer, dependent: :destroy
-  belongs_to:effective_date
+  belongs_to:customer
+
+  with_options presence: true do
+    validates :title
+    validates :body
+  end
+
+  has_one_attached:image
+
 end

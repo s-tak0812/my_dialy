@@ -19,11 +19,9 @@ Rails.application.routes.draw do
     # contacts
     resources :contacts, only:[:new, :create]
 
-    # effective_dates
-    resources :effective_dates, only:[:index, :show]
-
     # schedules
-    resources :schedules, only:[:new, :create, :edit, :update, :destroy]
+    get 'schedules/the_day' => 'schedules#the_day'
+    resources :schedules, only:[:index, :new, :create, :edit, :update, :destroy]
 
     # life_cycles
     resources :life_cycles, only:[:new, :create, :edit, :update, :destroy]
@@ -32,7 +30,7 @@ Rails.application.routes.draw do
     resources :household_budgets, only:[:new, :create, :edit, :update, :destroy]
 
     # blogs
-    resources :blogs, except:[:index]
+    resources :blogs
 
     # customers
     get 'customers/mypage' => 'customers#show'
@@ -40,6 +38,7 @@ Rails.application.routes.draw do
     patch 'customers/information' => 'customers#update'
     get 'customers/soft_delete' => 'customers#soft_delete'
     patch 'customers/drop' => 'customers#drop'
+    get 'customers/day_link' => 'customers#day_link'
 
     # homes
     root to: 'homes#top'
@@ -57,7 +56,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions',
     passwords: "public/passwords"
-    }
+  }
 
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
