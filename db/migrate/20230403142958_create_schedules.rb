@@ -3,6 +3,7 @@ class CreateSchedules < ActiveRecord::Migration[6.1]
     create_table :schedules do |t|
       t.integer :customer_id, null: false
       t.integer :title, null: false, default: 0
+      t.text :content
       t.time :start_time, null: false
       t.time :end_time, null: false
       t.date :date, null: false
