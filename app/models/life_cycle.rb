@@ -13,7 +13,21 @@ class LifeCycle < ApplicationRecord
   # validateに設定してエラーを出力させる
   validate :end_time_cannot_be_earlier_than_start_time
 
+  validate :check_overlap
+
+
   private
+
+  # 同じ日の既存のレコードと時間がかぶらないようにするためのメソッド
+  def check_overlap
+    overlapping_records = LifeCycle.where(customer_id: customer_id)
+                                   .where(date: date)
+                                   .where.not(id: id)
+                                   .where("(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)", start_time, start_time, end_time, end_time)
+    if overlapping_records.exists?
+      errors.add(:base, "Can't overlap with existing records")
+    end
+  end
 
   # end_timeがstart_timeよりも早い時間で保存されないようにするメソッド
   def end_time_cannot_be_earlier_than_start_time
