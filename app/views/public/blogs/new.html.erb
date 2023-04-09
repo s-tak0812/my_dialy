@@ -1,5 +1,12 @@
 <h1>Public::Blogs#new</h1>
 
+<ul>
+  <li><%= flash[:alert] %></li>
+  <% @blog.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+
 <%= form_with model:@blog do |f| %>
   <div class="form-group">
     <%= f.label :image %>
