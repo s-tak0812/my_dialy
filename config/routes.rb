@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
     # schedules
     get 'schedules/the_day' => 'schedules#the_day'
-    resources :schedules, only:[:index, :new, :create, :edit, :update, :destroy]
+    resources :schedules, only:[:new, :create, :edit, :update, :destroy]
 
     # life_cycles
     resources :life_cycles, only:[:new, :create, :edit, :update, :destroy]
