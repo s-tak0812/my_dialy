@@ -7,6 +7,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>cu_id</th>
       <th>title</th>
       <th>date</th>
@@ -17,12 +18,11 @@
   <tbody>
     <% @blogs.each do |blog| %>
       <tr>
+        <td><%= blog.id %></td>
         <td><%= blog.customer_id %></td>
         <td><%= blog.title %></td>
         <td><%= blog.date %></td>
-        <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= link_to 'Destroy',blog_path(blog), method: :delete, "data-confirm" => 'Are you sure?' %></td>
+        <td><%= link_to 'Show', blog_path(blog) %></td>
       </tr>
     <% end %>
   </tbody>

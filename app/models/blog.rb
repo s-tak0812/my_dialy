@@ -1,5 +1,5 @@
 class Blog < ApplicationRecord
-  belongs_to:customer, dependent: :destroy
+  belongs_to:customer
 
   with_options presence: true do
     validates :title
