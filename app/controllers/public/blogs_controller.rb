@@ -1,10 +1,10 @@
 class Public::BlogsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_correct_customer, only:[:edit, :update]
+  before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
 
   def index
     @blogs = current_customer.blogs
-    # @blogs = Blog.all
+    @household_budgets = current_customer.household_budgets
   end
 
   def new

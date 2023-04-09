@@ -4,27 +4,58 @@
 
 <h1>自分の日記</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>cu_id</th>
-      <th>title</th>
-      <th>date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @blogs.each do |blog| %>
+<div>
+  <table>
+    <thead>
       <tr>
-        <td><%= blog.id %></td>
-        <td><%= blog.customer_id %></td>
-        <td><%= blog.title %></td>
-        <td><%= blog.date %></td>
-        <td><%= link_to 'Show', blog_path(blog) %></td>
+        <th>ID</th>
+        <th>cu_id</th>
+        <th>title</th>
+        <th>date</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @blogs.each do |blog| %>
+        <tr>
+          <td><%= blog.id %></td>
+          <td><%= blog.customer_id %></td>
+          <td><%= blog.title %></td>
+          <td><%= blog.date %></td>
+          <td><%= link_to 'Show', blog_path(blog) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>cu_id</th>
+        <th>title</th>
+        <th>price</th>
+        <th>is_active</th>
+        <th>date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @household_budgets.each do |home| %>
+        <tr>
+          <td><%= home.id %></td>
+          <td><%= home.customer_id %></td>
+          <td><%= home.title %></td>
+          <td><%= home.price.to_s(:delimited) %></td>
+          <td><%= home.is_active %></td>
+          <td><%= home.date %></td>
+          <td><%= link_to "edit", edit_household_budget_path(home), class:"btn btn-success" %></td>
+          <td><%= link_to "del", household_budget_path(home), method: :delete, class:"btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
