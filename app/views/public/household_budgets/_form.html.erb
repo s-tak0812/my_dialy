@@ -1,47 +1,40 @@
 <div class="container my-5">
   <div class='row'>
     <div class="col-12 px-5 px-sm-0 mx-auto">
-      <div class="d-flex">
-        <h3 class="bg-light"><strong>家計簿登録</strong></h3>
-      </div>
-      <%= render 'public/shared/error_messages', resource: HouseholdBudget.new %>
-
+      <%= render 'public/shared/error_messages', resource: @household_budget %>
 
         <%= form_with model: household_budget do |f| %>
 
           <div class="form-group my-3">
-            <table class="table table-bordered">
-              <thead class="text-center align-middle">
-                <tr>
-                  <th style="width:30%">日にち</th>
-                  <th style="width:15%">項目</th>
-                  <th style="width:30%">金額</th>
-                  <th style="width:15%">収支</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody class="text-center align-middle">
-                <tr>
-                  <td>
-                    <%= f.date_field :date, class: 'form-control household_budget_date' %>
-                  </td>
-                  <td>
-                    <%= f.select :title, HouseholdBudget.titles.keys.map {|k| [I18n.t("enums.household_budget.title.#{k}"), k]}, class: "form-control-select title-select" %>
-                  </td>
-                  <td>
-                    <%= f.text_field :price, placeholder:"1000", class: "form-control household_budget_price" %>
-                  </td>
-                  <td>
-                    <%= f.radio_button :is_active, "false" %>
-                    <%= f.label :is_active_false, "支出", class:"mb-0" %> <br>
-                    <%= f.radio_button :is_active, "true" %>
-                    <%= f.label :is_active_true, "収入", class:"mb-0" %>
-                  </td>
-                  <td>
-                    <%= f.submit class: 'btn btn-success' %>
-                  </td>
-                </tr>
-              </tbody>
+            <table class="table table-borderless">
+              <tr class="text-center">
+                <td style="width:30%">
+                  <strong><%= f.label :date %></strong>
+                  <%= f.date_field :date, class: 'form-control household_budget_date' %>
+                </td>
+
+                <td style="width:15%">
+                  <strong><%= f.label :title %></strong><br>
+                  <%= f.select :title, HouseholdBudget.titles.keys.map {|k| [I18n.t("enums.household_budget.title.#{k}"), k]}, class: "form-control-select title-select" %>
+                </td>
+
+                <td style="width:30%">
+                  <strong><%= f.label :price %></strong>
+                  <%= f.text_field :price, placeholder:"1000", class: "form-control household_budget_price" %>
+                </td>
+
+                <td style="width:15%">
+                  <%= f.radio_button :is_active, "false" %>
+                  <%= f.label :is_active_false, "支出", class:"mb-0 pt-2" %> <br>
+                  <%= f.radio_button :is_active, "true" %>
+                  <%= f.label :is_active_true, "収入", class:"mb-0" %>
+                </td>
+
+                <td>
+                  <%= f.submit class: 'btn btn-success mt-3' %>
+                </td>
+
+              </tr>
             </table>
           </div>
         <% end %>

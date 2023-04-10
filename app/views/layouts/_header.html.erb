@@ -25,6 +25,18 @@
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link btn pr-1 pl-1 ml-4' %>
             </li>
+
+
+            <div>
+              <ul>
+                <li><%= link_to "new blog", new_blog_path %></li>
+                <li><%= link_to "new household", new_household_budget_path %></li>
+                <li><%= link_to "new life", new_life_cycle_path %></li>
+                <li><%= link_to "new schedule", new_schedule_path %></li>
+              </ul>
+            </div>
+
+
           <% else %>
             <!--ログイン前-->
             <li class="nav-item">

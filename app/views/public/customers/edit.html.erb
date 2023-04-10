@@ -1,41 +1,41 @@
-<h1>Public::Customers#edit</h1>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="d-flex">
+        <h3 class="bg-light"><strong>会員情報編集</strong></h3>
+      </div>
+      <%= render 'public/shared/error_messages', resource: @customer %>
 
+      <%= form_with model: @customer, url: customers_information_path do |f| %>
+        <table class="table table-borderless my-3">
+          <tr>
+            <td style="width:30%">画像</td>
+            <td class="form-group" style="width:70%">
+              <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*'  %>
+            </td>
+          </tr>
+          <tr>
+            <td>氏名</td>
+            <td class="form-group">
+              <%= f.text_field :last_name %>
+              <%= f.text_field :first_name %>
+            </td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td class="form-group"><%= f.text_field :email %></td>
+          </tr>
+          <tr>
+            <td><%= link_to "マイページへ", customers_mypage_path, class: 'btn btn-secondary' %></td>
+            <td class="form-group d-flex justify-content-between">
+              <%= f.submit  class: "btn btn-success" %>
+              <%= link_to "退会する", customers_soft_delete_path, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
 
-<%= form_with model: @customer, url: customers_information_path do |f| %>
-  <table class="table table-borderless">
-    <thead>
-      <tr>
-        <td>画像</td>
-        <td class="form-group">
-          <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*'  %>
-        </td>
-      </tr>
-      <tr>
-        <td>氏名</td>
-        <td class="form-group">
-          <%= f.text_field :last_name %>
-          <%= f.text_field :first_name %>
-        </td>
-      </tr>
-      <tr>
-        <td>メールアドレス</td>
-        <td class="form-group"><%= f.text_field :email %></td>
-      </tr>
-      <tr>
-        <td>会員ステータス</td>
-        <td class="form-group">
-          <%= f.radio_button :is_deleted, "false" %>
-          <%= f.label :is_deleted_false, "有効" %>
-          <%= f.radio_button :is_deleted, "true" %>
-          <%= f.label :is_deleted_false, "退会" %>
-        </td>
-      </tr>
-      <tr>
-        <td class="form-group">
-          <%= f.submit "保存" %>
-          <%= link_to "退会する", customers_soft_delete_path, class: "btn btn-danger" %>
-        </td>
-      </tr>
-    </thead>
-  </table>
-<% end %>
+    </div>
+  </div>
+</div>
+

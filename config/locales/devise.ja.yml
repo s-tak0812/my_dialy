@@ -153,3 +153,4 @@ ja:
       too_long: "は%{count}文字以下に設定して下さい。"
       invalid: "は有効でありません。"
       confirmation: "が内容とあっていません。"
+      not_a_number: に数字がない。または、数字以外が入力されています。

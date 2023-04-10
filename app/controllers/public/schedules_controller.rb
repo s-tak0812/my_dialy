@@ -8,10 +8,6 @@ class Public::SchedulesController < ApplicationController
   end
 
 
-  def the_day
-  end
-
-
   def new
     @schedule = Schedule.new
   end

@@ -18,6 +18,12 @@ class Customer < ApplicationRecord
 
   has_one_attached :profile_image
 
+
+  def full_name
+    self.last_name + " " + self.first_name
+  end
+
+
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
