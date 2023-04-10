@@ -1,34 +1,13 @@
-<h1>Public::LifeCycles#new</h1>
-
-<ul>
-  <li><%= flash[:alert] %></li>
-  <% @life_cycle.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-</ul>
-
-<%= form_with model: @life_cycle do |f| %>
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.select :title, LifeCycle.titles.keys, {prompt: "選択してください"}, class: "title-select" %>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="d-flex">
+        <h3 class="bg-light"><strong>生活登録</strong></h3>
+      </div>
+      <%= render 'public/shared/error_messages', resource: @life_cycle %>
+      <%= render 'public/life_cycles/form', life_cycle: @life_cycle %>
+    </div>
   </div>
+</div>
 
-  <div class="form-group">
-    <%= f.label :start_time %>
-    <%= f.time_field :start_time, class: "form-control start_time" %>
-  </div>
 
-  <div class="form-group">
-    <%= f.label :end_time %>
-    <%= f.time_field :end_time, class: "form-control end_time" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :date %>
-    <%= f.date_field :date, class: 'form-control blog_date' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-success' %>
-  </div>
-<% end %>

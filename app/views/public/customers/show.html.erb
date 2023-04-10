@@ -1,23 +1,32 @@
-<h1>Public::Customers#show</h1>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-2'>
+      <h4><strong>会員情報</strong></h4>
 
-<div>
-  <ul>
-    <li><%= @customer.id %></li>
-    <li><%= image_tag @customer.get_profile_image, size:'100x100' %></li>
-    <li><%= @customer.last_name %></li>
-    <li><%= @customer.first_name %></li>
-    <li><%= @customer.email %></li>
-    <li><%= @customer.is_deleted %></li>
-    <li><%= link_to "edit", customers_information_edit_path %></li>
-  </ul>
+      <table class='table table-borderless'>
+        <tr>
+          <th class="d-flex justify-content-center">
+            <%= image_tag @customer.get_profile_image, size:'100x100' %>
+          </th>
+        </tr>
+        <tr>
+      	  <th class="p-0 text-center">
+      	    <%= @customer.full_name %>
+    	    </th>
+        </tr>
+        <tr>
+      	  <th class="p-2 text-center">
+            <%= link_to customers_information_edit_path, class: "btn btn-outline-secondary btn-block" do %>
+              <i class="fas fa-user-cog"></i>
+            <% end %>
+    	    </th>
+        </tr>
+      </table>
+
+    </div>
+
+    <div class='col-md-9 offset-md-1'>
+
+    </div>
+  </div>
 </div>
-
-<div>
-  <ul>
-    <li><%= link_to "new blog", new_blog_path %></li>
-    <li><%= link_to "new household", new_household_budget_path %></li>
-    <li><%= link_to "new life", new_life_cycle_path %></li>
-    <li><%= link_to "new schedule", new_schedule_path %></li>
-  </ul>
-</div>
-

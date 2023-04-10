@@ -13,18 +13,9 @@ class Public::BlogsController < ApplicationController
   end
 
   def create
-    # 日付を取得
-    date = params[:blog][:date]
-
-    # current_customer が指定した日付にすでに投稿済みの場合はエラーとする
-    if current_customer.blogs.exists?(date: date)
-      redirect_to new_blog_path, alert: "You have already posted a blog today."
-      return
-    end
-
     @blog = current_customer.blogs.new(blog_params)
     if @blog.save
-      redirect_to blog_path(@blog), notice: "You have created blog successfully."
+      redirect_to blog_path(@blog), notice: "投稿完了！"
     else
       render :new
     end
@@ -36,9 +27,9 @@ class Public::BlogsController < ApplicationController
 
   def update
     if @blog.update(blog_params)
-      redirect_to blog_path(@blog), notice: "You have updated blog successfully."
+      redirect_to blog_path(@blog), notice: "更新完了！"
     else
-      render "edit"
+      render :edit
     end
   end
 

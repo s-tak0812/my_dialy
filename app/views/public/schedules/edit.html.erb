@@ -1,2 +1,13 @@
-<h1>Public::Schedules#edit</h1>
-<p>Find me in app/views/public/schedules/edit.html.erb</p>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="d-flex">
+        <h3 class="bg-light"><strong>予定の編集</strong></h3>
+      </div>
+      <%= render 'public/shared/error_messages', resource: @schedule %>
+      <%= render 'public/schedules/form', schedule: @schedule %>
+    </div>
+  </div>
+</div>
+
+

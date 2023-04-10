@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     resources :contacts, only:[:new, :create]
 
     # schedules
-    get 'schedules/the_day' => 'schedules#the_day'
     resources :schedules, only:[:index, :new, :create, :edit, :update, :destroy]
 
     # life_cycles
