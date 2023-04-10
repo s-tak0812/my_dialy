@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+<div class="toppage">
+  <h1 class="top">カレンダー</h1>
+
+  <div class="row">
+    <div class="col-md-4">
+    	<div class="schedule">今後の予定一覧</div>
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>タイトル</th>
+            <th>日程</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @schedules.each do |schedule| %>
+            <tr>
+              <td><%= link_to schedule.title , schedule_path(schedule) %></td>
+              <td><%= schedule.start_time.strftime("%R") %> - <%= schedule.end_time.strftime("%R") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+
+
+      <%= form_with model: @schedule do |f| %>
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control title" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :content %>
+          <%= f.text_area :content, class: "form-control content" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :start_time %>
+          <%= f.time_field :start_time, class: "form-control start_time" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :end_time %>
+          <%= f.time_field :end_time, class: "form-control end_time" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :date %>
+          <%= f.date_field :date, class: 'form-control blog_date' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit class: 'btn btn-success' %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= month_calendar events: @schedules do |date, schedules| %>
+        <%= date.day %>
+
+        <% schedules.each do |schedule| %>
+          <div>
+            <%= link_to schedule.title, schedule_path(schedule) %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
