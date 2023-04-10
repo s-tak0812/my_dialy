@@ -1,13 +1,1 @@
-<div class="container my-5">
-  <div class='row'>
-    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
-      <div class="d-flex">
-        <h3 class="bg-light"><strong>家計簿登録</strong></h3>
-      </div>
-      <%= render 'public/shared/error_messages', resource: @household_budget %>
-      <%= render 'public/household_budgets/form', household_budget: @household_budget %>
-    </div>
-  </div>
-</div>
-
-
+<%= render 'public/household_budgets/form', household_budget: @household_budget %>
