@@ -10,7 +10,7 @@
 <%= form_with model: @life_cycle do |f| %>
   <div class="form-group">
     <%= f.label :title %>
-    <%= f.select :title, LifeCycle.titles.keys, {prompt: "選択してください"}, class: "title-select" %>
+    <%= f.select :title, LifeCycle.titles.keys.map {|k| [I18n.t("enums.life_cycle.title.#{k}"), k]}, class: "title-select" %>
   </div>
 
   <div class="form-group">

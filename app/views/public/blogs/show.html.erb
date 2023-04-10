@@ -1,5 +1,7 @@
+
 <h1>Public::Blogs#show</h1>
 
+<p id="notice"><%= notice %></p>
 
 <ul>
   <li><%= @blog.date %></li>
@@ -8,6 +10,6 @@
     <li><%= image_tag @blog.image, size:'200x200' %></li>
   <% end %>
   <li><%= @blog.body %></li>
-  <li><%= link_to 'Edit', edit_blog_path(@blog) %></li>
-  <li><%= link_to 'Destroy', blog_path(@blog), method: :delete, "data-confirm" => 'Are you sure?' %></li>
+  <li><%= link_to '編集', edit_blog_path(@blog), class:"btn btn-success" %></li>
+  <li><%= link_to '削除', blog_path(@blog), method: :delete, "data-confirm" => 'Are you sure?', class:"btn btn-danger" %></li>
 </ul>

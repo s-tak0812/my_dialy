@@ -1,7 +1,5 @@
 <h1>Public::Blogs#index</h1>
 
-<p id="notice"><%= notice %></p>
-
 <h1>自分の日記</h1>
 
 <div>
@@ -48,7 +46,7 @@
         <tr>
           <td><%= home.id %></td>
           <td><%= home.customer_id %></td>
-          <td><%= home.title %></td>
+          <td><%= home.title_i18n %></td>
           <td><%= home.price.to_s(:delimited) %></td>
           <td><%= home.is_active %></td>
           <td><%= home.date %></td>
@@ -78,7 +76,7 @@
         <tr>
           <td><%= life.id %></td>
           <td><%= life.customer_id %></td>
-          <td><%= life.title %></td>
+          <td><%= life.title_i18n %></td>
           <td><%= life.start_time.strftime('%R') %></td>
           <td><%= life.end_time.strftime('%R') %></td>
           <td><%= life.date %></td>

@@ -1,36 +1,13 @@
-<h1>Public::HouseholdBudgets#new</h1>
-
-<ul>
-  <li><%= flash[:alert] %></li>
-  <% @household_budget.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-</ul>
-
-<%= form_with model: @household_budget do |f| %>
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.select :title, HouseholdBudget.titles.keys, {prompt: "選択してください"}, class: "title-select" %>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="d-flex">
+        <h3 class="bg-light"><strong>家計簿登録</strong></h3>
+      </div>
+      <%= render 'public/shared/error_messages', resource: @household_budget %>
+      <%= render 'public/household_budgets/form', household_budget: @household_budget %>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :price %>
-    <%= f.text_field :price, placeholder:"1000", class: "form-control price" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :date %>
-    <%= f.date_field :date, class: 'form-control blog_date' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.radio_button :is_active, "false" %>
-    <%= f.label :is_active_false, "マイナス" %>
-    <%= f.radio_button :is_active, "true" %>
-    <%= f.label :is_active_true, "プラス" %>
-  </div>
+</div>
 
 
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-success' %>
-  </div>
-<% end %>
