@@ -1,39 +1,13 @@
-<h1>Public::Schedules#edit</h1>
-
-<ul>
-  <li><%= flash[:alert] %></li>
-  <% @schedule.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-</ul>
-
-<%= form_with model: @schedule do |f| %>
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, class: "form-control title" %>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="d-flex">
+        <h3 class="bg-light"><strong>予定の編集</strong></h3>
+      </div>
+      <%= render 'public/shared/error_messages', resource: @schedule %>
+      <%= render 'public/schedules/form', schedule: @schedule %>
+    </div>
   </div>
+</div>
 
-  <div class="form-group">
-    <%= f.label :content %>
-    <%= f.text_area :content, class: "form-control content" %>
-  </div>
 
-  <div class="form-group">
-    <%= f.label :start_time %>
-    <%= f.time_field :start_time, class: "form-control start_time" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :end_time %>
-    <%= f.time_field :end_time, class: "form-control end_time" %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :date %>
-    <%= f.date_field :date, class: 'form-control blog_date' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-success' %>
-  </div>
-<% end %>

@@ -66,11 +66,11 @@
         <%= date.day %>
 
         <% schedules.each do |schedule| %>
-          <div>
-            <%= link_to schedule.title, schedule_path(schedule) %>
-          </div>
+          <%= link_to schedule.title, schedule_path(schedule), class:"calendar-link" %>
         <% end %>
       <% end %>
     </div>
   </div>
 </div>
+
+<!--}（#{schedule.start_time.strftime("%R")} ~ #{schedule.end_time.strftime("%R")}）"-->
