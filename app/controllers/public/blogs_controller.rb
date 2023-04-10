@@ -6,7 +6,6 @@ class Public::BlogsController < ApplicationController
     @blogs = current_customer.blogs
     @household_budgets = current_customer.household_budgets
     @life_cycles = current_customer.life_cycles
-    @schedules = current_customer.schedules
   end
 
   def new

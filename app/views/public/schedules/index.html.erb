@@ -4,61 +4,42 @@
   <h1 class="top">カレンダー</h1>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
     	<div class="schedule">今後の予定一覧</div>
       <table class="table">
         <thead class="thead-light">
           <tr>
-            <th>タイトル</th>
-            <th>日程</th>
+            <th>ID</th>
+            <th>cu_id</th>
+            <th>title</th>
+            <th>content</th>
+            <th>start_time</th>
+            <th>end_time</th>
+            <th>date</th>
+            <th colspan=2></th>
           </tr>
         </thead>
 
         <tbody>
           <% @schedules.each do |schedule| %>
             <tr>
-              <td><%= link_to schedule.title , schedule_path(schedule) %></td>
-              <td><%= schedule.start_time.strftime("%R") %> - <%= schedule.end_time.strftime("%R") %></td>
+              <td><%= schedule.id %></td>
+              <td><%= schedule.customer_id %></td>
+              <td><%= schedule.title %></td>
+              <td><%= schedule.content %></td>
+              <td><%= schedule.start_time.strftime('%R') %></td>
+              <td><%= schedule.end_time.strftime('%R') %></td>
+              <td><%= schedule.date %></td>
+              <td><%= link_to "edit", edit_schedule_path(schedule), class:"btn btn-success" %></td>
+              <td><%= link_to "del", schedule_path(schedule), method: :delete, class:"btn btn-danger" %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
 
-
-
-      <%= form_with model: @schedule do |f| %>
-        <div class="form-group">
-          <%= f.label :title %>
-          <%= f.text_field :title, class: "form-control title" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :content %>
-          <%= f.text_area :content, class: "form-control content" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :start_time %>
-          <%= f.time_field :start_time, class: "form-control start_time" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :end_time %>
-          <%= f.time_field :end_time, class: "form-control end_time" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :date %>
-          <%= f.date_field :date, class: 'form-control blog_date' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.submit class: 'btn btn-success' %>
-        </div>
-      <% end %>
-
     </div>
   </div>
+
 
   <div class="row">
     <div class="col-md-12">
