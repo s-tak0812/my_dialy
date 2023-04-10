@@ -22,7 +22,7 @@ class Blog < ApplicationRecord
                            .where.not(id: id)
 
     if overlapping_blog.exists?
-      errors.add(:blog, "Can't overlap with existing records")
+      errors.add(:blog, "この日は投稿済みです")
     end
   end
 

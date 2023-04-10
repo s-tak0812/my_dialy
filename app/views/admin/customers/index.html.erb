@@ -1,25 +1,54 @@
-<h1>Admin::Customers#index</h1>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
+      <div class="d-flex">
+        <h3 class="bg-light"><strong>会員一覧</strong></h3>
+      </div>
+      <table class="table table-hover my-3 text-center">
+        <thead class="table-active">
+          <tr>
+            <th>会員ID</th>
+            <th>プロフィール</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.id %></td>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>image</th>
-      <th>last_name</th>
-      <th>first_name</th>
-      <th>is_deleted</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @customers.each do |customer| %>
-      <tr>
-        <td><%= customer.id %></td>
-        <td><%= image_tag customer.get_profile_image, size:'50x50' %></td>
-        <td><%= customer.last_name %></td>
-        <td><%= customer.first_name %></td>
-        <td><%= customer.is_deleted %></td>
-        <td><%= link_to "edit", edit_admin_customer_path(customer) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+              <td>
+                <%= image_tag customer.get_profile_image, size:"50x50" %>
+              </td>
+
+              <td>
+                <%= link_to customer.full_name, edit_admin_customer_path(customer), class:"text-dark" %>
+              </td>
+
+              <td><%= customer.email %></td>
+
+              <% if customer.is_deleted == false %>
+                <td class="text-success">有効</td>
+              <% else %>
+                <td class="text-secondary">退会</td>
+              <% end %>
+
+              <td>
+                <%= link_to "編集", edit_admin_customer_path(customer), class:"btn btn-success" %>
+              </td>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center mt-5">
+    <%= paginate @customers %>
+  </div>
+</div>
+

@@ -25,14 +25,14 @@ class LifeCycle < ApplicationRecord
                                    .where.not(id: id)
                                    .where("(start_time <= ? AND end_time >= ?) OR (start_time <= ? AND end_time >= ?)", start_time, start_time, end_time, end_time)
     if overlapping_records.exists?
-      errors.add(:base, "Can't overlap with existing records")
+      errors.add(:base, "登録済みの項目と時刻が重なっています")
     end
   end
 
   # end_timeがstart_timeよりも早い時間で保存されないようにするメソッド
   def end_time_cannot_be_earlier_than_start_time
     return unless start_time && self.end_time && (self.end_time <= start_time)
-    errors.add(:end_time, "can't be earlier than start time")
+    errors.add(:end_time, "開始時刻が終了時刻より遅いです")
   end
 
 end
