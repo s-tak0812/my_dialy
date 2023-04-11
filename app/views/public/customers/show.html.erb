@@ -79,6 +79,38 @@
         </ul>
       <% end %>
 
+
+      <p>今月の収支</p>
+      <table class="table table-bordered">
+        <tr>
+          <td class="text-center align-middle">収入</td>
+          <td class="text-center align-middle">
+            <% @current_month_spendings.each do |money| %>
+              <% @spend += money.price %>
+            <% end %>
+            <%= @spend.to_s(:delimited) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center align-middle">支出</td>
+          <td class="text-center align-middle">
+            <% @current_month_incomes.each do |money| %>
+              <% @earn += money.price %>
+            <% end %>
+            <%= @earn.to_s(:delimited) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center align-middle">合計</td>
+          <td class="text-center align-middle">
+            <%= (@earn - @spend).to_s(:delimited) %>
+          </td>
+        </tr>
+      </table>
+  
+
+
+
     </div>
   </div>
 </div>

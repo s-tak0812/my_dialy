@@ -2,8 +2,18 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = current_customer
 
+    # 今日と明日のschedule表示
     @today_schedules = @customer.schedules.today_schedule
     @tomorrow_schedules = @customer.schedules.tomorrow_schedule
+
+    # 今月の支出
+    @current_month_spendings = @customer.household_budgets.current_month.spendings
+    # 今月の収入
+    @current_month_incomes = @customer.household_budgets.current_month.incomes
+    # 値のリセット
+    @spend = 0
+    @earn = 0
+
   end
 
   def edit
