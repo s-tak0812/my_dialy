@@ -1,6 +1,19 @@
 class Public::CustomersController < ApplicationController
   def show
     @customer = current_customer
+
+    # 今日と明日のschedule表示
+    @today_schedules = @customer.schedules.today_schedule
+    @tomorrow_schedules = @customer.schedules.tomorrow_schedule
+
+    # 今月の支出
+    @current_month_spendings = @customer.household_budgets.current_month.spendings
+    # 今月の収入
+    @current_month_incomes = @customer.household_budgets.current_month.incomes
+    # 値のリセット
+    @spend = 0
+    @earn = 0
+
   end
 
   def edit
@@ -22,6 +35,15 @@ class Public::CustomersController < ApplicationController
     reset_session
     flash[:notice] = "退会処理を完了しました。"
     redirect_to root_path
+  end
+
+  def day_link
+  end
+
+  def memory
+    @life_cycles = LifeCycle.where(date: Date.today) # 今日のデータのみ取得
+    @start_times = @life_cycles.pluck(:start_time).map(&:to_s)
+    @end_times = @life_cycles.pluck(:end_time).map(&:to_s)
   end
 
   private

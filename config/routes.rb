@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :contacts, only:[:new, :create]
 
     # schedules
-    resources :schedules, only:[:index, :new, :create, :edit, :update, :destroy]
+    resources :schedules, only:[:index, :create, :edit, :update, :destroy]
 
     # life_cycles
     resources :life_cycles, only:[:new, :create, :edit, :update, :destroy]
@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     get 'customers/soft_delete' => 'customers#soft_delete'
     patch 'customers/drop' => 'customers#drop'
     get 'customers/day_link' => 'customers#day_link'
+    get 'customers/memory' => 'customers#memory'
 
     # homes
     root to: 'homes#top'

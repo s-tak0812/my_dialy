@@ -8,22 +8,22 @@
           <div class="form-group my-3">
             <table class="table table-borderless">
               <tr class="text-center">
-                <td style="width:30%">
+                <td style="width:30%;">
                   <strong><%= f.label :date %></strong>
                   <%= f.date_field :date, class: 'form-control household_budget_date' %>
                 </td>
 
-                <td style="width:15%">
+                <td style="width:15%;">
                   <strong><%= f.label :title %></strong><br>
                   <%= f.select :title, HouseholdBudget.titles.keys.map {|k| [I18n.t("enums.household_budget.title.#{k}"), k]}, class: "form-control-select title-select" %>
                 </td>
 
-                <td style="width:30%">
+                <td style="width:30%;">
                   <strong><%= f.label :price %></strong>
                   <%= f.text_field :price, placeholder:"1000", class: "form-control household_budget_price" %>
                 </td>
 
-                <td style="width:15%">
+                <td style="width:15%;">
                   <%= f.radio_button :is_active, "false" %>
                   <%= f.label :is_active_false, "支出", class:"mb-0 pt-2" %> <br>
                   <%= f.radio_button :is_active, "true" %>
