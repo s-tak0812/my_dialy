@@ -28,65 +28,6 @@
   </table>
 </div>
 
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>cu_id</th>
-        <th>title</th>
-        <th>price</th>
-        <th>is_active</th>
-        <th>date</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @household_budgets.each do |home| %>
-        <tr>
-          <td><%= home.id %></td>
-          <td><%= home.customer_id %></td>
-          <td><%= home.title_i18n %></td>
-          <td><%= home.price.to_s(:delimited) %></td>
-          <td><%= home.is_active %></td>
-          <td><%= home.date %></td>
-          <td><%= link_to "edit", edit_household_budget_path(home), class:"btn btn-success" %></td>
-          <td><%= link_to "del", household_budget_path(home), method: :delete, class:"btn btn-danger" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>cu_id</th>
-        <th>title</th>
-        <th>start_time</th>
-        <th>end_time</th>
-        <th>date</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @life_cycles.each do |life| %>
-        <tr>
-          <td><%= life.id %></td>
-          <td><%= life.customer_id %></td>
-          <td><%= life.title_i18n %></td>
-          <td><%= life.start_time.strftime('%R') %></td>
-          <td><%= life.end_time.strftime('%R') %></td>
-          <td><%= life.date %></td>
-          <td><%= link_to "edit", edit_life_cycle_path(life), class:"btn btn-success" %></td>
-          <td><%= link_to "del", life_cycle_path(life), method: :delete, class:"btn btn-danger" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
 
 <div>
   <%= month_calendar do |date| %>

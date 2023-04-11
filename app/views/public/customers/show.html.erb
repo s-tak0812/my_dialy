@@ -1,8 +1,6 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
-    <div class='col-md-2'>
-      <h4><strong>会員情報</strong></h4>
-
+    <div class='col-md-3'>
       <table class='table table-borderless'>
         <tr>
           <th class="d-flex justify-content-center">
@@ -23,10 +21,41 @@
         </tr>
       </table>
 
+      <div class="mt-3">
+        <span class="text-center
+        "><strong>今月の収支</strong></span>
+        <table class="table table-bordered">
+          <tr>
+            <td class="text-center align-middle">収入</td>
+            <td class="text-center align-middle">
+              <% @current_month_incomes.each do |money| %>
+                <% @earn += money.price %>
+              <% end %>
+              <%= @earn.to_s(:delimited) %>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center align-middle">支出</td>
+            <td class="text-center align-middle">
+              <% @current_month_spendings.each do |money| %>
+                <% @spend += money.price %>
+              <% end %>
+              <%= @spend.to_s(:delimited) %>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center align-middle">合計</td>
+            <td class="text-center align-middle">
+              <%= (@earn - @spend).to_s(:delimited) %>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
 
-    <div class='col-md-9 offset-md-1'>
-
+    <div class='col-md-8 offset-md-1'>
+      <!--直近のスケジュール表示-->
+      <span><strong>今日の予定</strong></span>
       <% if @today_schedules.present? %>
         <table class="table">
           <thead class="thead-light">
@@ -53,6 +82,7 @@
         </ul>
       <% end %>
 
+      <span><strong>明日の予定</strong></span>
       <% if @tomorrow_schedules.present? %>
         <table class="table">
           <thead class="thead-light">
@@ -80,33 +110,69 @@
       <% end %>
 
 
-      <p>今月の収支</p>
-      <table class="table table-bordered">
-        <tr>
-          <td class="text-center align-middle">収入</td>
-          <td class="text-center align-middle">
-            <% @current_month_incomes.each do |money| %>
-              <% @earn += money.price %>
+
+
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>cu_id</th>
+              <th>title</th>
+              <th>price</th>
+              <th>is_active</th>
+              <th>date</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @household_budgets.each do |home| %>
+              <tr>
+                <td><%= home.id %></td>
+                <td><%= home.customer_id %></td>
+                <td><%= home.title_i18n %></td>
+                <td><%= home.price.to_s(:delimited) %></td>
+                <td><%= home.is_active %></td>
+                <td><%= home.date %></td>
+                <td><%= link_to "edit", edit_household_budget_path(home), class:"btn btn-success" %></td>
+                <td><%= link_to "del", household_budget_path(home), method: :delete, class:"btn btn-danger" %></td>
+              </tr>
             <% end %>
-            <%= @earn.to_s(:delimited) %>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center align-middle">支出</td>
-          <td class="text-center align-middle">
-            <% @current_month_spendings.each do |money| %>
-              <% @spend += money.price %>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>cu_id</th>
+              <th>title</th>
+              <th>start_time</th>
+              <th>end_time</th>
+              <th>date</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @life_cycles.each do |life| %>
+              <tr>
+                <td><%= life.id %></td>
+                <td><%= life.customer_id %></td>
+                <td><%= life.title_i18n %></td>
+                <td><%= life.start_time.strftime('%R') %></td>
+                <td><%= life.end_time.strftime('%R') %></td>
+                <td><%= life.date %></td>
+                <td><%= link_to "edit", edit_life_cycle_path(life), class:"btn btn-success" %></td>
+                <td><%= link_to "del", life_cycle_path(life), method: :delete, class:"btn btn-danger" %></td>
+              </tr>
             <% end %>
-            <%= @spend.to_s(:delimited) %>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center align-middle">合計</td>
-          <td class="text-center align-middle">
-            <%= (@earn - @spend).to_s(:delimited) %>
-          </td>
-        </tr>
-      </table>
+          </tbody>
+        </table>
+      </div>
+
+
 
       <canvas id="myChart"></canvas>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

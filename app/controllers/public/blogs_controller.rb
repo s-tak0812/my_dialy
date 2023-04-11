@@ -4,8 +4,6 @@ class Public::BlogsController < ApplicationController
 
   def index
     @blogs = current_customer.blogs
-    @household_budgets = current_customer.household_budgets
-    @life_cycles = current_customer.life_cycles
   end
 
   def new

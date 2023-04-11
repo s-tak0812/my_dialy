@@ -14,6 +14,9 @@ class Public::CustomersController < ApplicationController
     @spend = 0
     @earn = 0
 
+    @household_budgets = current_customer.household_budgets
+    @life_cycles = current_customer.life_cycles
+
   end
 
   def edit
