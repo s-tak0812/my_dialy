@@ -8,14 +8,10 @@ class Public::SchedulesController < ApplicationController
   end
 
 
-  def new
-    @schedule = Schedule.new
-  end
-
   def create
     @schedule = current_customer.schedules.new(schedule_params)
     if @schedule.save
-      redirect_to customers_mypage_path, notice: "You have created successfully."
+      redirect_to schedules_path
     else
       render :new
     end
@@ -27,16 +23,16 @@ class Public::SchedulesController < ApplicationController
 
   def update
     if @schedule.update(schedule_params)
-      redirect_to customers_mypage_path, notice: "You have updated successfully."
+      redirect_to schedules_path
     else
-      render "edit"
+      render :edit
     end
   end
 
   def destroy
     @schedule = Schedule.find(params[:id])
     @schedule.destroy
-    redirect_to request.referer
+    redirect_to schedules_path
   end
 
 

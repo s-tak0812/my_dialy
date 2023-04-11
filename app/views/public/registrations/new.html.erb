@@ -9,10 +9,10 @@
       <%= form_with model:@customer, url:customer_registration_path do |f| %>
         <table class="table table-borderless my-3">
           <tr>
-            <td style="width:30%">
+            <td style="width:30%;">
               <%= f.label :last_name %>
             </td>
-            <td class="form-group" style="width:70%">
+            <td class="form-group" style="width:70%;">
               <%= f.text_field :last_name, autofocus: true, placeholder: "山田", autocomplete: "last_name" %>
             </td>
           </tr>

@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :contacts, only:[:new, :create]
 
     # schedules
-    resources :schedules, only:[:index, :new, :create, :edit, :update, :destroy]
+    resources :schedules, only:[:index, :create, :edit, :update, :destroy]
 
     # life_cycles
     resources :life_cycles, only:[:new, :create, :edit, :update, :destroy]

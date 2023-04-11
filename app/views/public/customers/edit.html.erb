@@ -9,8 +9,8 @@
       <%= form_with model: @customer, url: customers_information_path do |f| %>
         <table class="table table-borderless my-3">
           <tr>
-            <td style="width:30%">画像</td>
-            <td class="form-group" style="width:70%">
+            <td style="width:30%;">画像</td>
+            <td class="form-group" style="width:70%;">
               <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*'  %>
             </td>
           </tr>

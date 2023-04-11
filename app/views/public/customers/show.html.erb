@@ -31,9 +31,9 @@
         <table class="table">
           <thead class="thead-light">
             <tr>
-              <th style="width:30%">タイトル</th>
+              <th style="width:30%;">タイトル</th>
               <th>内容</th>
-              <th style="width:20%">時間</th>
+              <th style="width:20%;">時間</th>
             </tr>
           </thead>
 
@@ -57,9 +57,9 @@
         <table class="table">
           <thead class="thead-light">
             <tr>
-              <th style="width:30%">タイトル</th>
+              <th style="width:30%;">タイトル</th>
               <th>内容</th>
-              <th style="width:20%">時間</th>
+              <th style="width:20%;">時間</th>
             </tr>
           </thead>
 
@@ -85,19 +85,19 @@
         <tr>
           <td class="text-center align-middle">収入</td>
           <td class="text-center align-middle">
-            <% @current_month_spendings.each do |money| %>
-              <% @spend += money.price %>
+            <% @current_month_incomes.each do |money| %>
+              <% @earn += money.price %>
             <% end %>
-            <%= @spend.to_s(:delimited) %>
+            <%= @earn.to_s(:delimited) %>
           </td>
         </tr>
         <tr>
           <td class="text-center align-middle">支出</td>
           <td class="text-center align-middle">
-            <% @current_month_incomes.each do |money| %>
-              <% @earn += money.price %>
+            <% @current_month_spendings.each do |money| %>
+              <% @spend += money.price %>
             <% end %>
-            <%= @earn.to_s(:delimited) %>
+            <%= @spend.to_s(:delimited) %>
           </td>
         </tr>
         <tr>
