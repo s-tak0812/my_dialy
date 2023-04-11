@@ -8,10 +8,14 @@ class Schedule < ApplicationRecord
     validates :date
   end
 
+
+  scope :today_schedule, -> { where(date: Time.zone.now.all_day) }
+  scope :tomorrow_schedule, -> { where(date: Time.zone.tomorrow.all_day)}
+
+
+
   # validateに設定してエラーを出力させる
   validate :end_time_cannot_be_earlier_than_start_time
-
-
 
   private
 

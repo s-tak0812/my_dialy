@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     get 'customers/soft_delete' => 'customers#soft_delete'
     patch 'customers/drop' => 'customers#drop'
     get 'customers/day_link' => 'customers#day_link'
+    get 'customers/memory' => 'customers#memory'
 
     # homes
     root to: 'homes#top'

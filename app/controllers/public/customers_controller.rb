@@ -1,6 +1,9 @@
 class Public::CustomersController < ApplicationController
   def show
     @customer = current_customer
+
+    @today_schedules = @customer.schedules.today_schedule
+    @tomorrow_schedules = @customer.schedules.tomorrow_schedule
   end
 
   def edit
@@ -22,6 +25,13 @@ class Public::CustomersController < ApplicationController
     reset_session
     flash[:notice] = "退会処理を完了しました。"
     redirect_to root_path
+  end
+
+  def day_link
+  end
+
+  def memory
+
   end
 
   private

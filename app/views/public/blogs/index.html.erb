@@ -88,3 +88,8 @@
   </table>
 </div>
 
+<div>
+  <%= month_calendar do |date| %>
+    <%= link_to date.day, blog_path(date) %>
+  <% end %>
+</div>
