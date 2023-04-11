@@ -41,7 +41,9 @@ class Public::CustomersController < ApplicationController
   end
 
   def memory
-
+    @life_cycles = LifeCycle.where(date: Date.today) # 今日のデータのみ取得
+    @start_times = @life_cycles.pluck(:start_time).map(&:to_s)
+    @end_times = @life_cycles.pluck(:end_time).map(&:to_s)
   end
 
   private
