@@ -32,8 +32,7 @@ class Public::BlogsController < ApplicationController
   end
 
   def show
-    @params = params[:date]
-    @blog = Blog.find_by(date: params[:date])
+    @blog = Blog.find(params[:id])
   end
 
   def destroy

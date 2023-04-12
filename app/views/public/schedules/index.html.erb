@@ -8,14 +8,14 @@
         <%= month_calendar events: @schedules do |date| %>
           <%= date.day %>
 
-            <% @schedules.each do |schedule| %>
-              <div class="text-center" style="margin:2px 0;">
-                <% if schedule.date == date %>
-                  <%= link_to "#{schedule.title}(#{schedule.start_time.strftime("%R")} ~ #{schedule.end_time.strftime("%R")})",
-                  edit_schedule_path(schedule.id), class:"btn btn-sm btn-warning p-0" %>
-                <% end %>
-              </div>
-            <% end %>
+          <% @schedules.each do |schedule| %>
+            <div class="text-center" style="margin:2px 0;">
+              <% if schedule.date == date %>
+                <%= link_to "#{schedule.title}(#{schedule.start_time.strftime("%R")} ~ #{schedule.end_time.strftime("%R")})",
+                edit_schedule_path(schedule.id), class:"btn btn-sm btn-warning p-0" %>
+              <% end %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

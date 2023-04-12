@@ -1,36 +1,28 @@
-<h1>Public::Blogs#index</h1>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-12 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>Blog</strong></h3>
+      </div>
+      <div class="d-flex justify-content-end">
+        <%= link_to new_blog_path, class: "btn btn-outline-secondary" do  %>
+          <span class="text-dark h5"><i class="fas fa-plus-circle"></i> Blog</span>
+        <% end %>
+      </div>
+      <div class="my-5">
+        <%= month_calendar do |date| %>
+          <%= date.day %>
 
-<h1>自分の日記</h1>
-
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>cu_id</th>
-        <th>title</th>
-        <th>date</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @blogs.each do |blog| %>
-        <tr>
-          <td><%= blog.id %></td>
-          <td><%= blog.customer_id %></td>
-          <td><%= blog.title %></td>
-          <td><%= blog.date %></td>
-          <td><%= link_to 'Show', blog_path(blog) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          <% @blogs.each do |blog| %>
+            <div class="text-center" style="margin:2px 0;">
+              <% if blog.date == date %>
+                <%= link_to blog.title, blog_path(blog.id), class:"btn btn-info" %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
-
-<div>
-  <%= month_calendar do |date| %>
-    <%= link_to date.day, blog_path(date) %>
-  <% end %>
-</div>

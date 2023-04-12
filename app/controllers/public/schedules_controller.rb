@@ -14,7 +14,6 @@ class Public::SchedulesController < ApplicationController
       redirect_to schedules_path
     else
       @schedules = current_customer.schedules
-      @schedule = Schedule.new
       render :index
     end
 

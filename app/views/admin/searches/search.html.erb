@@ -1,0 +1,24 @@
+<div class='container'>
+  <div class='row', style="width: 100%;">
+    <div class='col-3'>
+      <%= render 'public/items/left_menu', genres: @genres %>
+    </div>
+    <div class='col-8 card p-0' style="background-color:#fcfced;">
+      <div class="row card-header m-0">
+        <div class="text-center mx-auto">
+          <% if @model == "item" %>
+            <h3>"<%= @content %>"での検索結果<span class="h5 pt-2"> (全<%= @records_count %>件)</span></h3>
+          <% elsif @model == "genre" %>
+            <h3>"<%= @content %>"一覧<span class="h5 pt-2"> (全<%= @records_count %>件)</span></h3>
+          <% end %>
+        </diV>
+      </div>
+      <%= render 'public/items/index', active_items: @records %>
+      <div class="d-flex justify-content-center mt-5">
+        <%= paginate @records %>
+      </div>
+    </div>
+  </div>
+</div>
+
+customerのみ
