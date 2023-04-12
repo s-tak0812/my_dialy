@@ -34,4 +34,8 @@ class Customer < ApplicationRecord
     super && (self.is_deleted == false)
   end
 
+  def self.search_for(content)
+    Customer.where("first_name LIKE ? OR last_name LIKE ?", '%'+content+'%', '%'+content+'%')
+  end
+
 end

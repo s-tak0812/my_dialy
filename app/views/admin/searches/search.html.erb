@@ -1,24 +1,17 @@
-<div class='container'>
-  <div class='row', style="width: 100%;">
-    <div class='col-3'>
-      <%= render 'public/items/left_menu', genres: @genres %>
-    </div>
-    <div class='col-8 card p-0' style="background-color:#fcfced;">
-      <div class="row card-header m-0">
-        <div class="text-center mx-auto">
-          <% if @model == "item" %>
-            <h3>"<%= @content %>"での検索結果<span class="h5 pt-2"> (全<%= @records_count %>件)</span></h3>
-          <% elsif @model == "genre" %>
-            <h3>"<%= @content %>"一覧<span class="h5 pt-2"> (全<%= @records_count %>件)</span></h3>
-          <% end %>
-        </diV>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-between">
+        <h3 class="bg-light">
+          <strong>
+            "<%= @content %>"での検索結果
+          </strong>
+        </h3>
+        <%= render 'admin/searches/search_customer' %>
       </div>
-      <%= render 'public/items/index', active_items: @records %>
-      <div class="d-flex justify-content-center mt-5">
-        <%= paginate @records %>
-      </div>
+      <%= render 'admin/customers/index', customers: @results %>
+
     </div>
   </div>
 </div>
 
-customerのみ
