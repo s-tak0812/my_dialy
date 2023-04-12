@@ -1,0 +1,23 @@
+<table class="table table-hover my-3 text-center">
+  <thead class="table-active">
+    <tr>
+      <th>タイトル</th>
+      <th>日にち</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% results.each do |blog| %>
+      <tr>
+        <td><%= link_to blog.title, blog_path(blog.id) %></td>
+
+        <td><%= blog.date %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="d-flex justify-content-center mt-5">
+  <%= paginate results %>
+</div>
+
+

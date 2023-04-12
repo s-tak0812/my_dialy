@@ -9,9 +9,15 @@ class Blog < ApplicationRecord
 
   has_one_attached:image
 
+
+  def self.search_for(content, customer)
+    Blog.where(customer_id: customer)
+        .where('title LIKE ?', '%'+content+'%')
+  end
+
+
   # 同じ日にすでに投稿されていればエラーを出力する
   validate :check_blogs
-
 
   private
 

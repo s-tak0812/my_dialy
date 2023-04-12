@@ -4,6 +4,9 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light"><strong>Blog</strong></h3>
       </div>
+      <div class="d-flex justify-content-start">
+        <%= render 'public/searches/search_blog' %>
+      </div>
       <div class="d-flex justify-content-end">
         <%= link_to new_blog_path, class: "btn btn-outline-secondary" do  %>
           <span class="text-dark h5"><i class="fas fa-plus-circle"></i> Blog</span>
