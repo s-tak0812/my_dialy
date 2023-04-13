@@ -8,7 +8,7 @@ class LifeCycle < ApplicationRecord
     validates :date
   end
 
-  enum title: { others: 0, sleeping: 1, work: 2, enjoying: 3, study: 4, meal: 5 }
+  enum title: { others: 0, sleeping: 1, work: 2, enjoying: 3, study: 4, meal: 5, housework: 6 }
 
   # validateに設定してエラーを出力させる
   validate :end_time_cannot_be_earlier_than_start_time

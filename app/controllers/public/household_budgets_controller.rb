@@ -2,17 +2,21 @@ class Public::HouseholdBudgetsController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
 
+  def index
+    @spendings = current_customer.household_budgets.spendings
+    @incomes = current_customer.household_budgets.incomes
 
-  def new
     @household_budget = HouseholdBudget.new
   end
 
   def create
     @household_budget = current_customer.household_budgets.new(household_budget_params)
     if @household_budget.save
-      redirect_to customers_mypage_path, notice: "You have created successfully."
+      redirect_to household_budgets_path
     else
-      render :new
+      @spendings = current_customer.household_budgets.spendings
+      @incomes = current_customer.household_budgets.incomes
+      render :index
     end
 
   end
@@ -22,9 +26,9 @@ class Public::HouseholdBudgetsController < ApplicationController
 
   def update
     if @household_budget.update(household_budget_params)
-      redirect_to customers_mypage_path, notice: "You have updated blog successfully."
+      redirect_to household_budgets_path
     else
-      render "edit"
+      render :edit
     end
   end
 
@@ -33,6 +37,12 @@ class Public::HouseholdBudgetsController < ApplicationController
     @household_budget.destroy
     redirect_to request.referer
   end
+
+  def date_show
+    @day_params = params[:date]
+    @household_budgets = current_customer.household_budgets.where(date: @day_params).order('price DESC')
+  end
+
 
 
   private
