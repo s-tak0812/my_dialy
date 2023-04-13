@@ -6,13 +6,12 @@ class Public::CustomersController < ApplicationController
     @today_schedules = @customer.schedules.today_schedule
     @tomorrow_schedules = @customer.schedules.tomorrow_schedule
 
-    # 今月の支出
+    # 今月の収支
     @current_month_spendings = @customer.household_budgets.current_month.spendings
-    # 今月の収入
     @current_month_incomes = @customer.household_budgets.current_month.incomes
-    # 値のリセット
-    @spend = 0
-    @earn = 0
+    # 先月の収支
+    @last_month_spendings = @customer.household_budgets.last_month.spendings
+    @last_month_incomes = @customer.household_budgets.last_month.incomes
 
     @household_budgets = current_customer.household_budgets
     @life_cycles = current_customer.life_cycles

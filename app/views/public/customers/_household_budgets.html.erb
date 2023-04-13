@@ -1,0 +1,30 @@
+<!--値のリセット-->
+<% earn = 0 %>
+<% spend = 0 %>
+
+<table class="table table-bordered">
+  <tr>
+    <td class="text-center align-middle" style="width:35%;">収入</td>
+    <td class="text-center align-middle">
+      <% incomes.each do |money| %>
+        <% earn += money.price %>
+      <% end %>
+      <%= earn.to_s(:delimited) %>
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center align-middle">支出</td>
+    <td class="text-center align-middle">
+      <% spendings.each do |money| %>
+        <% spend += money.price %>
+      <% end %>
+      <%= spend.to_s(:delimited) %>
+    </td>
+  </tr>
+  <tr>
+    <td class="text-center align-middle">合計</td>
+    <td class="text-center align-middle">
+      <%= (earn - spend).to_s(:delimited) %>
+    </td>
+  </tr>
+</table>

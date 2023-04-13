@@ -1,55 +1,21 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
-      <table class='table table-borderless'>
-        <tr>
-          <th class="d-flex justify-content-center">
-            <%= image_tag @customer.get_profile_image, size:'100x100' %>
-          </th>
-        </tr>
-        <tr>
-      	  <th class="p-0 text-center">
-      	    <%= @customer.full_name %>
-    	    </th>
-        </tr>
-        <tr>
-      	  <th class="p-2 text-center">
-            <%= link_to customers_information_edit_path, class: "btn btn-outline-secondary btn-block" do %>
-              <i class="fas fa-user-cog"></i>
-            <% end %>
-    	    </th>
-        </tr>
-      </table>
+      <!--customerの情報-->
+      <%= render 'public/customers/customer_info', customer: @customer %>
 
-      <div class="mt-3">
-        <span class="text-center
-        "><strong>今月の収支</strong></span>
-        <table class="table table-bordered">
-          <tr>
-            <td class="text-center align-middle">収入</td>
-            <td class="text-center align-middle">
-              <% @current_month_incomes.each do |money| %>
-                <% @earn += money.price %>
-              <% end %>
-              <%= @earn.to_s(:delimited) %>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center align-middle">支出</td>
-            <td class="text-center align-middle">
-              <% @current_month_spendings.each do |money| %>
-                <% @spend += money.price %>
-              <% end %>
-              <%= @spend.to_s(:delimited) %>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center align-middle">合計</td>
-            <td class="text-center align-middle">
-              <%= (@earn - @spend).to_s(:delimited) %>
-            </td>
-          </tr>
-        </table>
+      <div class="mt-5">
+        <!--今月の収支記録-->
+        <span class="d-flex justify-content-center"><strong>今月の収支</strong></span>
+        <%= render 'public/customers/household_budgets',
+        incomes: @current_month_incomes, spendings: @current_month_spendings, earn: @earn, spend: @spend%>
+      </div>
+
+      <div class="mt-5">
+        <!--先月の収支記録-->
+        <span class="d-flex justify-content-center"><strong>先月の収支</strong></span>
+        <%= render 'public/customers/household_budgets',
+        incomes: @last_month_incomes, spendings: @last_month_spendings, earn: @earn, spend: @spend%>
       </div>
     </div>
 
@@ -57,25 +23,7 @@
       <!--直近のスケジュール表示-->
       <span><strong>今日の予定</strong></span>
       <% if @today_schedules.present? %>
-        <table class="table">
-          <thead class="thead-light">
-            <tr>
-              <th style="width:30%;">タイトル</th>
-              <th>内容</th>
-              <th style="width:20%;">時間</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @today_schedules.each do |schedule| %>
-              <tr>
-                <td><%= schedule.title %></td>
-                <td><%= schedule.content %></td>
-                <td><%= schedule.start_time.strftime('%R') %> ~ <%= schedule.end_time.strftime('%R') %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <%= render 'public/customers/schedules', schedules: @today_schedules %>
       <% else %>
         <ul>
           <li>今日の予定はありません</li>
@@ -84,32 +32,12 @@
 
       <span><strong>明日の予定</strong></span>
       <% if @tomorrow_schedules.present? %>
-        <table class="table">
-          <thead class="thead-light">
-            <tr>
-              <th style="width:30%;">タイトル</th>
-              <th>内容</th>
-              <th style="width:20%;">時間</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @tomorrow_schedules.each do |schedule| %>
-              <tr>
-                <td><%= schedule.title %></td>
-                <td><%= schedule.content %></td>
-                <td><%= schedule.start_time.strftime('%R') %> ~ <%= schedule.end_time.strftime('%R') %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <%= render 'public/customers/schedules', schedules: @tomorrow_schedules %>
       <% else %>
         <ul>
           <li>明日の予定はありません</li>
         </ul>
       <% end %>
-
-
 
 
       <div>

@@ -1,0 +1,19 @@
+<table class='table table-borderless'>
+  <tr>
+    <th class="d-flex justify-content-center">
+      <%= image_tag customer.get_profile_image, size:'100x100' %>
+    </th>
+  </tr>
+  <tr>
+	  <th class="p-0 text-center">
+	    <%= customer.full_name %>
+    </th>
+  </tr>
+  <tr>
+	  <th class="p-2 text-center">
+      <%= link_to customers_information_edit_path, class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %>
+    </th>
+  </tr>
+</table>
