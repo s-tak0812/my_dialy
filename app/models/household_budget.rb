@@ -13,14 +13,13 @@ class HouseholdBudget < ApplicationRecord
 
   # 今月の内容を取り出す
   scope :current_month, -> { where(date: Time.current.all_month) }
+  # 今月の内容を取り出す
+  scope :last_month, -> { where(date: Time.current.last_month.all_month) }
 
+  # 支出のみ取り出す
   scope :spendings, -> { where(is_active: false)}
+  # 収入のみ取り出す
   scope :incomes, -> { where(is_active: true)}
 
 
-  
-  
-  
-  
-  
 end

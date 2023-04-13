@@ -4,8 +4,6 @@ class Public::BlogsController < ApplicationController
 
   def index
     @blogs = current_customer.blogs
-    @household_budgets = current_customer.household_budgets
-    @life_cycles = current_customer.life_cycles
   end
 
   def new
@@ -34,8 +32,7 @@ class Public::BlogsController < ApplicationController
   end
 
   def show
-    @params = params[:date]
-    @blog = Blog.find_by(date: params[:date])
+    @blog = Blog.find(params[:id])
   end
 
   def destroy

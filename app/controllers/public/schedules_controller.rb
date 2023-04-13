@@ -13,7 +13,8 @@ class Public::SchedulesController < ApplicationController
     if @schedule.save
       redirect_to schedules_path
     else
-      render :new
+      @schedules = current_customer.schedules
+      render :index
     end
 
   end

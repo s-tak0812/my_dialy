@@ -1,14 +1,30 @@
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-10 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong><%= @blog.title %></strong></h3>
+      </div>
+      <div class="my-5">
+        <div class="d-flex justify-content-end">
+          <span class="border-bottom border-dark"><%= @blog.date.strftime("%Y/%m/%d") %></span>
+        </div>
+        <div class="my-5">
+          <div class="d-flex justify-content-center">
+            <% if @blog.image.present? %>
+              <%= image_tag @blog.image, width: 500 %>
+            <% end %>
+          </div>
+          <div class="mt-5">
+            <%= simple_format(@blog.body) %>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between my-3">
+          <%= link_to '編集', edit_blog_path(@blog), class:"btn btn-success" %>
+          <%= link_to '削除', blog_path(@blog), method: :delete, "data-confirm" => '消しますか?', class:"btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h1>Public::Blogs#show</h1>
 
-
-<ul>
-  <li><%= @blog.date %></li>
-  <li><%= @blog.title %></li>
-  <% if @blog.image.present? %>
-    <li><%= image_tag @blog.image, size:'200x200' %></li>
-  <% end %>
-  <li><%= @blog.body %></li>
-  <li><%= link_to '編集', edit_blog_path(@blog), class:"btn btn-success" %></li>
-  <li><%= link_to '削除', blog_path(@blog), method: :delete, "data-confirm" => 'Are you sure?', class:"btn btn-danger" %></li>
-</ul>

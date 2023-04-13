@@ -1,0 +1,44 @@
+<table class="table table-hover my-3 text-center">
+  <thead class="table-active">
+    <tr>
+      <th>会員ID</th>
+      <th>プロフィール</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% customers.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+
+        <td>
+          <%= image_tag customer.get_profile_image, size:"50x50" %>
+        </td>
+
+        <td>
+          <%= link_to customer.full_name, edit_admin_customer_path(customer), class:"text-dark" %>
+        </td>
+
+        <td><%= customer.email %></td>
+
+        <% if customer.is_deleted == false %>
+          <td class="text-success">有効</td>
+        <% else %>
+          <td class="text-secondary">退会</td>
+        <% end %>
+
+        <td>
+          <%= link_to "編集", edit_admin_customer_path(customer), class:"btn btn-success" %>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center mt-5">
+  <%= paginate customers %>
+</div>

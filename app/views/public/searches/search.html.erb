@@ -1,0 +1,37 @@
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-12 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light">
+          <strong>
+            <% if @model == "blog" %>
+              "<%= @content %>"でのBlog検索結果
+            <% end %>
+          </strong>
+        </h3>
+      </div>
+      <div class="d-flex justify-content-start">
+        <%= render 'public/searches/search_blog' %>
+      </div>
+      <div class="my-5">
+
+        <% if @model == "blog" %>
+          <%= render 'public/searches/result_blog', results: @results %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+modelにあわせてviewを部分テンプレートで別で表示

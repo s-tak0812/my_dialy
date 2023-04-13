@@ -1,0 +1,13 @@
+<%= form_with url: admin_searches_search_path(model:"customer"), method: :get, local: true do |f| %>
+  <div class="search_form d-flex justify-content-end">
+    <div>
+      <%= f.text_field :content, class: "form-control", placeholder: "会員検索" %>
+      <%= f.hidden_field :model, :value => "customer" %>
+    </div>
+    <div>
+      <%= button_tag type: "submit", class: "btn btn-secondary" do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
