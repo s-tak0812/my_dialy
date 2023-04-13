@@ -26,7 +26,8 @@ Rails.application.routes.draw do
     resources :life_cycles, only:[:new, :create, :edit, :update, :destroy]
 
     # household_budgets
-    resources :household_budgets, only:[:new, :create, :edit, :update, :destroy]
+    get 'household_budgets/date_show/:date' => 'household_budgets#date_show', as: 'household_budgets_date_show'
+    resources :household_budgets, only:[:index, :create, :edit, :update, :destroy]
 
     # blogs
     resources :blogs

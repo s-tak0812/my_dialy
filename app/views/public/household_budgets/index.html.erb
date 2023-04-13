@@ -1,0 +1,48 @@
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-12 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>家計簿</strong></h3>
+      </div>
+      <div class="my-5">
+        <%= month_calendar do |date| %>
+          <%= link_to date.day, household_budgets_date_show_path(date) %>
+          <!--日ごとの支出の合計-->
+          <% spend_price = [] %>
+          <% @spendings.each do |spending| %>
+            <% if spending.date == date %>
+              <% spend_price << spending.price %>
+            <% end %>
+          <% end %>
+          <div class="text-danger text-center">
+            <% if spend_price.sum !=0 %>
+              <strong>
+                -<%= spend_price.sum.to_s(:delimited) %>
+              </strong>
+            <% end %>
+          </div>
+          <!--日ごとの収入の合計-->
+          <% earn_price = [] %>
+          <% @incomes.each do |earning| %>
+            <% if earning.date == date %>
+              <% earn_price << earning.price %>
+            <% end %>
+          <% end %>
+          <div class="text-success text-center">
+            <% if earn_price.sum !=0 %>
+              <strong>
+                +<%= earn_price.sum.to_s(:delimited) %>
+              </strong>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <%= render 'public/shared/error_messages', resource: @household_budget %>
+      <%= render 'public/household_budgets/form', household_budget: @household_budget %>
+    </div>
+  </div>
+</div>
