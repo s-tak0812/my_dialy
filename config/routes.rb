@@ -23,7 +23,8 @@ Rails.application.routes.draw do
     resources :schedules, only:[:index, :create, :edit, :update, :destroy]
 
     # life_cycles
-    resources :life_cycles, only:[:new, :create, :edit, :update, :destroy]
+    get 'life_cycles/date_show/:date' => 'life_cycles#date_show', as: 'life_cycles_date_show'
+    resources :life_cycles, only:[:index, :new, :create, :edit, :update, :destroy]
 
     # household_budgets
     get 'household_budgets/date_show/:date' => 'household_budgets#date_show', as: 'household_budgets_date_show'
