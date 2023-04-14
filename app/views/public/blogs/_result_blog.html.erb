@@ -9,9 +9,7 @@
     <% results.each do |blog| %>
       <tr>
         <td><%= link_to blog.title, blog_path(blog.id) %></td>
-
         <td><%= blog.date %></td>
-
       </tr>
     <% end %>
   </tbody>

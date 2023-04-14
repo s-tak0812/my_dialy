@@ -1,0 +1,64 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light">
+          <strong>
+            <%= @from %> ~ <%= @to %>の家計簿
+          </strong>
+        </h3>
+      </div>
+      <!--絞り込み期間の収支合計-->
+      <div class="my-5">
+        <span class="d-flex justify-content-center mb-2"><strong>収支合計</strong></span>
+        <%= render 'public/customers/household_budgets', incomes: @incomes, spendings: @spendings %>
+      </div>
+      <!--内訳一覧-->
+      <span class="d-flex justify-content-center"><strong>内訳</strong></span>
+      <table class="table table-hover my-3 text-center">
+        <thead class="table-active">
+          <tr>
+            <th>項目</th>
+            <th>金額</th>
+            <th>ステータス</th>
+            <th style="width:20%;"></th>
+            <th style="width:20%;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @household_budgets.each do |household_budget| %>
+            <tr>
+              <td><%= household_budget.title_i18n %></td>
+              <td><%= household_budget.price.to_s(:delimited) %></td>
+              <td>
+                <% if household_budget.is_active == false %>
+                  <span class="text-danger"><strong>支出</strong></span>
+                <% else %>
+                  <span class="text-success"><strong>収入</strong></span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to "編集", edit_household_budget_path(household_budget.id), class:"btn btn-success" %>
+              </td>
+              <td>
+                <%= link_to "削除", household_budget_path(household_budget.id), method: :delete, "data-confirm" => '消しますか?', class:"btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

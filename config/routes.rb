@@ -23,14 +23,19 @@ Rails.application.routes.draw do
     resources :schedules, only:[:index, :create, :edit, :update, :destroy]
 
     # life_cycles
+    # 日付の絞り込み検索
     get 'life_cycles/date_show/:date' => 'life_cycles#date_show', as: 'life_cycles_date_show'
     resources :life_cycles, only:[:index, :new, :create, :edit, :update, :destroy]
 
     # household_budgets
+    # 期間の絞り込み検索
+    get 'household_budgets/day_to_day' => 'household_budgets#day_to_day', as: 'household_budgets_day_to_day'
+    # 日付の絞り込み検索
     get 'household_budgets/date_show/:date' => 'household_budgets#date_show', as: 'household_budgets_date_show'
     resources :household_budgets, only:[:index, :create, :edit, :update, :destroy]
 
     # blogs
+    # Blogのタイトル検索
     get 'blogs/search' => 'blogs#search', as: 'blogs_search'
     resources :blogs
 
@@ -38,7 +43,9 @@ Rails.application.routes.draw do
     get 'customers/mypage' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
     patch 'customers/information' => 'customers#update'
+    # 退会確認画面
     get 'customers/soft_delete' => 'customers#soft_delete'
+    # 退会機能
     patch 'customers/drop' => 'customers#drop'
     get 'customers/day_link' => 'customers#day_link'
     get 'customers/memory' => 'customers#memory'

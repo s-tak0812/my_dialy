@@ -8,14 +8,14 @@
         <!--今月の収支記録-->
         <span class="d-flex justify-content-center"><strong>今月の収支</strong></span>
         <%= render 'public/customers/household_budgets',
-        incomes: @current_month_incomes, spendings: @current_month_spendings, earn: @earn, spend: @spend%>
+        incomes: @current_month_incomes, spendings: @current_month_spendings %>
       </div>
 
       <div class="mt-5">
         <!--先月の収支記録-->
         <span class="d-flex justify-content-center"><strong>先月の収支</strong></span>
         <%= render 'public/customers/household_budgets',
-        incomes: @last_month_incomes, spendings: @last_month_spendings, earn: @earn, spend: @spend%>
+        incomes: @last_month_incomes, spendings: @last_month_spendings %>
       </div>
     </div>
 

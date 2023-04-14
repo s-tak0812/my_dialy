@@ -5,17 +5,21 @@
         <h3 class="bg-light"><strong>Blog</strong></h3>
       </div>
       <div class="d-flex justify-content-start">
+        <!--Blogのタイトル検索-->
         <%= render 'public/blogs/search_blog' %>
       </div>
+
       <div class="d-flex justify-content-end">
+        <!--Blog新規投稿フォームへのリンク-->
         <%= link_to new_blog_path, class: "btn btn-outline-secondary" do  %>
           <span class="text-dark h5"><i class="fas fa-plus-circle"></i> Blog</span>
         <% end %>
       </div>
+
       <div class="my-5">
         <%= month_calendar do |date| %>
           <%= date.day %>
-
+          <!--各日にちの中に投稿したBlogのタイトルのリンクを表示-->
           <% @blogs.each do |blog| %>
             <div class="text-center" style="margin:2px 0;">
               <% if blog.date == date %>

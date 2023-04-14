@@ -38,12 +38,22 @@ class Public::HouseholdBudgetsController < ApplicationController
     redirect_to request.referer
   end
 
+  # 日付の絞り込み検索
   def date_show
     @day_params = params[:date]
     @household_budgets = current_customer.household_budgets.where(date: @day_params).order('price DESC')
   end
 
+  # 期間の絞り込み検索
+  def day_to_day
+    @from = params[:from]
+    @to = params[:to]
+    @household_budgets = current_customer.household_budgets.where('date BETWEEN ? AND ?', @from, @to).order('price DESC')
 
+    @spendings = @household_budgets.spendings
+    @incomes = @household_budgets.incomes
+
+  end
 
   private
 
