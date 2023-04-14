@@ -2,25 +2,26 @@
   <div class="row">
     <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
       <div class="d-flex justify-content-center">
-        <h3 class="bg-light"><strong>お問い合わせ一覧</strong></h3>
+        <h3 class="bg-light"><strong>お問い合わせ</strong></h3>
+      </div>
+
+      <div class="col-8 mx-auto">
+        <%= render 'public/shared/error_messages', resource: @contact %>
+        <%= render 'public/contacts/form', contact: @contact %>
       </div>
 
       <table class="table table-hover my-3 text-center">
         <thead class="table-active">
           <tr>
-            <th>会員名</th>
             <th>タイトル</th>
-            <th>受信日</th>
+            <th>送信日</th>
             <th>返信</th>
-            <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
           <% @contacts.each do |contact| %>
             <tr>
-              <td><%= contact.customer.full_name %></td>
-              <td><%= contact.title %></td>
+              <td><%= link_to contact.title, contact_path(contact.id), class:"btn btn-outline-dark p-1" %></td>
               <td><%= contact.created_at.strftime("%Y-%m-%d") %></td>
               <td>
                 <% if contact.reply.present? %>
@@ -29,21 +30,10 @@
                   <i class="fas fa-times text-danger"></i>
                 <% end %>
               </td>
-              <td>
-                <%= link_to "返信", edit_admin_contact_path(contact), class:"btn btn-sm btn-outline-success" %>
-              </td>
-              <td>
-                <%= link_to "削除", admin_contact_path(contact), method: :delete,
-                "data-confirm" => "消しますか？", class:"btn btn-sm btn-outline-danger" %>
-              </td>
             </tr>
           <% end %>
         </tbody>
       </table>
-
-      <div class="d-flex justify-content-center mt-5">
-        <%= paginate @contacts %>
-      </div>
 
     </div>
   </div>

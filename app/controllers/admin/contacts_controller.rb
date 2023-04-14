@@ -1,4 +1,5 @@
 class Admin::ContactsController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @contacts = Contact.page(params[:page]).order(created_at: :desc)
@@ -13,14 +14,13 @@ class Admin::ContactsController < ApplicationController
     contact.update(contact_params)
     customer = contact.customer
     ContactMailer.send_when_admin_reply(customer, contact).deliver_now #確認メールを送信
-    redirect_to admin_root_path
+    redirect_to admin_contacts_path
   end
 
   def destroy
     contact = Contact.find(params[:id])
     contact.destroy
-    @contacts = Contact.page(params[:page]).order(created_at: :desc)
-    render :index
+    redirect_to admin_contacts_path
   end
 
   private

@@ -32,10 +32,11 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to "編集", edit_household_budget_path(household_budget.id), class:"btn btn-success" %>
+                <%= link_to "編集", edit_household_budget_path(household_budget.id), class:"btn btn-outline-success" %>
               </td>
               <td>
-                <%= link_to "削除", household_budget_path(household_budget.id), method: :delete, "data-confirm" => '消しますか?', class:"btn btn-danger" %>
+                <%= link_to "削除", household_budget_path(household_budget.id), method: :delete,
+                "data-confirm" => '消しますか?', class:"btn btn-outline-danger" %>
               </td>
             </tr>
           <% end %>

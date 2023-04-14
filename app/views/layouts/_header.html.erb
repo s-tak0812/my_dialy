@@ -1,61 +1,57 @@
-<header class="d-flex flex-column">
+<header class="d-flex flex-column bg-light border-bottom">
   <div class="container-fluid">
     <nav class="navbar">
+      <% if admin_signed_in? %>
+        <a class="navbar-brand ml-5" href="/admin"><%= image_tag "my_dialy_logo.png", size:'100x100' %></a>
+      <% else %>
+        <a class="navbar-brand ml-5" href="/"><%= image_tag "my_dialy_logo.png", size:'100x100' %></a>
+      <% end %>
       <div>
         <ul class="navbar-nav list-group list-group-horizontal" >
+          <!--管理者ログイン後-->
           <% if admin_signed_in? %>
-            <!--管理者ログイン後-->
             <li class="nav-item">
-              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
+              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
             <li class="nav-item">
-              <%= link_to "お問い合わせ一覧", admin_contacts_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
+              <%= link_to "お問い合わせ一覧", admin_contacts_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn pr-2 pl-2 ml-4' %>
+            <li class="nav-item mr-5">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
+          <!--顧客ログイン後-->
           <% elsif customer_signed_in? %>
-            <!--顧客ログイン後-->
             <li class="nav-item">
-              <%= link_to "マイページ", customers_mypage_path, class: 'nav-link btn pr-1 pl-1 ml-4' %>
+              <%= link_to "マイページ", customers_mypage_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
             <li class="nav-item">
-              <%= link_to "blog一覧", blogs_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
+              <%= link_to "blog一覧", blogs_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
             <li class="nav-item">
-              <%= link_to "スケジュール", schedules_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
+              <%= link_to "スケジュール", schedules_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
             <li class="nav-item">
-              <%= link_to "家計簿", household_budgets_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
+              <%= link_to "家計簿", household_budgets_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
             <li class="nav-item">
-              <%= link_to "生活記録", life_cycles_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
+              <%= link_to "生活記録", life_cycles_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link btn pr-1 pl-1 ml-4' %>
+            <li class="nav-item mr-5">
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
-
-
-            <div>
-              <ul>
-                <li><%= link_to "new life", new_life_cycle_path %></li>
-              </ul>
-            </div>
-
-
+          <!--ログイン前-->
           <% else %>
-            <!--ログイン前-->
             <li class="nav-item">
-              <%= link_to "About", about_path, class: 'nav-link btn pr-4 pl-4 ml-4' %>
+              <%= link_to "About", about_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
             <li class="nav-item">
-              <%= link_to "管理者ログイン", new_admin_session_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
+              <%= link_to "管理者ログイン", new_admin_session_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
             <li class="nav-item">
-              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
+              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_customer_session_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
+            <li class="nav-item mr-5">
+              <%= link_to "ログイン", new_customer_session_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
             </li>
           <% end %>
         </ul>

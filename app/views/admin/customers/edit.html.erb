@@ -1,7 +1,7 @@
 <div class="container my-5">
   <div class='row'>
     <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
-      <div class="d-flex">
+      <div class="d-flex justify-content-center">
         <h3 class="bg-light"><strong>会員詳細及び編集</strong></h3>
       </div>
       <%= render "public/shared/error_messages", resource: @customer %>
@@ -58,9 +58,9 @@
           <tr>
             <td></td>
             <td class="form-group" colspan="2">
-              <%= f.submit class:"btn btn-success" %>
+              <%= f.submit class:"btn btn-outline-success" %>
               <%= link_to "削除", admin_customer_path(@customer), method: :delete,
-              "data-confirm" => "消しますか?", class: "btn btn-danger ml-5" %>
+              "data-confirm" => "消しますか?", class: "btn btn-outline-danger ml-5" %>
             </td>
           </tr>
         </table>

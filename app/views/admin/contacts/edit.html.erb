@@ -32,6 +32,14 @@
               <%= simple_format(@contact.body) %>
             </td>
           </tr>
+          <% if @contact.reply.present? %>
+            <tr>
+              <td class="text-right pr-3">返信日：</td>
+              <td>
+                <%= @contact.updated_at.strftime("%Y-%m-%d") %>
+              </td>
+            </tr>
+          <% end %>
           <tr>
             <td class="text-right pr-3">返信内容：</td>
             <td class="form-group">
