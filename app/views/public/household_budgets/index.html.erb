@@ -11,7 +11,7 @@
 
       <div class="my-5">
         <%= month_calendar do |date| %>
-          <%= link_to date.day, household_budgets_date_show_path(date) %>
+          <%= link_to date.day, household_budgets_date_show_path(date), class:"btn btn-sm btn-outline-secondary rounded" %>
           <!--日ごとの支出の合計-->
           <% spend_price = [] %>
           <% @spendings.each do |spending| %>

@@ -6,7 +6,7 @@
       </div>
       <div class="my-5">
         <%= month_calendar do |date| %>
-          <%= link_to date.day, life_cycles_date_show_path(date) %>
+          <%= link_to date.day, life_cycles_date_show_path(date), class:"btn btn-sm btn-outline-secondary rounded" %>
         <% end %>
       </div>
     </div>
