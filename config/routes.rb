@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :household_budgets, only:[:index, :create, :edit, :update, :destroy]
 
     # blogs
+    get 'blogs/search' => 'blogs#search', as: 'blogs_search'
     resources :blogs
 
     # customers
