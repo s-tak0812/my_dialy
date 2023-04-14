@@ -8,14 +8,14 @@
         <!--今月の収支記録-->
         <span class="d-flex justify-content-center"><strong>今月の収支</strong></span>
         <%= render 'public/customers/household_budgets',
-        incomes: @current_month_incomes, spendings: @current_month_spendings, earn: @earn, spend: @spend%>
+        incomes: @current_month_incomes, spendings: @current_month_spendings %>
       </div>
 
       <div class="mt-5">
         <!--先月の収支記録-->
         <span class="d-flex justify-content-center"><strong>先月の収支</strong></span>
         <%= render 'public/customers/household_budgets',
-        incomes: @last_month_incomes, spendings: @last_month_spendings, earn: @earn, spend: @spend%>
+        incomes: @last_month_incomes, spendings: @last_month_spendings %>
       </div>
     </div>
 
@@ -38,37 +38,6 @@
           <li>明日の予定はありません</li>
         </ul>
       <% end %>
-
-
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>cu_id</th>
-              <th>title</th>
-              <th>price</th>
-              <th>is_active</th>
-              <th>date</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @household_budgets.each do |home| %>
-              <tr>
-                <td><%= home.id %></td>
-                <td><%= home.customer_id %></td>
-                <td><%= home.title_i18n %></td>
-                <td><%= home.price.to_s(:delimited) %></td>
-                <td><%= home.is_active %></td>
-                <td><%= home.date %></td>
-                <td><%= link_to "edit", edit_household_budget_path(home), class:"btn btn-success" %></td>
-                <td><%= link_to "del", household_budget_path(home), method: :delete, class:"btn btn-danger" %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
 
       <div>
         <table>

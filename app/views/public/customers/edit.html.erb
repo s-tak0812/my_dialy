@@ -7,30 +7,48 @@
       <%= render 'public/shared/error_messages', resource: @customer %>
 
       <%= form_with model: @customer, url: customers_information_path do |f| %>
+
         <table class="table table-borderless my-3">
           <tr>
-            <td style="width:30%;">画像</td>
-            <td class="form-group" style="width:70%;">
-              <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*'  %>
+            <td style="width:30%" class="align-bottom">
+              <%= f.label :プロフィール画像 %>
+            </td>
+            <td>
+              <%= image_tag @customer.get_profile_image, size:"80x80" %>
+            </td>
+            <td class="form-group align-bottom">
+
+              <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*' %>
             </td>
           </tr>
           <tr>
-            <td>氏名</td>
-            <td class="form-group">
-              <%= f.text_field :last_name %>
-              <%= f.text_field :first_name %>
+            <td>
+              <%= f.label :last_name %>
+            </td>
+            <td class="form-group" colspan="2">
+              <%= f.text_field :last_name, autofocus: true, placeholder: "山田", autocomplete: "last_name" %>
             </td>
           </tr>
           <tr>
-            <td>メールアドレス</td>
-            <td class="form-group"><%= f.email_field :email %></td>
+            <td>
+              <%= f.label :first_name %>
+            </td>
+            <td class="form-group" colspan="2">
+              <%= f.text_field :first_name, placeholder: "花子", autocomplete: "first_name" %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :email %>
+            </td>
+            <td class="form-group" colspan="2">
+              <%= f.email_field :email, placeholder: "sample@sample.com", autocomplete: "email" %>
+            </td>
           </tr>
           <tr>
             <td><%= link_to "マイページへ", customers_mypage_path, class: 'btn btn-secondary' %></td>
-            <td class="form-group d-flex justify-content-between">
-              <%= f.submit  class: "btn btn-success" %>
-              <%= link_to "退会する", customers_soft_delete_path, class: "btn btn-danger" %>
-            </td>
+            <td><%= f.submit  class: "btn btn-success" %></td>
+            <td class="text-right"><%= link_to "退会する", customers_soft_delete_path, class: "btn btn-danger" %></td>
           </tr>
         </table>
       <% end %>

@@ -42,6 +42,14 @@ class Public::BlogsController < ApplicationController
   end
 
 
+  def search
+    @customer = current_customer
+    @content = params[:content]
+
+    @results = Blog.search_for(@content, @customer).order('date DESC').page(params[:page])
+  end
+
+
   private
 
   def blog_params

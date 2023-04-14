@@ -2,6 +2,11 @@ class Public::LifeCyclesController < ApplicationController
   before_action :authenticate_customer!
   before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
 
+  def index
+    @life_cycles = current_customer.life_cycles
+
+  end
+
   def new
     @life_cycle = LifeCycle.new
   end
@@ -9,7 +14,7 @@ class Public::LifeCyclesController < ApplicationController
   def create
     @life_cycle = current_customer.life_cycles.new(life_cycle_params)
     if @life_cycle.save
-      redirect_to customers_mypage_path, notice: "You have created successfully."
+      redirect_to life_cycles_path
     else
       render :new
     end
@@ -21,9 +26,9 @@ class Public::LifeCyclesController < ApplicationController
 
   def update
     if @life_cycle.update(life_cycle_params)
-      redirect_to customers_mypage_path, notice: "You have updated successfully."
+      redirect_to life_cycles_path
     else
-      render "edit"
+      render :edit
     end
   end
 
@@ -31,6 +36,22 @@ class Public::LifeCyclesController < ApplicationController
     @life_cycle = LifeCycle.find(params[:id])
     @life_cycle.destroy
     redirect_to request.referer
+  end
+
+  def date_show
+    @day_params = params[:date]
+    @life_cycles = current_customer.life_cycles.where(date: @day_params)
+    @life_cycle = LifeCycle.new
+
+    # title = []
+    # @life_cycles.each do |life_cycle|
+    #   title << life_cycle.title_i18n
+    # end
+
+    # @titles = title.to_json.html_safe
+
+
+
   end
 
 
