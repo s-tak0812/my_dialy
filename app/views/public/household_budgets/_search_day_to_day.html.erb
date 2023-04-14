@@ -1,15 +1,17 @@
 <%= form_with url: household_budgets_day_to_day_path, method: :get, local: true do |f| %>
-  <div class="search_form d-flex justify-content-start">
-    <div>
-      <%= f.label :開始日 %>
-      <%= f.date_field :from, class: "form-control" %>
-    </div>
-    <div>
-      <%= f.label :終了日 %>
-      <%= f.date_field :to, class: "form-control" %>
-    </div>
-    <div>
-      <%= f.submit "検索", class: "btn btn-secondary" %>
-    </div>
-  </div>
+  <table class="table table-borderless">
+    <tr class="text-center">
+      <td style="width:30%;">
+        <%= f.date_field :from, class: "form-control" %>
+      </td>
+      <td class="align-middle">から</td>
+      <td style="width:30%;">
+        <%= f.date_field :to, class: "form-control" %>
+      </td>
+      <td class="align-middle">まで</td>
+      <td>
+        <%= f.submit "絞込", class: "btn btn-outline-primary" %>
+      </td>
+    </tr>
+  </table>
 <% end %>

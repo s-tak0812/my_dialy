@@ -13,7 +13,6 @@ class Public::CustomersController < ApplicationController
     @last_month_spendings = @customer.household_budgets.last_month.spendings
     @last_month_incomes = @customer.household_budgets.last_month.incomes
 
-    @household_budgets = current_customer.household_budgets
     @life_cycles = current_customer.life_cycles
 
   end
