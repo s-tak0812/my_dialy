@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     # contacts
-    resources :contacts, only:[:index, :edit, :update]
+    resources :contacts
 
     # customers
     resources :customers, only:[:index, :edit, :update, :destroy]
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     # contacts
-    resources :contacts, only:[:new, :create]
+    resources :contacts
 
     # schedules
     resources :schedules, only:[:index, :create, :edit, :update, :destroy]

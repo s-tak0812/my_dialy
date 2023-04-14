@@ -1,2 +1,13 @@
-<h1>Public::Contacts#new</h1>
-<p>Find me in app/views/public/contacts/new.html.erb</p>
+<% if @contact.errors.any? %>
+  <% @contact.errors.full_messages.each do |message| %>
+    <%= message %>。
+  <% end %>
+<% end %>
+<h2 class="contact-title">お問い合わせフォーム</h2>
+<%= form_with model: @contact do |f| %>
+  <%= f.label :タイトル %>
+  <%= f.text_field :title, class:"form-control" %>
+  <%= f.label :内容 %>
+  <%= f.text_field :body, class:"form-control" %>
+  <%= f.submit "送信" %>
+<% end %>

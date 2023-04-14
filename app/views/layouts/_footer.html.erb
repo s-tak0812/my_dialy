@@ -1,11 +1,12 @@
-<footer>
-  <div class='container mt-5'>
-  	<div class='row'>
-    	<div class='mx-auto'>
-    		<p>CopyRight Infratop.inc</p>
-    	</div>
+<footer class="container-fluid border-top border-5 mt-5">
+  <div class="col-12">
+    <div class="d-flex justify-content-center">
+      <div class="pt-3">
+        <% if customer_signed_in? %>
+          <%= link_to 'お問い合わせ', new_contact_path %>
+        <% end %>
+      </div>
     </div>
+    <p class="text-center mt-3">© 2023 My Dialy Inc.</p>
   </div>
-
-
 </footer>

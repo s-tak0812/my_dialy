@@ -9,6 +9,9 @@
               <%= link_to "会員一覧", admin_customers_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
             </li>
             <li class="nav-item">
+              <%= link_to "お問い合わせ一覧", admin_contacts_path, class: 'nav-link btn pr-3 pl-3 ml-4' %>
+            </li>
+            <li class="nav-item">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link btn pr-2 pl-2 ml-4' %>
             </li>
           <% elsif customer_signed_in? %>
