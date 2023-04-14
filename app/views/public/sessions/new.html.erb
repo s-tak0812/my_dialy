@@ -26,12 +26,12 @@
           </tr>
           <tr>
             <td></td>
-            <td><%= f.submit class:"btn btn-success" %></td>
+            <td><%= f.submit class:"btn btn-outline-success" %></td>
           </tr>
           <tr>
             <td></td>
             <td>
-              新規会員登録は　<%= link_to "こちら >", new_customer_registration_path, class: 'btn btn-secondary' %>
+              新規会員登録は　<%= link_to "こちら >", new_customer_registration_path, class: 'btn btn-outline-secondary' %>
             </td>
           </tr>
         </table>
@@ -41,8 +41,3 @@
   </div>
 </div>
 
-
-
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-<% end %>

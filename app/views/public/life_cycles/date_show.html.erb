@@ -70,10 +70,11 @@
               <td><%= life_cycle.title_i18n %></td>
               <td><%= life_cycle.start_time.strftime('%R') %> ~ <%= life_cycle.end_time.strftime('%R') %></td>
               <td>
-                <%= link_to "編集", edit_life_cycle_path(life_cycle.id), class:"btn btn-success" %>
+                <%= link_to "編集", edit_life_cycle_path(life_cycle.id), class:"btn btn-outline-success" %>
               </td>
               <td>
-                <%= link_to "削除", life_cycle_path(life_cycle.id), method: :delete, "data-confirm" => '消しますか?', class:"btn btn-danger" %>
+                <%= link_to "削除", life_cycle_path(life_cycle.id), method: :delete,
+                "data-confirm" => '消しますか?', class:"btn btn-outline-danger" %>
               </td>
             </tr>
           <% end %>

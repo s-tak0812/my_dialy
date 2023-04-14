@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     # contacts
-    resources :contacts, only:[:index, :edit, :update]
+    resources :contacts, only:[:index, :edit, :update, :destroy]
 
     # customers
     resources :customers, only:[:index, :edit, :update, :destroy]
@@ -10,14 +10,14 @@ Rails.application.routes.draw do
     get 'searches/search'
 
     # homes
-    root to: 'homes#top'
+    root to: 'contacts#index'
 
   end
 
 
   scope module: :public do
     # contacts
-    resources :contacts, only:[:new, :create]
+    resources :contacts, only:[:index, :show, :create]
 
     # schedules
     resources :schedules, only:[:index, :create, :edit, :update, :destroy]
@@ -62,10 +62,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # 顧客用
-  devise_for :customers, controllers: {
+  devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions',
-    passwords: "public/passwords"
   }
 
   # 管理者用
