@@ -9,42 +9,96 @@
         </h3>
       </div>
 
+      <%= @chart_data_labels[0].to_json.html_safe %>
+      <%= @chart_data_sets.to_json.html_safe %>
+      <%= @labels = (1..12).map {|i| "#{i}" } %>
+
 
       <canvas id="myChart"></canvas>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+      <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
       <script>
-      var ctx = document.getElementById('myChart');
-      var myChart = new Chart(ctx, {
+        // Gonというgemを使ってJSにRailsで取得したlabelの値を渡せるようにするか、
+        // あるいは、label のデータを返すAPIを作って、ajaxでGETする
+        const labels = ["睡眠","食事","その他","家事","仕事","勉強","娯楽","その他","娯楽"]
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
           type: 'pie',
+          plugins: [ChartDataLabels],
           data: {
-              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+              // labels: <%= @chart_data_labels.to_json.html_safe %>,
+              // datasets: [{ data: <%= @chart_data_sets.to_json.html_safe %>,
+              //     backgroundColor: [
+              //               'rgba(153, 229, 255, 0.6)',
+              //               'rgba(255, 255, 101, 0.6)',
+              //               'rgba(255, 101, 101, 0.6)',
+              //               'rgba(75, 192, 192, 0.6)',
+              //               'rgba(204, 153, 255, 0.6)',
+              //               'rgba(104, 255, 101, 0.6)',
+              //               'rgba(178, 178, 178, 0.6)'
+              //     ],
+              // }]
               datasets: [{
-                  label: '時間',
-                  data: [12, 19, 3, 5, 2, 3],
-                  backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-              }]
+                data: <%= raw 9.times.map {|_| "1" } %>,
+                datalabels: {
+                  display: true
+                }
+              }],
+              labels: <%= raw @labels %>
           },
+
           options: {
-              scales: {
-              }
-          }
-      });
+            responsive: true,
+            plugins: {
+              tooltip: {
+                enabled: false,
+
+              },
+              datalabels: {
+                formatter: function(value, context) {
+                  //return <%= @chart_data_labels.sample %>;
+                  console.log(context)
+                  return labels[context.dataIndex] // labels[0]
+                },
+              },
+              labels: {
+                      // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+                      render: 'label',
+
+                      // font size, default is defaultFontSize
+                      fontSize: 15,
+
+                      // font color, can be color array for each data or function for dynamic color, default is defaultFontColor
+                      //fontColor: '#fff',
+
+                      // font family, default is defaultFontFamily
+                      //fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+
+                      // draw label in arc, default is false
+                      // bar chart ignores this
+                      // arc: true,
+
+                      // position to draw label, available value is 'default', 'border' and 'outside'
+                      // bar chart ignores this
+                      // default is 'default'
+                      position: 'outside',
+
+                      // show the real calculated percentages from the values and don't apply the additional logic to fit the percentages to 100 in total, default is false
+                      // showActualPercentages: true,
+
+                      // add padding when position is `outside`
+                      // default is 2
+                      // outsidePadding: 4,
+
+                      // add margin of text when position is `outside` or `border`
+                      // default is 2
+                      // textMargin: 4
+
+                    }
+             },
+          },
+        });
       </script>
 
 
@@ -67,8 +121,8 @@
         <tbody>
           <% @life_cycles.each do |life_cycle| %>
             <tr>
-              <td><%= life_cycle.title_i18n %></td>
-              <td><%= life_cycle.start_time.strftime('%R') %> ~ <%= life_cycle.end_time.strftime('%R') %></td>
+              <td><%= life_cycle.title %></td>
+              <td><%= life_cycle.start_time %> ~ <%= life_cycle.end_time %></td>
               <td>
                 <%= link_to "編集", edit_life_cycle_path(life_cycle.id), class:"btn btn-outline-success" %>
               </td>

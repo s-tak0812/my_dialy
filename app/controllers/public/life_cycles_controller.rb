@@ -14,7 +14,7 @@ class Public::LifeCyclesController < ApplicationController
   def create
     @life_cycle = current_customer.life_cycles.new(life_cycle_params)
     if @life_cycle.save
-      redirect_to life_cycles_path
+      redirect_to request.referer
     else
       render :new
     end
@@ -26,7 +26,7 @@ class Public::LifeCyclesController < ApplicationController
 
   def update
     if @life_cycle.update(life_cycle_params)
-      redirect_to life_cycles_path
+      redirect_to life_cycles_date_show_path(@life_cycle.date)
     else
       render :edit
     end
@@ -40,17 +40,12 @@ class Public::LifeCyclesController < ApplicationController
 
   def date_show
     @day_params = params[:date]
-    @life_cycles = current_customer.life_cycles.where(date: @day_params)
+    @life_cycles = current_customer.life_cycles.where(date: @day_params).sort_by { |lc| lc.start_time.strftime('%H') }
     @life_cycle = LifeCycle.new
 
-    # title = []
-    # @life_cycles.each do |life_cycle|
-    #   title << life_cycle.title_i18n
-    # end
-
-    # @titles = title.to_json.html_safe
-
-
+    data = @life_cycles.map{ |lc| [lc.title, ((lc.end_time - lc.start_time)/60)/60] }
+    @chart_data_labels = data.map { |d| d[0] }
+    @chart_data_sets = data.map { |d| d[1] }
 
   end
 

@@ -20,7 +20,7 @@
 
         <td style="width:20%;">
           <strong><%= f.label :title %></strong> <br>
-          <%= f.select :title, LifeCycle.titles.keys.map {|k| [I18n.t("enums.life_cycle.title.#{k}"), k]}, class: "title-select" %>
+          <%= f.select :title, LifeCycle.titles.keys, class: "title-select" %>
         </td>
 
         <td>
