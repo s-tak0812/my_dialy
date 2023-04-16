@@ -13,7 +13,7 @@ class Public::SchedulesController < ApplicationController
     if @schedule.save
       redirect_to schedules_path
     else
-      @schedules = current_customer.schedules
+      @schedules = current_customer.schedules.select(&:persisted?)
       render :index
     end
 
@@ -40,7 +40,7 @@ class Public::SchedulesController < ApplicationController
   private
 
   def schedule_params
-    params.require(:schedule).permit(:title, :content, :start_time, :end_time, :date)
+    params.require(:schedule).permit(:title, :content, :start_time, :end_time)
   end
 
   def ensure_correct_customer

@@ -5,12 +5,12 @@
         <h3 class="bg-light"><strong>スケジュール表</strong></h3>
       </div>
       <div class="my-5">
-        <%= month_calendar events: @schedules do |date| %>
+        <%= month_calendar do |date| %>
           <%= date.day %>
 
           <% @schedules.each do |schedule| %>
             <div class="text-center" style="margin:2px 0;">
-              <% if schedule.date == date %>
+              <% if schedule.start_time.to_date == date %>
                 <%= link_to "#{schedule.title}(#{schedule.start_time.strftime("%R")} ~ #{schedule.end_time.strftime("%R")})",
                 edit_schedule_path(schedule.id), class:"btn btn-sm btn-warning p-0" %>
               <% end %>

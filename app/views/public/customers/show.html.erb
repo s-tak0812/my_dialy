@@ -48,7 +48,6 @@
               <th>title</th>
               <th>start_time</th>
               <th>end_time</th>
-              <th>date</th>
             </tr>
           </thead>
 
@@ -58,9 +57,8 @@
                 <td><%= life.id %></td>
                 <td><%= life.customer_id %></td>
                 <td><%= life.title %></td>
-                <td><%= life.start_time.strftime('%R') %></td>
-                <td><%= life.end_time.strftime('%R') %></td>
-                <td><%= life.date %></td>
+                <td><%= life.start_time %></td>
+                <td><%= life.end_time %></td>
                 <td><%= link_to "edit", edit_life_cycle_path(life), class:"btn btn-success" %></td>
                 <td><%= link_to "del", life_cycle_path(life), method: :delete, class:"btn btn-danger" %></td>
               </tr>

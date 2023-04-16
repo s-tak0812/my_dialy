@@ -17,8 +17,6 @@ module MyDialy
     # in config/environments, which are processed later.
     #
     config.time_zone = "Asia/Tokyo"
-    config.active_record.default_timezone = :local
-    config.active_record.time_zone_aware_types = [:datetime, :time]
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.default_locale = :ja
   end
