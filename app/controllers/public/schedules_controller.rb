@@ -3,7 +3,7 @@ class Public::SchedulesController < ApplicationController
   before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
 
   def index
-    @schedules = current_customer.schedules
+    @schedules = current_customer.schedules.order('start_time ASC')
     @schedule = Schedule.new
   end
 

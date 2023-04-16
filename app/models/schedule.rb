@@ -11,9 +11,7 @@ class Schedule < ApplicationRecord
   scope :today_schedule, -> { where(start_time: Time.zone.now.all_day) }
   scope :tomorrow_schedule, -> { where(start_time: Time.zone.tomorrow.all_day)}
 
-
-
-  # validateに設定してエラーを出力させる
+  validate :start_and_end_time_on_same_day
   validate :end_time_cannot_be_earlier_than_start_time
 
   private
@@ -24,4 +22,10 @@ class Schedule < ApplicationRecord
     errors.add(:end_time, "開始時刻が終了時刻より遅い、または同じです")
   end
 
+  # start_timeとend_timeの日にちのずれを防止するメソッド
+  def start_and_end_time_on_same_day
+    if start_time.present? && end_time.present? && start_time.to_date != end_time.to_date
+      errors.add(:end_time, "は開始日と同じ日付に設定してください")
+    end
+  end
 end

@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light">
           <strong>
-            <%= @day_params %>の生活記録
+            <%= @day_params.strftime('%Y-%m-%d') %>の生活記録
           </strong>
         </h3>
       </div>
@@ -122,7 +122,7 @@
           <% @life_cycles.each do |life_cycle| %>
             <tr>
               <td><%= life_cycle.title %></td>
-              <td><%= life_cycle.start_time %> ~ <%= life_cycle.end_time %></td>
+              <td><%= life_cycle.start_time.strftime("%H:%M") %> ~ <%= life_cycle.end_time.strftime("%H:%M") %></td>
               <td>
                 <%= link_to "編集", edit_life_cycle_path(life_cycle.id), class:"btn btn-outline-success" %>
               </td>

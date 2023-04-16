@@ -39,8 +39,8 @@ class Public::LifeCyclesController < ApplicationController
   end
 
   def date_show
-    @day_params = params[:date]
-    @life_cycles = current_customer.life_cycles.where(date: @day_params).sort_by { |lc| lc.start_time.strftime('%H') }
+    @day_params = Time.zone.parse(params[:date])
+    @life_cycles = current_customer.life_cycles.where(start_time: @day_params.all_day).order('start_time ASC')
     @life_cycle = LifeCycle.new
 
     data = @life_cycles.map{ |lc| [lc.title, ((lc.end_time - lc.start_time)/60)/60] }
@@ -53,7 +53,7 @@ class Public::LifeCyclesController < ApplicationController
   private
 
   def life_cycle_params
-    params.require(:life_cycle).permit(:title, :start_time, :end_time, :date)
+    params.require(:life_cycle).permit(:title, :start_time, :end_time)
   end
 
   def ensure_correct_customer
