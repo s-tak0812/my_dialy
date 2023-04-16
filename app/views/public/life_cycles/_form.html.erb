@@ -3,24 +3,19 @@
   <div class="form-group my-3">
     <table class="table table-borderless">
       <tr class="text-center">
-        <td style="width:20%;">
-          <strong><%= f.label :date %></strong>
-          <%= f.date_field :date, value:day_params, class: 'form-control date' %>
-        </td>
-
-        <td style="width:20%;">
+        <td style="width:30%;">
           <strong><%= f.label :start_time %></strong><br>
-          <%= f.time_field :start_time, class: "form-control start_time" %>
+          <%= f.datetime_field :start_time, class: "form-control start_time" %>
         </td>
 
-        <td style="width:20%;">
+        <td style="width:30%;">
           <strong><%= f.label :end_time %></strong>
-          <%= f.time_field :end_time, class: "form-control end_time" %>
+          <%= f.datetime_field :end_time, class: "form-control end_time" %>
         </td>
 
-        <td style="width:20%;">
+        <td style="width:30%;">
           <strong><%= f.label :title %></strong> <br>
-          <%= f.select :title, LifeCycle.titles.keys.map {|k| [I18n.t("enums.life_cycle.title.#{k}"), k]}, class: "title-select" %>
+          <%= f.select :title, LifeCycle.titles.keys, class: "title-select" %>
         </td>
 
         <td>

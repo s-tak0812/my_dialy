@@ -98,9 +98,8 @@ ActiveRecord::Schema.define(version: 2023_04_03_143340) do
   create_table "life_cycles", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "title", default: 0, null: false
-    t.time "start_time", null: false
-    t.time "end_time", null: false
-    t.date "date", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -109,9 +108,8 @@ ActiveRecord::Schema.define(version: 2023_04_03_143340) do
     t.integer "customer_id", null: false
     t.string "title", null: false
     t.text "content"
-    t.time "start_time", null: false
-    t.time "end_time", null: false
-    t.date "date", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

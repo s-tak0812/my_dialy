@@ -5,7 +5,7 @@
         <h3 class="bg-light"><strong>日記編集</strong></h3>
       </div>
       <%= render 'public/shared/error_messages', resource: @blog %>
-      <%= render 'public/blogs/form', blog: @blog %>
+      <%= render 'public/blogs/form', blog: @blog, day_params: @blog.date %>
     </div>
   </div>
 </div>
