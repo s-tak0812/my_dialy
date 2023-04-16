@@ -8,7 +8,7 @@
   <tbody>
     <% results.each do |blog| %>
       <tr>
-        <td><%= link_to blog.title, blog_path(blog.id) %></td>
+        <td><%= link_to blog.title, blog_path(blog.id),class:"btn btn-sm btn-outline-secondary" %></td>
         <td><%= blog.date %></td>
       </tr>
     <% end %>
