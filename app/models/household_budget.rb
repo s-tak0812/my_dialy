@@ -22,4 +22,11 @@ class HouseholdBudget < ApplicationRecord
   scope :incomes, -> { where(is_active: true)}
 
 
+  scope :tax_order, -> { order(price: :desc).where(title: :tax) }
+  scope :food_and_drink_order, -> { order(price: :desc).where(title: :food_and_drink) }
+  scope :entertainment_order, -> { order(price: :desc).where(title: :entertainment) }
+  scope :utility_costs_order, -> { order(price: :desc).where(title: :utility_costs) }
+  scope :income_order, -> { order(price: :desc).where(title: :income) }
+  scope :others_order, -> { order(price: :desc).where(title: :others) }
+
 end

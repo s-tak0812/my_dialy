@@ -53,6 +53,35 @@ class Public::HouseholdBudgetsController < ApplicationController
     @incomes = @household_budgets.incomes
   end
 
+  def days_sort
+    @from = params[:from]
+    @to = params[:to]
+    household_budgets = current_customer.household_budgets.where('date BETWEEN ? AND ?', @from, @to).order('price DESC')
+
+    @sort = params[:sort]
+
+    if @sort == "tax"
+      @sort_title = "税金"
+      @household_budgets = household_budgets.tax_order
+    elsif @sort == "food_and_drink"
+      @sort_title = "飲食"
+      @household_budgets = household_budgets.food_and_drink_order
+    elsif @sort == "entertainment"
+      @sort_title = "娯楽"
+      @household_budgets = household_budgets.entertainment_order
+    elsif @sort == "utility_costs"
+      @sort_title = "光熱費"
+      @household_budgets = household_budgets.utility_costs_order
+    elsif @sort == "income"
+      @sort_title = "収入"
+      @household_budgets = household_budgets.income_order
+    else
+      @sort_title = "その他"
+      @household_budgets = household_budgets.others_order
+    end
+
+  end
+
   private
 
   def household_budget_params
