@@ -15,8 +15,16 @@ class Public::CustomersController < ApplicationController
     @last_month_spendings = @customer.household_budgets.last_month.spendings
     @last_month_incomes = @customer.household_budgets.last_month.incomes
 
-    @life_cycles = current_customer.life_cycles
-    @schedules = current_customer.schedules
+
+    life_cycles = current_customer.life_cycles.last_7_days
+
+    data = life_cycles.group_by(&:title).map do |k, v|
+      total_hours = v.sum { |lc| (lc.end_time.to_time - lc.start_time.to_time) / 3600 }
+      [k, total_hours / v.map { |lc| lc.start_time.to_date }.uniq.size]
+    end
+
+    @chart_data_labels = data.map { |d| d[0] }
+    @chart_data_sets = data.map { |d| d[1] }
 
   end
 
