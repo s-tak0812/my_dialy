@@ -22,6 +22,9 @@
           <%= link_to '編集', edit_blog_path(@blog), class:"btn btn-outline-success" %>
           <%= link_to '削除', blog_path(@blog), method: :delete, "data-confirm" => '消しますか?', class:"btn btn-outline-danger" %>
         </div>
+        <div class="d-flex justify-content-center my-3">
+          <%= link_to "一覧に戻る", blogs_path, class:"btn btn-outline-secondary" %>
+        </div>
       </div>
     </div>
   </div>

@@ -14,52 +14,9 @@
         <%= render 'public/customers/household_budgets', incomes: @incomes, spendings: @spendings %>
       </div>
       <!--内訳一覧-->
-      <span class="d-flex justify-content-center"><strong>内訳</strong></span>
-      <table class="table table-hover my-3 text-center">
-        <thead class="table-active">
-          <tr>
-            <th>項目</th>
-            <th>金額</th>
-            <th>ステータス</th>
-            <th style="width:20%;"></th>
-            <th style="width:20%;"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @household_budgets.each do |household_budget| %>
-            <tr>
-              <td><%= household_budget.title_i18n %></td>
-              <td><%= household_budget.price.to_s(:delimited) %></td>
-              <td>
-                <% if household_budget.is_active == false %>
-                  <span class="text-danger"><strong>支出</strong></span>
-                <% else %>
-                  <span class="text-success"><strong>収入</strong></span>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to "編集", edit_household_budget_path(household_budget.id), class:"btn btn-outline-success" %>
-              </td>
-              <td>
-                <%= link_to "削除", household_budget_path(household_budget.id), method: :delete,
-                "data-confirm" => '消しますか?', class:"btn btn-outline-danger" %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
+      <%= render 'public/household_budgets/sort_form', from: @from, to: @to %>
+      <%= render 'public/household_budgets/day_to_day_index', household_budgets: @household_budgets %>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 

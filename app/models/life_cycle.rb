@@ -14,6 +14,9 @@ class LifeCycle < ApplicationRecord
   validate :check_overlap
 
 
+  scope :last_7_days, -> { where(start_time: Time.current.ago(6.days).beginning_of_day...Time.current.end_of_day) }
+
+
   private
 
   # 同じ日の既存のレコードと時間がかぶらないようにするためのメソッド

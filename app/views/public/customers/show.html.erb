@@ -1,4 +1,4 @@
-<div class='container px-5 px-sm-0'>
+<div class='container px-5 px-sm-0 my-5'>
   <div class='row'>
     <div class='col-md-3'>
       <!--customerの情報-->
@@ -39,74 +39,65 @@
         </ul>
       <% end %>
 
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>cu_id</th>
-              <th>title</th>
-              <th>start_time</th>
-              <th>end_time</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            <% @life_cycles.each do |life| %>
-              <tr>
-                <td><%= life.id %></td>
-                <td><%= life.customer_id %></td>
-                <td><%= life.title %></td>
-                <td><%= life.start_time %></td>
-                <td><%= life.end_time %></td>
-                <td><%= link_to "edit", edit_life_cycle_path(life), class:"btn btn-success" %></td>
-                <td><%= link_to "del", life_cycle_path(life), method: :delete, class:"btn btn-danger" %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+      <div class="d-flex justify-content-center my-5">
+        <h4 class="bg-light"><strong>直近1週間の1日の平均</strong></h4>
       </div>
 
-
-
-      <canvas id="myChart"></canvas>
+      <canvas id="myChart" class="my-5"></canvas>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+      <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
       <script>
-      var ctx = document.getElementById('myChart');
-      var myChart = new Chart(ctx, {
+        // Gonというgemを使ってJSにRailsで取得したlabelの値を渡せるようにするか、
+        // あるいは、label のデータを返すAPIを作って、ajaxでGETする
+        const labels = <%= @chart_data_labels.to_json.html_safe %>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
           type: 'pie',
           data: {
-              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+              labels: labels,
               datasets: [{
-                  label: '# of Votes',
-                  data: [12, 19, 3, 5, 2, 3],
+                  data: <%= @chart_data_sets.to_json.html_safe %>,
                   backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
+                            'rgba(153, 229, 255, 0.6)',
+                            'rgba(255, 255, 101, 0.6)',
+                            'rgba(255, 101, 101, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(204, 153, 255, 0.6)',
+                            'rgba(104, 255, 101, 0.6)',
+                            'rgba(178, 178, 178, 0.6)'
                   ],
-                  borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
               }]
           },
+
           options: {
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  }
+            responsive: true,
+            plugins: {
+              datalabels: {
+                formatter: function(context) {
+                  return labels[context.dataIndex]
+                },
+              },
+              labels: {
+                      // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+                      render: 'label',
+
+                      // font size, default is defaultFontSize
+                      fontSize: 15,
+
+                      // position to draw label, available value is 'default', 'border' and 'outside'
+                      // bar chart ignores this
+                      // default is 'default'
+                      position: 'border',
+
+                      // add margin of text when position is `outside` or `border`
+                      // default is 2
+                      // textMargin: 4
               }
-          }
-      });
+            },
+          },
+        });
       </script>
 
     </div>

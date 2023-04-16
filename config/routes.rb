@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     # household_budgets
     # 期間の絞り込み検索
     get 'household_budgets/day_to_day' => 'household_budgets#day_to_day', as: 'household_budgets_day_to_day'
+    # 期間の絞り込み検索
+    get 'household_budgets/days_sort' => 'household_budgets#days_sort', as: 'household_budgets_days_sort'
     # 日付の絞り込み検索
     get 'household_budgets/date_show/:date' => 'household_budgets#date_show', as: 'household_budgets_date_show'
     resources :household_budgets, only:[:index, :create, :edit, :update, :destroy]
@@ -47,8 +49,6 @@ Rails.application.routes.draw do
     get 'customers/soft_delete' => 'customers#soft_delete'
     # 退会機能
     patch 'customers/drop' => 'customers#drop'
-    get 'customers/day_link' => 'customers#day_link'
-    get 'customers/memory' => 'customers#memory'
 
     # homes
     root to: 'homes#top'

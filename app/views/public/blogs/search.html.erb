@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light">
           <strong>
-            "<%= @content %>"でのBlog検索結果
+            "<%= @content %>"でのBLOG検索結果
           </strong>
         </h3>
       </div>
@@ -13,6 +13,9 @@
       </div>
       <div class="my-5">
         <%= render 'public/blogs/result_blog', results: @results %>
+      </div>
+      <div class="d-flex justify-content-center my-3">
+        <%= link_to "一覧に戻る", blogs_path, class:"btn btn-outline-secondary" %>
       </div>
     </div>
   </div>

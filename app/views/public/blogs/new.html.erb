@@ -1,8 +1,8 @@
 <div class="container my-5">
   <div class='row'>
     <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
-      <div class="d-flex">
-        <h3 class="bg-light"><strong>日記投稿</strong></h3>
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>BLOG投稿</strong></h3>
       </div>
       <%= render 'public/shared/error_messages', resource: @blog %>
       <%= render 'public/blogs/form', blog: @blog, day_params: Time.now.strftime("%Y-%m-%d") %>

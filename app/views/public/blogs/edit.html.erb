@@ -1,11 +1,14 @@
 <div class="container my-5">
   <div class='row'>
     <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
-      <div class="d-flex">
-        <h3 class="bg-light"><strong>日記編集</strong></h3>
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>BLOG編集</strong></h3>
       </div>
       <%= render 'public/shared/error_messages', resource: @blog %>
       <%= render 'public/blogs/form', blog: @blog, day_params: @blog.date %>
+      <div class="d-flex justify-content-center my-3">
+        <%= link_to "詳細に戻る", blog_path(@blog.id), class:"btn btn-outline-secondary" %>
+      </div>
     </div>
   </div>
 </div>
