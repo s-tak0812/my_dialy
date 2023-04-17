@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if resource.is_a?(Admin)
       admin_root_path
     else
-      customers_mypage_path
+      customers_mypage_path # customers#show
     end
   end
 
@@ -25,4 +25,5 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :is_deleted])
   end
+
 end

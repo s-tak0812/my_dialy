@@ -19,7 +19,7 @@
         </td>
 
         <td>
-          <%= link_to customer.full_name, edit_admin_customer_path(customer), class:"text-dark" %>
+          <%= customer.full_name %>
         </td>
 
         <td><%= customer.email %></td>
@@ -31,7 +31,7 @@
         <% end %>
 
         <td>
-          <%= link_to "編集", edit_admin_customer_path(customer), class:"btn btn-outline-success" %>
+          <%= link_to "編集", edit_admin_customer_path(customer.id), class:"btn btn-outline-success" %>
         </td>
 
       </tr>

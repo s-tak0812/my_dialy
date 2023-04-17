@@ -8,54 +8,12 @@
           </strong>
         </h3>
       </div>
-
-      <table class="table table-hover my-3 text-center">
-        <thead class="table-active">
-          <tr>
-            <th>項目</th>
-            <th>金額</th>
-            <th>ステータス</th>
-            <th style="width:20%;"></th>
-            <th style="width:20%;"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @household_budgets.each do |household_budget| %>
-            <tr>
-              <td><%= household_budget.title_i18n %></td>
-              <td><%= household_budget.price.to_s(:delimited) %></td>
-              <td>
-                <% if household_budget.is_active == false %>
-                  <span class="text-danger"><strong>支出</strong></span>
-                <% else %>
-                  <span class="text-success"><strong>収入</strong></span>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to "編集", edit_household_budget_path(household_budget.id), class:"btn btn-outline-success" %>
-              </td>
-              <td>
-                <%= link_to "削除", household_budget_path(household_budget.id), method: :delete,
-                "data-confirm" => '消しますか?', class:"btn btn-outline-danger" %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <div class="d-flex justify-content-center my-3">
-        <%= link_to "一覧に戻る", household_budgets_path, class:"btn btn-outline-secondary" %>
-      </div>
+      <!--内訳一覧-->
+      <%= render 'public/household_budgets/index', household_budgets: @household_budgets %>
     </div>
   </div>
+
+  <div class="d-flex justify-content-center my-3">
+    <%= link_to "一覧に戻る", household_budgets_path, class:"btn btn-outline-secondary" %>
+  </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-

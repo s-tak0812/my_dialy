@@ -9,13 +9,12 @@
         </h3>
       </div>
 
+      <!--特定の日のlife_cycleグラフ-->
       <canvas id="myChart" class="my-5"></canvas>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
       <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
       <script>
-        // Gonというgemを使ってJSにRailsで取得したlabelの値を渡せるようにするか、
-        // あるいは、label のデータを返すAPIを作って、ajaxでGETする
         const labels = <%= @chart_data_labels.to_json.html_safe %>
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
@@ -55,23 +54,20 @@
                       // bar chart ignores this
                       // default is 'default'
                       position: 'border',
-
-                      // add margin of text when position is `outside` or `border`
-                      // default is 2
-                      // textMargin: 4
               }
             },
           },
         });
       </script>
 
-
+      <!--新規投稿フォームへのリンク-->
       <div class="d-flex justify-content-end">
         <%= link_to new_life_cycle_path, class: "btn btn-outline-secondary" do  %>
           <span class="text-dark h5"><i class="fas fa-plus-circle"></i> 記録</span>
         <% end %>
       </div>
 
+      <!--一覧表示-->
       <table class="table table-hover my-3 text-center">
         <thead class="table-active">
           <tr>

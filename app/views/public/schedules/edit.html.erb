@@ -4,8 +4,10 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light"><strong>予定の確認及び編集</strong></h3>
       </div>
+      <!--投稿フォーム-->
       <%= render 'public/shared/error_messages', resource: @schedule %>
       <%= render 'public/schedules/form', schedule: @schedule %>
+
       <div class="d-flex justify-content-between">
         <%= link_to "一覧に戻る", schedules_path, class:"btn btn-outline-secondary" %>
         <%= link_to "削除", schedule_path(@schedule), method: :delete, class:"btn btn-outline-danger" %>
@@ -13,5 +15,3 @@
     </div>
   </div>
 </div>
-
-

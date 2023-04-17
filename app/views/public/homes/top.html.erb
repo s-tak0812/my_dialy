@@ -1,3 +1,16 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto my-5">
+      <%= image_tag 'logo_transparent.png', height: 450 %>
+      <h6 class="text-center">～ 個人のための記録アプリケーション ～</h6>
+    </div>
+  </div>
 
+  <div class="d-flex justify-content-center">
+    <%= link_to about_path do %>
+      <div class="btn btn-outline-primary">
+        <i class="fas fa-link"></i> ABOUT
+      </div>
+    <% end %>
+  </div>
+</div>

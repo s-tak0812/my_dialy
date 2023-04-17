@@ -4,6 +4,7 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light"><strong>BLOG投稿</strong></h3>
       </div>
+      <!--投稿フォーム-->
       <%= render 'public/shared/error_messages', resource: @blog %>
       <%= render 'public/blogs/form', blog: @blog, day_params: Time.now.strftime("%Y-%m-%d") %>
     </div>

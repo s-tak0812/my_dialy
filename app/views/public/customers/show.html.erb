@@ -20,7 +20,7 @@
     </div>
 
     <div class='col-md-8 offset-md-1'>
-      <!--直近のスケジュール表示-->
+      <!--今日のスケジュール表示-->
       <span><strong>今日の予定</strong></span>
       <% if @today_schedules.present? %>
         <%= render 'public/customers/schedules', schedules: @today_schedules %>
@@ -30,6 +30,7 @@
         </ul>
       <% end %>
 
+      <!--明日のスケジュール表示-->
       <span><strong>明日の予定</strong></span>
       <% if @tomorrow_schedules.present? %>
         <%= render 'public/customers/schedules', schedules: @tomorrow_schedules %>
@@ -39,9 +40,9 @@
         </ul>
       <% end %>
 
-
+      <!--直近1週間の1日の平均グラフ-->
       <div class="d-flex justify-content-center my-5">
-        <h4 class="bg-light"><strong>直近1週間の1日の平均</strong></h4>
+        <h4 class="bg-light"><strong>過去1週間の生活1日平均</strong></h4>
       </div>
 
       <canvas id="myChart" class="my-5"></canvas>
@@ -49,8 +50,6 @@
       <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
       <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
       <script>
-        // Gonというgemを使ってJSにRailsで取得したlabelの値を渡せるようにするか、
-        // あるいは、label のデータを返すAPIを作って、ajaxでGETする
         const labels = <%= @chart_data_labels.to_json.html_safe %>
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
@@ -90,10 +89,6 @@
                       // bar chart ignores this
                       // default is 'default'
                       position: 'border',
-
-                      // add margin of text when position is `outside` or `border`
-                      // default is 2
-                      // textMargin: 4
               }
             },
           },

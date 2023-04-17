@@ -3,7 +3,9 @@ class Public::HouseholdBudgetsController < ApplicationController
   before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
 
   def index
+    # customerの支出一覧(is_active: false)
     @spendings = current_customer.household_budgets.spendings
+    # customerの収入一覧(is_active: true)
     @incomes = current_customer.household_budgets.incomes
 
     @household_budget = HouseholdBudget.new
@@ -46,20 +48,28 @@ class Public::HouseholdBudgetsController < ApplicationController
 
   # 期間の絞り込み検索
   def day_to_day
+    # 期間の開始日
     @from = params[:from]
+    # 期間の終了日
     @to = params[:to]
+
     @household_budgets = current_customer.household_budgets.where('date BETWEEN ? AND ?', @from, @to).order('price DESC')
     @spendings = @household_budgets.spendings
     @incomes = @household_budgets.incomes
+    # Kaminari用
+    @household_budgets_pagination = @household_budgets.page(params[:page])
   end
 
+  # 期間の絞り込みからtitle別でソートする
   def days_sort
     @from = params[:from]
     @to = params[:to]
     household_budgets = current_customer.household_budgets.where('date BETWEEN ? AND ?', @from, @to).order('price DESC')
 
+    # 絞り込みたいtitleを受け取る
     @sort = params[:sort]
 
+    # 識別する
     if @sort == "tax"
       @sort_title = "税金"
       @household_budgets = household_budgets.tax_order
@@ -80,14 +90,20 @@ class Public::HouseholdBudgetsController < ApplicationController
       @household_budgets = household_budgets.others_order
     end
 
+      # Kaminari用
+      @household_budgets_pagination = @household_budgets.page(params[:page])
+
   end
+
 
   private
 
+  # 保存するパラメータ
   def household_budget_params
     params.require(:household_budget).permit(:title, :price, :is_active, :date)
   end
 
+  # 投稿したcustomerでない場合topに返す
   def ensure_correct_customer
     @household_budget = HouseholdBudget.find(params[:id])
     unless @household_budget.customer == current_customer

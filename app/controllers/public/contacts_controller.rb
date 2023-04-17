@@ -1,8 +1,9 @@
 class Public::ContactsController < ApplicationController
   before_action :authenticate_customer!
+  before_action :ensure_correct_customer, only:[:show]
 
   def index
-    @contacts = current_customer.contacts.order('id DESC')
+    @contacts = current_customer.contacts.order('id DESC').page(params[:page])
     @contact = Contact.new
   end
 
@@ -23,8 +24,17 @@ class Public::ContactsController < ApplicationController
 
   private
 
+  # 保存するパラメータ
   def contact_params
     params.require(:contact).permit(:title, :body, :reply)
+  end
+
+  # 投稿したcustomerでない場合topに返す
+  def ensure_correct_customer
+    @contact = Contact.find(params[:id])
+    unless @contact.customer == current_customer
+      redirect_to root_path
+    end
   end
 
 end

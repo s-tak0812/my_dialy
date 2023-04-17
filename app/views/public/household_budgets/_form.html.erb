@@ -2,13 +2,12 @@
   <div class='row'>
     <div class="col-12 px-5 px-sm-0 mx-auto">
       <%= form_with model: household_budget do |f| %>
-
         <div class="form-group my-3">
           <table class="table table-borderless">
             <tr class="text-center">
               <td style="width:30%;">
                 <strong><%= f.label :date %></strong>
-                <%= f.date_field :date, value:Time.now.strftime("%Y-%m-%d"), class: 'form-control household_budget_date' %>
+                <%= f.date_field :date, class: 'form-control household_budget_date' %>
               </td>
 
               <td style="width:15%;">
@@ -36,7 +35,6 @@
           </table>
         </div>
       <% end %>
-
     </div>
   </div>
 </div>

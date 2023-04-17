@@ -7,8 +7,9 @@ class Schedule < ApplicationRecord
     validates :end_time
   end
 
-  # mypageに今日と明日の予定を表示させる
+  # 今日のデータを取得
   scope :today_schedule, -> { where(start_time: Time.zone.now.all_day) }
+  # 明日のデータを取得
   scope :tomorrow_schedule, -> { where(start_time: Time.zone.tomorrow.all_day)}
 
   validate :start_and_end_time_on_same_day

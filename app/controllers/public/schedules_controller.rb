@@ -13,6 +13,7 @@ class Public::SchedulesController < ApplicationController
     if @schedule.save
       redirect_to schedules_path
     else
+      # 失敗した@scheduleを含ませない
       @schedules = current_customer.schedules.select(&:persisted?)
       render :index
     end
@@ -39,10 +40,12 @@ class Public::SchedulesController < ApplicationController
 
   private
 
+  # 保存するパラメータ
   def schedule_params
     params.require(:schedule).permit(:title, :content, :start_time, :end_time)
   end
 
+  # 投稿したcustomerでない場合topに返す
   def ensure_correct_customer
     @schedule = Schedule.find(params[:id])
     unless @schedule.customer == current_customer
