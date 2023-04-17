@@ -28,7 +28,7 @@ class Public::HouseholdBudgetsController < ApplicationController
 
   def update
     if @household_budget.update(household_budget_params)
-      redirect_to household_budgets_path
+      redirect_to household_budgets_date_show_path(@household_budget.date)
     else
       render :edit
     end

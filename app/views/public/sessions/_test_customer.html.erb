@@ -1,0 +1,5 @@
+<%= form_with model:customer, url:customer_session_path do |f| %>
+  <%= f.hidden_field :email, value: "test@hoge.com" %>
+  <%= f.hidden_field :password, value: "000001" %>
+  <%= f.submit "お試しユーザーで使ってみる", class:"btn btn-secondary" %>
+<% end %>
