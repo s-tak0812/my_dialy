@@ -10,7 +10,7 @@
         <%= render 'public/household_budgets/search_day_to_day' %>
       </div>
 
-      <div class="my-5">
+      <div class="my-4">
         <%= month_calendar do |date| %>
           <%= link_to date.day, household_budgets_date_show_path(date), class:"btn btn-sm btn-outline-secondary rounded" %>
           <!--日ごとの支出の合計-->
