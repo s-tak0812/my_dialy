@@ -10,14 +10,13 @@
         </h3>
       </div>
 
+      <!--期間の絞り込みをした画面に戻るボタン-->
       <div class="d-flex justify-content-center my-3">
-
         <%= form_with url:household_budgets_day_to_day_path, local: true, method: :get do |f| %>
           <%= f.hidden_field :from, value: @from %>
           <%= f.hidden_field :to, value: @to %>
           <%= f.submit "前に戻る", class:"btn btn-sm btn-secondary" %>
         <% end %>
-
       </div>
 
       <!--絞り込み期間の収支合計-->
@@ -33,6 +32,7 @@
               <% @household_budgets.each do |money| %>
                 <% sum_price += money.price %>
               <% end %>
+              <!--合計金額-->
               <%= sum_price.to_s(:delimited) %>
             </td>
           </tr>
@@ -40,8 +40,16 @@
 
       </div>
       <!--内訳一覧-->
-      <%= render 'public/household_budgets/day_to_day_index', household_budgets: @household_budgets %>
+      <%= render 'public/household_budgets/index', household_budgets: @household_budgets_pagination %>
     </div>
+  </div>
+
+  <div class="d-flex justify-content-center mt-3">
+    <%= paginate @household_budgets_pagination %>
+  </div>
+
+  <div class="d-flex justify-content-center my-3">
+    <%= link_to "一覧に戻る", household_budgets_path, class:"btn btn-outline-secondary" %>
   </div>
 </div>
 

@@ -1,6 +1,6 @@
 class Public::BlogsController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_correct_customer, only:[:edit, :update, :destroy]
+  before_action :ensure_correct_customer, only:[:show, :edit, :update, :destroy]
 
   def index
     @blogs = current_customer.blogs
@@ -41,7 +41,7 @@ class Public::BlogsController < ApplicationController
     redirect_to blogs_path
   end
 
-
+  # 検索機能
   def search
     @customer = current_customer
     @content = params[:content]
@@ -52,10 +52,12 @@ class Public::BlogsController < ApplicationController
 
   private
 
+  # 保存するパラメータ
   def blog_params
     params.require(:blog).permit(:title, :body, :date, :image)
   end
 
+  # 投稿したcustomerでない場合topに返す
   def ensure_correct_customer
     @blog = Blog.find(params[:id])
     unless @blog.customer == current_customer

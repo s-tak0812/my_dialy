@@ -13,9 +13,8 @@ class LifeCycle < ApplicationRecord
   validate :start_and_end_time_on_same_day
   validate :check_overlap
 
-
+  # 直近１週間のデータを取得
   scope :last_7_days, -> { where(start_time: Time.current.ago(6.days).beginning_of_day...Time.current.end_of_day) }
-
 
   private
 

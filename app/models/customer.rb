@@ -18,22 +18,23 @@ class Customer < ApplicationRecord
 
   has_one_attached :profile_image
 
-
+  # customerのフルネーム
   def full_name
     self.last_name + " " + self.first_name
   end
 
-
+  # profile_imageがない場合'no_image'を出力する
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
   # セキュリティ向上
-  # is_deletedカラムがfalseのcustomerのみ認証する
+  # is_deleted: falseのcustomerのみ認証する
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
 
+  # 検索機能
   def self.search_for(content)
     Customer.where("first_name LIKE ? OR last_name LIKE ?", '%'+content+'%', '%'+content+'%')
   end

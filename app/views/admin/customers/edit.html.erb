@@ -4,8 +4,8 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light"><strong>会員詳細及び編集</strong></h3>
       </div>
-      <%= render "public/shared/error_messages", resource: @customer %>
 
+      <%= render "public/shared/error_messages", resource: @customer %>
       <%= form_with model:@customer, url:admin_customer_path(@customer) do |f| %>
         <table class="table table-borderless my-3">
           <tr>
@@ -20,6 +20,7 @@
               <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*' %>
             </td>
           </tr>
+
           <tr>
             <td>
               <%= f.label :last_name %>
@@ -28,6 +29,7 @@
               <%= f.text_field :last_name, autofocus: true, placeholder: "山田", autocomplete: "last_name" %>
             </td>
           </tr>
+
           <tr>
             <td>
               <%= f.label :first_name %>
@@ -36,6 +38,7 @@
               <%= f.text_field :first_name, placeholder: "花子", autocomplete: "first_name" %>
             </td>
           </tr>
+
           <tr>
             <td>
               <%= f.label :email %>
@@ -44,6 +47,7 @@
               <%= f.email_field :email, placeholder: "sample@sample.com", autocomplete: "email" %>
             </td>
           </tr>
+
           <tr>
             <td>
               会員ステータス
@@ -55,6 +59,7 @@
               <%= f.label :is_deleted_false, "退会" %>
             </td>
           </tr>
+
           <tr>
             <td></td>
             <td class="form-group" colspan="2">

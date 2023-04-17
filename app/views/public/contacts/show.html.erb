@@ -16,18 +16,21 @@
             <%= @contact.created_at.strftime("%Y-%m-%d") %>
           </td>
         </tr>
+
         <tr>
           <td class="text-right pr-3">タイトル：</td>
           <td>
             <strong><%= @contact.title %></strong>
           </td>
         </tr>
+
         <tr>
           <td class="text-right pr-3">問い合わせ内容：</td>
           <td>
             <%= simple_format(@contact.body) %>
           </td>
         </tr>
+
         <% if @contact.reply.present? %>
           <tr>
             <td class="text-right pr-3">返信日：</td>
@@ -35,9 +38,11 @@
               <%= @contact.updated_at.strftime("%Y-%m-%d") %>
             </td>
           </tr>
+
           <tr>
             <td class="text-right pr-3">返信内容：</td>
             <td class="form-group">
+              <!--返信内容の型-->
               <%= render 'public/contacts/reply', contact: @contact %>
             </td>
           </tr>

@@ -1,5 +1,4 @@
 <%= form_with model: life_cycle do |f| %>
-
   <div class="form-group my-3">
     <table class="table table-borderless">
       <tr class="text-center">
@@ -7,23 +6,18 @@
           <strong><%= f.label :start_time %></strong><br>
           <%= f.datetime_field :start_time, class: "form-control start_time" %>
         </td>
-
         <td style="width:30%;">
           <strong><%= f.label :end_time %></strong>
           <%= f.datetime_field :end_time, class: "form-control end_time" %>
         </td>
-
         <td style="width:30%;">
           <strong><%= f.label :title %></strong> <br>
           <%= f.select :title, LifeCycle.titles.keys, class: "title-select" %>
         </td>
-
         <td>
           <%= f.submit class: 'btn btn-outline-success mt-4' %>
         </td>
-
       </tr>
     </table>
   </div>
 <% end %>
-

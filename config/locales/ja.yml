@@ -92,3 +92,11 @@ ja:
         study: 勉強
         meal: 食事
         housework: 家事
+
+  views:
+    pagination:
+      first: '<<'
+      last: '>>'
+      previous: '<'
+      next: '>'
+      truncate: '...'

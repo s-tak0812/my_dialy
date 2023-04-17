@@ -4,10 +4,13 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light"><strong>スケジュール表</strong></h3>
       </div>
+
       <div class="my-5">
         <%= month_calendar do |date| %>
           <%= date.day %>
 
+          <!--日にちごとの一覧をカレンダーのその日にちの中に-->
+          <!--editへのリンクボタンを表示(title 時間)-->
           <% @schedules.each do |schedule| %>
             <div class="text-center" style="margin:2px 0;">
               <% if schedule.start_time.to_date == date %>
@@ -20,8 +23,10 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-8 mx-auto">
+      <!--投稿フォーム-->
       <%= render 'public/shared/error_messages', resource: @schedule %>
       <%= render 'public/schedules/form', schedule: @schedule %>
     </div>

@@ -5,6 +5,7 @@
         <h3 class="bg-light"><strong>家計簿</strong></h3>
       </div>
 
+      <!--期間絞込の検索窓-->
       <div class="d-flex justify-content-center my-3">
         <%= render 'public/household_budgets/search_day_to_day' %>
       </div>
@@ -26,6 +27,7 @@
               </strong>
             <% end %>
           </div>
+
           <!--日ごとの収入の合計-->
           <% earn_price = [] %>
           <% @incomes.each do |earning| %>
@@ -44,8 +46,10 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-8 mx-auto">
+      <!--投稿フォーム-->
       <%= render 'public/shared/error_messages', resource: @household_budget %>
       <%= render 'public/household_budgets/form', household_budget: @household_budget %>
     </div>

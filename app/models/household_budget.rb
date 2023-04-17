@@ -7,13 +7,14 @@ class HouseholdBudget < ApplicationRecord
     validates :date
   end
 
+  # priceカラムは数字のみ保存させる
   validates :price, numericality: { only_integer: true }
 
   enum title: { others: 0, tax: 1, food_and_drink: 2, entertainment: 3, utility_costs: 4, income: 5 }
 
   # 今月の内容を取り出す
   scope :current_month, -> { where(date: Time.current.all_month) }
-  # 今月の内容を取り出す
+  # 先月の内容を取り出す
   scope :last_month, -> { where(date: Time.current.last_month.all_month) }
 
   # 支出のみ取り出す
@@ -21,7 +22,7 @@ class HouseholdBudget < ApplicationRecord
   # 収入のみ取り出す
   scope :incomes, -> { where(is_active: true)}
 
-
+  # title別ソート機能
   scope :tax_order, -> { order(price: :desc).where(title: :tax) }
   scope :food_and_drink_order, -> { order(price: :desc).where(title: :food_and_drink) }
   scope :entertainment_order, -> { order(price: :desc).where(title: :entertainment) }

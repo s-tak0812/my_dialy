@@ -5,7 +5,7 @@
         <h3 class="bg-light"><strong>BLOG</strong></h3>
       </div>
       <div class="d-flex justify-content-start">
-        <!--Blogのタイトル検索-->
+        <!--Blogの検索窓-->
         <%= render 'public/blogs/search_blog' %>
       </div>
 
@@ -19,7 +19,7 @@
       <div class="my-5">
         <%= month_calendar do |date| %>
           <%= date.day %>
-          <!--各日にちの中に投稿したBlogのタイトルのリンクを表示-->
+          <!--各日にちの中に投稿したBlogの詳細ページへのタイトルリンクを表示-->
           <% @blogs.each do |blog| %>
             <div class="text-center" style="margin:2px 0;">
               <% if blog.date == date %>

@@ -4,9 +4,14 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light"><strong>生活編集</strong></h3>
       </div>
+      <!--投稿フォーム-->
       <%= render 'public/shared/error_messages', resource: @life_cycle %>
       <%= render 'public/life_cycles/form', life_cycle: @life_cycle, day_params: @day_params %>
     </div>
+  </div>
+
+  <div class="d-flex justify-content-center my-3">
+    <%= link_to "戻る", :back, class:"btn btn-outline-secondary", "data-turbolinks": false %>
   </div>
 </div>
 
