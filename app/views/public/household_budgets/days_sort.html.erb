@@ -1,0 +1,55 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light text-center">
+          <strong>
+            <%= @from %> ~ <%= @to %><br>
+            "<%= @sort_title %>"の家計簿
+          </strong>
+        </h3>
+      </div>
+
+      <!--期間の絞り込みをした画面に戻るボタン-->
+      <div class="d-flex justify-content-center my-3">
+        <%= form_with url:household_budgets_day_to_day_path, local: true, method: :get do |f| %>
+          <%= f.hidden_field :from, value: @from %>
+          <%= f.hidden_field :to, value: @to %>
+          <%= f.submit "前に戻る", class:"btn btn-sm btn-secondary" %>
+        <% end %>
+      </div>
+
+      <!--絞り込み期間の収支合計-->
+      <div class="col-6 mx-auto my-5">
+        <span class="d-flex justify-content-center mb-2"><strong>合計金額</strong></span>
+        <!--値のリセット-->
+        <% sum_price = 0 %>
+
+        <table class="table table-bordered">
+          <tr>
+            <td class="text-center align-middle" style="width:35%;">合計</td>
+            <td class="text-center align-middle">
+              <% @household_budgets.each do |money| %>
+                <% sum_price += money.price %>
+              <% end %>
+              <!--合計金額-->
+              <%= sum_price.to_s(:delimited) %>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+      <!--内訳一覧-->
+      <%= render 'public/household_budgets/index', household_budgets: @household_budgets_pagination %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center mt-3">
+    <%= paginate @household_budgets_pagination %>
+  </div>
+
+  <div class="d-flex justify-content-center my-3">
+    <%= link_to "一覧に戻る", household_budgets_path, class:"btn btn-outline-secondary" %>
+  </div>
+</div>
+

@@ -1,0 +1,12 @@
+<footer class="container-fluid border-top mt-5">
+  <div class="col-12">
+    <div class="d-flex justify-content-center">
+      <div class="pt-3">
+        <% if customer_signed_in? %>
+          <%= link_to "お問い合わせ >>", contacts_path, class:"btn btn-outline-secondary" %>
+        <% end %>
+      </div>
+    </div>
+    <p class="text-center mt-3">© 2023 My Dialy Inc.</p>
+  </div>
+</footer>

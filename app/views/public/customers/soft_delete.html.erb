@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5 text-center my-5 mx-auto">
+      <h5 class="font-weight-bold my-5">本当に退会しますか？</h5>
+      <div class="d-flex justify-content-between">
+        <%= link_to "退会しない", customers_mypage_path, class: "btn btn-outline-primary", "data-turbolinks": false %>
+        <%= link_to "退会する", customers_drop_path, method: :patch, "data-confirm" => '本当に?', class: "btn btn-outline-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

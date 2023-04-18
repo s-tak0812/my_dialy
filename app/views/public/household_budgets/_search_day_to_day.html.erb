@@ -1,0 +1,17 @@
+<%= form_with url: household_budgets_day_to_day_path, method: :get, local: true do |f| %>
+  <table class="table table-borderless">
+    <tr class="text-center">
+      <td style="width:30%;">
+        <%= f.date_field :from, class: "form-control" %>
+      </td>
+      <td class="align-middle">から</td>
+      <td style="width:30%;">
+        <%= f.date_field :to, class: "form-control" %>
+      </td>
+      <td class="align-middle">まで</td>
+      <td>
+        <%= f.submit "絞込", class: "btn btn-outline-primary" %>
+      </td>
+    </tr>
+  </table>
+<% end %>

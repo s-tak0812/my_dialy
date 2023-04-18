@@ -1,2 +1,48 @@
-<h1>Public::Homes#about</h1>
-<p>Find me in app/views/public/homes/about.html.erb</p>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 mx-auto">
+      <div class="text-center h6 my-5">
+        このサイトは、生活サイクル、家計簿、スケジュール、日記を管理できる便利なサイトです
+      </div>
+      <div class="text-center h6 my-5">
+        生活サイクルは、日々の活動の時間を記録することができます。<br>
+        <div>
+          <%= image_tag 'pf_chart_sample.png', size: '300x300', class:"my-3" %>
+        </div>
+      <div class="text-center h6 my-5">
+        家計簿機能では、日々のお金の動きを管理できます
+        <div>
+          <%= image_tag 'pf_price_sample.png', height: 300, class:"my-3" %>
+        </div>
+      </div>
+      <div class="text-center h6 my-5">
+        スケジュール機能では、自分のスケジュールをカレンダー形式で管理できます
+        <div>
+          <%= image_tag 'pf_schedule_sample.png', height: 300, class:"my-3" %>
+        </div>
+      </div>
+      <div class="text-center h6 my-5">
+        また、日記をつけることによって毎日の思い出を文章で残すことができます
+      </div>
+      <div class="text-center h6 my-5">
+        ~My Dialy~を使って、あなたの生活をより充実にさせる手助けをさせてください
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto my-3">
+    <%= link_to root_path do %>
+      <div class="btn btn-outline-primary">
+        <i class="fas fa-globe"></i> TOPへ
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mx-auto my-3">
+    <%= link_to new_customer_registration_path do %>
+      <div class="nav-link pr-1 pl-1 ml-4 btn btn-outline-primary">
+        <i class="fas fa-user-plus"></i> 新規登録
+      </div>
+    <% end %>
+  </div>
+</div>

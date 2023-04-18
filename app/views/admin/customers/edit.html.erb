@@ -1,2 +1,77 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>会員詳細及び編集</strong></h3>
+      </div>
+
+      <%= render "public/shared/error_messages", resource: @customer %>
+      <%= form_with model:@customer, url:admin_customer_path(@customer) do |f| %>
+        <table class="table table-borderless my-3">
+          <tr>
+            <td style="width:30%" class="align-bottom">
+              <%= f.label :プロフィール画像 %>
+            </td>
+            <td>
+              <%= image_tag @customer.get_profile_image, size:"80x80" %>
+            </td>
+            <td class="form-group align-bottom">
+
+              <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*' %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= f.label :last_name %>
+            </td>
+            <td class="form-group" colspan="2">
+              <%= f.text_field :last_name, autofocus: true, placeholder: "山田", autocomplete: "last_name" %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= f.label :first_name %>
+            </td>
+            <td class="form-group" colspan="2">
+              <%= f.text_field :first_name, placeholder: "花子", autocomplete: "first_name" %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= f.label :email %>
+            </td>
+            <td class="form-group" colspan="2">
+              <%= f.email_field :email, placeholder: "sample@sample.com", autocomplete: "email" %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              会員ステータス
+            </td>
+            <td class="form-group" colspan="2">
+              <%= f.radio_button :is_deleted, "false" %>
+              <%= f.label :is_deleted_false, "有効" %>
+              <%= f.radio_button :is_deleted, "true", class:"ml-4" %>
+              <%= f.label :is_deleted_false, "退会" %>
+            </td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td class="form-group" colspan="2">
+              <%= f.submit class:"btn btn-outline-success" %>
+              <%= link_to "削除", admin_customer_path(@customer), method: :delete,
+              "data-confirm" => "消しますか?", class: "btn btn-outline-danger ml-5" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+

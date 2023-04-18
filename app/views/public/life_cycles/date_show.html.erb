@@ -1,0 +1,110 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light">
+          <strong>
+            <%= @day_params.strftime('%Y-%m-%d') %>の生活記録
+          </strong>
+        </h3>
+      </div>
+
+      <!--特定の日のlife_cycleグラフ-->
+      <canvas id="myChart" class="my-5"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+      <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
+      <script>
+        const labels = <%= @chart_data_labels.to_json.html_safe %>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: labels,
+              datasets: [{
+                  data: <%= @chart_data_sets.to_json.html_safe %>,
+                  backgroundColor: [
+                            'rgba(153, 229, 255, 0.6)',
+                            'rgba(255, 255, 101, 0.6)',
+                            'rgba(255, 101, 101, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(204, 153, 255, 0.6)',
+                            'rgba(104, 255, 101, 0.6)',
+                            'rgba(178, 178, 178, 0.6)'
+                  ],
+              }]
+          },
+
+          options: {
+            responsive: true,
+            plugins: {
+              datalabels: {
+                formatter: function(context) {
+                  return labels[context.dataIndex]
+                },
+              },
+              labels: {
+                      // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+                      render: 'label',
+
+                      // font size, default is defaultFontSize
+                      fontSize: 15,
+
+                      // position to draw label, available value is 'default', 'border' and 'outside'
+                      // bar chart ignores this
+                      // default is 'default'
+                      position: 'border',
+              }
+            },
+          },
+        });
+      </script>
+
+      <!--新規投稿フォームへのリンク-->
+      <div class="d-flex justify-content-end">
+        <%= link_to new_life_cycle_path, class: "btn btn-outline-secondary" do  %>
+          <span class="text-dark h5"><i class="fas fa-plus-circle"></i> 記録</span>
+        <% end %>
+      </div>
+
+      <!--一覧表示-->
+      <table class="table table-hover my-3 text-center">
+        <thead class="table-active">
+          <tr>
+            <th style="width:30%;">項目</th>
+            <th style="width:30%;">時間</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @life_cycles.each do |life_cycle| %>
+            <tr>
+              <td><%= life_cycle.title %></td>
+              <td><%= life_cycle.start_time.strftime("%H:%M") %> ~ <%= life_cycle.end_time.strftime("%H:%M") %></td>
+              <td>
+                <%= link_to "編集", edit_life_cycle_path(life_cycle.id), class:"btn btn-outline-success" %>
+              </td>
+              <td>
+                <%= link_to "削除", life_cycle_path(life_cycle.id), method: :delete,
+                "data-confirm" => '消しますか?', class:"btn btn-outline-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

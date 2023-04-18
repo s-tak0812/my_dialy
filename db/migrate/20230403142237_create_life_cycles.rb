@@ -3,8 +3,8 @@ class CreateLifeCycles < ActiveRecord::Migration[6.1]
     create_table :life_cycles do |t|
       t.integer :customer_id, null: false
       t.integer :title, null: false, default: 0
-      t.time :start_time, null: false
-      t.time :end_time, null: false
+      t.datetime :start_time, null: false
+      t.datetime :end_time, null: false
       t.timestamps
     end
   end

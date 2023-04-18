@@ -1,0 +1,35 @@
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-12 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>BLOG</strong></h3>
+      </div>
+      <div class="d-flex justify-content-start">
+        <!--Blogの検索窓-->
+        <%= render 'public/blogs/search_blog' %>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <!--Blog新規投稿フォームへのリンク-->
+        <%= link_to new_blog_path, class: "btn btn-outline-secondary" do  %>
+          <span class="text-dark h5"><i class="fas fa-plus-circle"></i> Blog</span>
+        <% end %>
+      </div>
+
+      <div class="my-5">
+        <%= month_calendar do |date| %>
+          <%= date.day %>
+          <!--各日にちの中に投稿したBlogの詳細ページへのタイトルリンクを表示-->
+          <% @blogs.each do |blog| %>
+            <div class="text-center" style="margin:2px 0;">
+              <% if blog.date == date %>
+                <%= link_to blog.title, blog_path(blog.id), class:"btn btn-info" %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

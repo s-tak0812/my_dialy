@@ -1,2 +1,61 @@
-<h1>Admin::Contacts#edit</h1>
-<p>Find me in app/views/admin/contacts/edit.html.erb</p>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>お問い合わせ：返信</strong></h3>
+      </div>
+      <%= render "admin/shared/error_messages", resource: @contact %>
+
+      <%= form_with model: @contact, url: admin_contact_path, method: :patch do |f| %>
+        <table class="table table-borderless my-3">
+          <tr>
+            <td style="width:30%" class="text-right pr-3">顧客氏名：</td>
+            <td>
+              <strong><%= @contact.customer.full_name %>さん</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right pr-3">お問い合わせ日：</td>
+            <td>
+              <%= @contact.created_at.strftime("%Y-%m-%d") %>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right pr-3">タイトル：</td>
+            <td>
+              <strong><%= @contact.title %></strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-right pr-3">問い合わせ内容：</td>
+            <td>
+              <%= simple_format(@contact.body) %>
+            </td>
+          </tr>
+          <% if @contact.reply.present? %>
+            <tr>
+              <td class="text-right pr-3">返信日：</td>
+              <td>
+                <%= @contact.updated_at.strftime("%Y-%m-%d") %>
+              </td>
+            </tr>
+          <% end %>
+          <tr>
+            <td class="text-right pr-3">返信内容：</td>
+            <td class="form-group">
+              <%= f.text_area :reply, class:"form-control", placeholder: "返信内容", row:5 %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <%= f.submit "送信", "data-confirm" => "内容確認", class:"btn btn-outline-success" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,16 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-between">
+        <h3 class="bg-light">
+          <strong>
+            "<%= @content %>"での検索結果
+          </strong>
+        </h3>
+        <!--customerの検索窓-->
+        <%= render 'admin/searches/search_customer' %>
+      </div>
+      <%= render 'admin/customers/index', customers: @results %>
+    </div>
+  </div>
+</div>

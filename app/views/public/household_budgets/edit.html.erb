@@ -1,2 +1,17 @@
-<h1>Public::HouseholdBudgets#edit</h1>
-<p>Find me in app/views/public/household_budgets/edit.html.erb</p>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>収支編集</strong></h3>
+      </div>
+      <!--投稿フォーム-->
+      <%= render 'public/shared/error_messages', resource: @household_budget %>
+      <%= render 'public/household_budgets/form', household_budget: @household_budget %>
+
+      <div class="d-flex justify-content-center my-3">
+        <%= link_to "戻る", household_budgets_date_show_path(@household_budget.date), class:"btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
+

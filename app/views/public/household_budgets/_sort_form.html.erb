@@ -1,0 +1,6 @@
+<%= form_with url:household_budgets_days_sort_path, local: true, method: :get do |f| %>
+  <%= f.hidden_field :from, value: from %>
+  <%= f.hidden_field :to, value: to %>
+  <%= f.select :sort, HouseholdBudget.titles.keys.map {|k| [I18n.t("enums.household_budget.title.#{k}"), k]}, class: "form-control-select title-select" %>
+  <%= f.submit "項目別絞込", class:"btn btn-sm btn-primary" %>
+<% end %>

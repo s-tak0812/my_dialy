@@ -1,0 +1,14 @@
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-12 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>生活記録</strong></h3>
+      </div>
+      <div class="my-5">
+        <%= month_calendar do |date| %>
+          <%= link_to date.day, life_cycles_date_show_path(date), class:"btn btn-sm btn-outline-secondary rounded", "data-turbolinks": false %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

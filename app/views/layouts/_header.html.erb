@@ -1,0 +1,100 @@
+<header class="d-flex flex-column bg-light border-bottom">
+  <div class="container-fluid">
+    <nav class="navbar">
+      <% if admin_signed_in? %>
+        <a class="navbar-brand ml-5" href="/admin"><%= image_tag "my_dialy_logo.png", size:'100x100' %></a>
+      <% else %>
+        <a class="navbar-brand ml-5" href="/"><%= image_tag "my_dialy_logo.png", size:'100x100' %></a>
+      <% end %>
+      <div>
+        <ul class="navbar-nav list-group list-group-horizontal" >
+          <!--管理者ログイン後-->
+          <% if admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "お問い合わせ一覧", admin_contacts_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
+            </li>
+            <li class="nav-item mr-5">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
+            </li>
+          <!--顧客ログイン後-->
+          <% elsif customer_signed_in? %>
+            <li class="nav-item pt-2">
+              <i class="fas fa-smile-beam"></i> <%= current_customer.full_name %>さん
+            </li>
+            <li class="nav-item">
+              <%= link_to customers_mypage_path, "data-turbolinks": false do %>
+                <div class="nav-link pr-1 pl-1 ml-4 btn btn-outline-primary">
+                  <i class="fas fa-user"></i> マイページ
+                </div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to schedules_path do %>
+                <div class="nav-link pr-1 pl-1 ml-4 btn btn-outline-primary">
+                  <i class="fas fa-calendar-alt"></i> 予定
+                </div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to life_cycles_path do %>
+                <div class="nav-link pr-1 pl-1 ml-4 btn btn-outline-primary">
+                  <i class="fas fa-thumbs-up"></i> LIFE
+                </div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to household_budgets_path do %>
+                <div class="nav-link pr-1 pl-1 ml-4 btn btn-outline-primary">
+                  <i class="fas fa-yen-sign"></i> 家計簿
+                </div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to  blogs_path do %>
+                <div class="nav-link pr-1 pl-1 ml-4 btn btn-outline-primary">
+                  <i class="fas fa-pen"></i> BLOG
+                </div>
+              <% end %>
+            </li>
+            <li class="nav-item mr-5">
+              <%= link_to destroy_customer_session_path, method: :delete do %>
+                <div class="nav-link pr-1 pl-1 ml-4 btn btn-outline-primary">
+                  <i class="fas fa-sign-out-alt"></i> Sign out
+                </div>
+              <% end %>
+            </li>
+          <!--ログイン前-->
+          <% else %>
+            <li class="nav-item">
+              <%= render 'public/sessions/test_customer', customer: Customer.new %>
+            </li>
+            <li class="nav-item">
+              <%= link_to root_path do %>
+                <div class="nav-link pr-1 pl-1 ml-4 btn btn-outline-primary">
+                  <i class="fas fa-globe"></i> TOP
+                </div>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to new_customer_registration_path do %>
+                <div class="nav-link pr-1 pl-1 ml-4 btn btn-outline-primary">
+                  <i class="fas fa-user-plus"></i> 新規登録
+                </div>
+              <% end %>
+            </li>
+            <li class="nav-item mr-5">
+              <%= link_to new_customer_session_path do %>
+                <div class="nav-link pr-1 pl-1 ml-4 btn btn-outline-primary">
+                  <i class="fas fa-sign-in-alt"></i> ログイン
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>

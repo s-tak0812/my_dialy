@@ -1,0 +1,26 @@
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-12 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light">
+          <strong>
+            "<%= @content %>"でのBLOG検索結果
+          </strong>
+        </h3>
+      </div>
+      <!--Blogのタイトル検索窓-->
+      <div class="d-flex justify-content-start">
+        <%= render 'public/blogs/search_blog' %>
+      </div>
+      <!--検索結果一覧-->
+      <div class="my-5">
+        <%= render 'public/blogs/result_blog', results: @results %>
+      </div>
+
+      <div class="d-flex justify-content-center my-3">
+        <%= link_to "一覧に戻る", blogs_path, class:"btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
+

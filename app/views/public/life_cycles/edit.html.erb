@@ -1,2 +1,18 @@
-<h1>Public::LifeCycles#edit</h1>
-<p>Find me in app/views/public/life_cycles/edit.html.erb</p>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>生活編集</strong></h3>
+      </div>
+      <!--投稿フォーム-->
+      <%= render 'public/shared/error_messages', resource: @life_cycle %>
+      <%= render 'public/life_cycles/form', life_cycle: @life_cycle %>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center my-3">
+    <%= link_to "戻る", life_cycles_date_show_path(@life_cycle.start_time.to_date), class:"btn btn-outline-secondary", "data-turbolinks": false %>
+  </div>
+</div>
+
+

@@ -1,2 +1,100 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class='container px-5 px-sm-0 my-5'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <!--customerの情報-->
+      <%= render 'public/customers/customer_info', customer: @customer %>
+
+      <div class="mt-5">
+        <!--今月の収支記録-->
+        <span class="d-flex justify-content-center"><strong>今月の収支</strong></span>
+        <%= render 'public/customers/household_budgets',
+        incomes: @current_month_incomes, spendings: @current_month_spendings %>
+      </div>
+
+      <div class="mt-5">
+        <!--先月の収支記録-->
+        <span class="d-flex justify-content-center"><strong>先月の収支</strong></span>
+        <%= render 'public/customers/household_budgets',
+        incomes: @last_month_incomes, spendings: @last_month_spendings %>
+      </div>
+    </div>
+
+    <div class='col-md-8 offset-md-1'>
+      <!--今日のスケジュール表示-->
+      <span><strong>今日の予定</strong></span>
+      <% if @today_schedules.present? %>
+        <%= render 'public/customers/schedules', schedules: @today_schedules %>
+      <% else %>
+        <ul>
+          <li>今日の予定はありません</li>
+        </ul>
+      <% end %>
+
+      <!--明日のスケジュール表示-->
+      <span><strong>明日の予定</strong></span>
+      <% if @tomorrow_schedules.present? %>
+        <%= render 'public/customers/schedules', schedules: @tomorrow_schedules %>
+      <% else %>
+        <ul>
+          <li>明日の予定はありません</li>
+        </ul>
+      <% end %>
+
+      <!--直近1週間の1日の平均グラフ-->
+      <div class="d-flex justify-content-center my-5">
+        <h4 class="bg-light"><strong>過去1週間の生活1日平均</strong></h4>
+      </div>
+
+      <canvas id="myChart" class="my-5"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+      <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
+      <script>
+        const labels = <%= @chart_data_labels.to_json.html_safe %>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: labels,
+              datasets: [{
+                  data: <%= @chart_data_sets.to_json.html_safe %>,
+                  backgroundColor: [
+                            'rgba(153, 229, 255, 0.6)',
+                            'rgba(255, 255, 101, 0.6)',
+                            'rgba(255, 101, 101, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(204, 153, 255, 0.6)',
+                            'rgba(104, 255, 101, 0.6)',
+                            'rgba(178, 178, 178, 0.6)'
+                  ],
+              }]
+          },
+
+          options: {
+            responsive: true,
+            plugins: {
+              datalabels: {
+                formatter: function(context) {
+                  return labels[context.dataIndex]
+                },
+              },
+              labels: {
+                      // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+                      render: 'label',
+
+                      // font size, default is defaultFontSize
+                      fontSize: 15,
+
+                      // position to draw label, available value is 'default', 'border' and 'outside'
+                      // bar chart ignores this
+                      // default is 'default'
+                      position: 'border',
+              }
+            },
+          },
+        });
+      </script>
+
+    </div>
+  </div>
+</div>

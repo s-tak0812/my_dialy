@@ -1,2 +1,67 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>会員情報編集</strong></h3>
+      </div>
+
+      <%= render 'public/shared/error_messages', resource: @customer %>
+      <%= form_with model: @customer, url: customers_information_path do |f| %>
+        <table class="table table-borderless my-3">
+          <tr>
+            <td style="width:30%" class="align-bottom">
+              <%= f.label :プロフィール画像 %>
+            </td>
+            <td>
+              <%= image_tag @customer.get_profile_image, size:"80x80" %>
+            </td>
+            <td class="form-group align-bottom">
+              <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*' %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= f.label :last_name %>
+            </td>
+            <td class="form-group" colspan="2">
+              <%= f.text_field :last_name, autofocus: true, placeholder: "山田", autocomplete: "last_name" %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= f.label :first_name %>
+            </td>
+            <td class="form-group" colspan="2">
+              <%= f.text_field :first_name, placeholder: "花子", autocomplete: "first_name" %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= f.label :email %>
+            </td>
+            <td class="form-group" colspan="2">
+              <%= f.email_field :email, placeholder: "sample@sample.com", autocomplete: "email" %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <%= link_to "マイページへ", customers_mypage_path, class: 'btn btn-outline-secondary', "data-turbolinks": false %>
+            </td>
+            <td>
+              <%= f.submit  class: "btn btn-outline-success" %>
+            </td>
+            <td class="text-right">
+              <%= link_to "退会する", customers_soft_delete_path, class: "btn btn-outline-danger" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
