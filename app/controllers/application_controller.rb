@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
     if resource.is_a?(Admin)
       admin_root_path
     else
-      customers_mypage_path # customers#show
+      # customers#show
+      customers_mypage_path
     end
   end
 
