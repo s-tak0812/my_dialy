@@ -6,14 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Admin.create!(
-#   email: ENV['MAIL_ADDRESS'],
-#   password: ENV['ADMIN_PASSWORD'],
-# )
+Admin.create!(
+  email: ENV['MAIL_ADDRESS'],
+  password: ENV['ADMIN_PASSWORD'],
+)
 
-# Customer.create!(
-#     last_name: "お試し",
-#     first_name: "太郎",
-#     email: 'test@hoge.com',
-#     password: ENV['TESTER_PASSWORD'],
-# )
+Customer.create!(
+    last_name: "お試し",
+    first_name: "太郎",
+    email: ENV['TESTER_ADDRESS'],
+    password: ENV['TESTER_PASSWORD'],
+)
