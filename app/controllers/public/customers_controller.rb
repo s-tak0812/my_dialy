@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :ensure_test_customer, only:[:edit, :update, :drop]
 
   def show
     @customer = current_customer
@@ -42,7 +43,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to customers_mypage_path　#:show
+      redirect_to customers_mypage_path
     else
       render :edit
     end
@@ -53,7 +54,6 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     @customer.update(is_deleted: true)
     reset_session
-    flash[:notice] = "退会処理を完了しました。"
     redirect_to root_path
   end
 
@@ -62,6 +62,13 @@ class Public::CustomersController < ApplicationController
   # 保存するパラメータ
   def customer_params
     params.require(:customer).permit(:first_name, :last_name, :email, :is_deleted, :profile_image)
+  end
+
+  # お試し用アカウントの制限
+  def ensure_test_customer
+    if current_customer.email == 'test@hoge.com'
+      redirect_to root_path, alert: 'お試しではその操作はできません'
+    end
   end
 
 end

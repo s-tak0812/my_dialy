@@ -13,7 +13,7 @@ class Public::BlogsController < ApplicationController
   def create
     @blog = current_customer.blogs.new(blog_params)
     if @blog.save
-      redirect_to blog_path(@blog), notice: "投稿完了！"
+      redirect_to blog_path(@blog)
     else
       render :new
     end
@@ -25,7 +25,7 @@ class Public::BlogsController < ApplicationController
 
   def update
     if @blog.update(blog_params)
-      redirect_to blog_path(@blog), notice: "更新完了！"
+      redirect_to blog_path(@blog)
     else
       render :edit
     end
