@@ -70,4 +70,9 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  devise_scope :customer do
+    # 会員登録失敗のリダイレクトのエラーを防ぐ
+    get '/customers', to: 'public/registrations#new'
+  end
+
 end
