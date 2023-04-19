@@ -153,7 +153,7 @@ ja:
       too_long: "は%{count}文字以下に設定して下さい。"
       invalid: "は有効でありません。"
       confirmation: "が内容とあっていません。"
-      not_a_number: に数字がない。または、数字以外が入力されています。
+      # not_a_number: に数字がない。または、数字以外が入力されています。
       record_invalid: "有効性の検証に失敗しました: %{errors}"
       no: "失敗"
-      key: しました。
+      key: "しました。"
