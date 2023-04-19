@@ -20,21 +20,28 @@ Rails.application.routes.draw do
     resources :contacts, only:[:index, :show, :create]
 
     # schedules
-    resources :schedules, only:[:index, :create, :edit, :update, :destroy]
+    # バリデーションでrenderされた後、リロードした時に
+    # ルーティングエラーが出現するため、個別設定する
+    get 'schedules/:id' => 'schedules#edit', as: 'edit_schedule'
+    resources :schedules, only:[:index, :create, :update, :destroy]
 
     # life_cycles
     # 日付の絞り込み検索
     get 'life_cycles/date_show/:date' => 'life_cycles#date_show', as: 'life_cycles_date_show'
-    resources :life_cycles, only:[:index, :new, :create, :edit, :update, :destroy]
+    resources :life_cycles, only:[:index, :new, :create, :update, :destroy]
+    # render後のエラー回避
+    get 'life_cycles/:id' => 'life_cycles#edit', as: 'edit_life_cycle'
 
     # household_budgets
+    # render後のエラー回避
+    get 'household_budgets/:id' => 'household_budgets#edit', as: 'edit_household_budget'
     # 期間の絞り込み検索
     get 'household_budgets/day_to_day' => 'household_budgets#day_to_day', as: 'household_budgets_day_to_day'
     # 期間の絞り込み検索
     get 'household_budgets/days_sort' => 'household_budgets#days_sort', as: 'household_budgets_days_sort'
     # 日付の絞り込み検索
     get 'household_budgets/date_show/:date' => 'household_budgets#date_show', as: 'household_budgets_date_show'
-    resources :household_budgets, only:[:index, :create, :edit, :update, :destroy]
+    resources :household_budgets, only:[:index, :create, :update, :destroy]
 
     # blogs
     # Blogのタイトル検索
@@ -43,7 +50,7 @@ Rails.application.routes.draw do
 
     # customers
     get 'customers/mypage' => 'customers#show'
-    get 'customers/information/edit' => 'customers#edit'
+    get 'customers/information' => 'customers#edit'
     patch 'customers/information' => 'customers#update'
     # 退会確認画面
     get 'customers/soft_delete' => 'customers#soft_delete'
