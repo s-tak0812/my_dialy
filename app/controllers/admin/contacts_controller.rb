@@ -10,10 +10,10 @@ class Admin::ContactsController < ApplicationController
   end
 
   def update
-    contact = Contact.find(params[:id]) #contact_mailer.rbの引数を指定
+    contact = Contact.find(params[:id])
     contact.update(contact_params)
     customer = contact.customer
-    ContactMailer.send_when_admin_reply(customer, contact).deliver_now #確認メールを送信
+    ContactMailer.send_when_admin_reply(customer, contact).deliver_now
     redirect_to admin_contacts_path
   end
 

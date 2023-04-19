@@ -46,7 +46,11 @@
 * 行動計画を立てる時
 
 ## 設計書
+* [ER図]
+* [テーブル定義書]
 
+[ER図]: https://app.diagrams.net/?libs=general;uml#G1YQ5LE41HHX6CovsY9REUYUrSGt0QcToM
+[テーブル定義書]: https://docs.google.com/spreadsheets/d/1jKVaQH-nvmyLQnsXRkeG_doOkw1gDdbWXRFlPE4s8UM/edit#gid=2110562335
 
 ## 開発環境
 * OS：Linux(CentOS)
