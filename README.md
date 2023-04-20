@@ -3,7 +3,7 @@
 
 * [My Dialy]
 
-[MyDialy]: https://my_dialy.net
+[My Dialy]: https://my_dialy.net
 
 
 ## 項目
