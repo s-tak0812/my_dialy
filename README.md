@@ -1,4 +1,9 @@
 # My Dialy
+![スクリーンショット (14)](https://user-images.githubusercontent.com/122010689/233297772-fe2bb076-78bd-405b-861d-288764575190.png)
+
+* [My Dialy]
+[MyDialy]: https://my_dialy.net
+
 
 ## 項目
 * [サイト概要](#サイト概要)
@@ -61,5 +66,5 @@
 * IDE：Cloud9
 
 ### 使用素材
-* ロゴメーカー「Hatchful
+* ロゴメーカー「Hatchful」
 https://www.shopify.com/jp/tools/logo-maker
