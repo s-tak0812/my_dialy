@@ -7,13 +7,18 @@
 
       <div class="my-5">
         <div class="d-flex justify-content-end">
-          <span class="border-bottom border-dark"><%= @blog.date.strftime("%Y/%m/%d") %></span>
+          <span>
+            <%= render 'public/blogs/score_stamp', blog: @blog %>:
+          </span>
+          <span class="border-bottom border-dark">
+            <%= @blog.date.strftime("%Y/%m/%d") %>
+          </span>
         </div>
 
         <div class="my-5">
           <div class="d-flex justify-content-center">
             <% if @blog.image.present? %>
-              <%= image_tag @blog.image, width: 500 %>
+              <%= image_tag @blog.image, width: 400 %>
             <% end %>
           </div>
 
