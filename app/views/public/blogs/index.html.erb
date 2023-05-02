@@ -24,6 +24,9 @@
             <div class="text-center" style="margin:2px 0;">
               <% if blog.date == date %>
                 <%= link_to blog.title, blog_path(blog.id), class:"btn btn-info" %>
+                <div class="h5">
+                  <%= render 'public/blogs/score_stamp', blog: blog %>
+                </div>
               <% end %>
             </div>
           <% end %>

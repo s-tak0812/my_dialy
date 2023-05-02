@@ -2,7 +2,7 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 
-// 追記
+// カレンダー
 .simple-calendar {
   table {
     -webkit-border-horizontal-spacing: 0px;
@@ -96,5 +96,103 @@
 
 .fs10 {
   font-size: 10px;
+}
+
+
+// Blogのスコアに応じた顔マーク
+
+// 0.9以上
+.fa-laugh-squint{
+  color: #FFD700;
+}
+
+// 0.8
+.fa-grin-squint-tears{
+  color: #FFCC00;
+}
+
+// 0.7
+.fa-grin-tongue-squint{
+  color: #FF3366;
+}
+
+// 0.6
+.fa-grin-tongue-wink{
+  color: #00EE00;
+}
+
+// 0.5
+.fa-laugh-beam{
+  color: #FF6928;
+}
+
+// 0.4
+.fa-smile-wink{
+  color: #60EEff;
+}
+
+// 0.3
+.fa-grin{
+  color: #86F9C5;
+}
+
+// 0.2
+.fa-surprise{
+  color: #FF97C2;
+}
+
+// 0.1
+.fa-smile{
+  color: #CD853F;
+}
+
+// 0とそれ以外
+.fa-meh-blank{
+  color: #0000FF;
+}
+
+// -0.1
+.fa-grin-tongue{
+  color: #800000;
+}
+
+// -0.2
+.fa-grin-tears{
+  color: #2F4F4F;
+}
+
+// -0.3
+.fa-sad-cry{
+  color: #00FF00;
+}
+
+// -0.4
+.fa-grin-beam-sweat{
+  color: #7B68EE;
+}
+
+// -0.5
+.fa-grimace{
+  color: #FF0461;
+}
+
+// -0.6
+.fa-meh{
+  color: #777777;
+}
+
+// -0.7
+.fa-dizzy{
+  color: #FF4F02;
+}
+
+// -0.8
+.fa-sad-tear{
+  color: #B6FF01;
+}
+
+// -0.9以下
+.fa-tired{
+  color: #191970;
 }
 

@@ -12,8 +12,11 @@ class Public::BlogsController < ApplicationController
 
   def create
     @blog = current_customer.blogs.new(blog_params)
+    # Blogの文章をもとにAPIを通してscoreを生成
+    @blog.score = Language.get_data(blog_params[:body])
+
     if @blog.save
-      redirect_to blog_path(@blog)
+      redirect_to blog_path(@blog.id)
     else
       render :new
     end
@@ -24,8 +27,10 @@ class Public::BlogsController < ApplicationController
   end
 
   def update
+    @blog.score = Language.get_data(blog_params[:body])
+
     if @blog.update(blog_params)
-      redirect_to blog_path(@blog)
+      redirect_to blog_path(@blog.id)
     else
       render :edit
     end
