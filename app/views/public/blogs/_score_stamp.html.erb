@@ -1,5 +1,7 @@
+<!--アプリバージョンアップの為、”present?”で既存の投稿と衝突を避ける-->
 <% if blog.score.present? %>
 
+  <!--スコアごとにマークを表示させる-->
   <% if blog.score >= 0.9 %>
     <span>
       <i class="fas fa-laugh-squint"></i>
