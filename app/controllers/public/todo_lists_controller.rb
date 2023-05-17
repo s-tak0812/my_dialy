@@ -8,7 +8,7 @@ class Public::TodoListsController < ApplicationController
 
   def show
     @todo_list = TodoList.find(params[:id])
-    @todo_contens = TodoContent.where(todo_list_id: @todo_list.id)
+    @todo_contents = TodoContent.where(todo_list_id: @todo_list.id)
   end
 
   def destroy
@@ -21,8 +21,8 @@ class Public::TodoListsController < ApplicationController
   private
 
   def ensure_correct_customer
-    @todo_content = TodoContent.find(params[:id])
-    unless @todo_content.customer == current_customer
+    @todo_list = TodoList.find(params[:id])
+    unless @todo_list.customer == current_customer
       redirect_to root_path
     end
   end

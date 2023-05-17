@@ -1,6 +1,5 @@
 <h1>todo_contens::new</h1>
 
-<!--%= render 'public/shared/error_messages', resource: @todo_list %>-->
 <%= render 'public/shared/error_messages', resource: @todo_content %>
 
 
@@ -9,7 +8,7 @@
 
     <% if @todo_lists.present? %>
       <p>
-        <%= f.radio_button :select_bottun, 1, checked: true %>
+        <%= f.radio_button :select_button, 1, checked: true %>
         <%= f.label "title" %>
         <%= f.select :todo_list_id, options_from_collection_for_select(@todo_lists,:id,:title) %>
       </p>
@@ -18,7 +17,6 @@
         <%= f.radio_button :select_button, 2 %>
         <%= f.label "title" %>
         <%= f.text_field :title %>
-        <%= byebug %>
       </p>
     <% else %>
       <p>

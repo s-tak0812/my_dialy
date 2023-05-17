@@ -36,6 +36,14 @@ ja:
         body: 内容
         reply: 返信内容
 
+      todo_list:
+        title: タイトル
+        required: タイトル
+
+      todo_content:
+        content: 内容
+        todo_list: タイトル
+
   date:
     formats:
       default: "%Y/%m/%d"

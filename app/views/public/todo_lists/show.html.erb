@@ -1,1 +1,8 @@
 <h1>todo_lists::show</h1>
+
+<%= @todo_list.title %>
+<% @todo_contents.each do |todo| %>
+  <ul>
+    <li><%= todo.content %></li>
+  </ul>
+<% end %>
