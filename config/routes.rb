@@ -53,7 +53,7 @@ Rails.application.routes.draw do
 
     # todo_contents
     resources :todo_contents, only:[:create, :destroy]
-    get 'todo_contents/new' => 'todo_contents#new', as: 'new_todo_content'
+    get 'todo_contents' => 'todo_contents#new', as: 'new_todo_content'
 
 
     # customers

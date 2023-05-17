@@ -1,8 +1,38 @@
-<h1>todo_lists::show</h1>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="my-3">
+        <%= link_to new_todo_content_path, class: "btn btn-outline-secondary" do  %>
+          <span class="text-dark h6"><i class="fas fa-plus-circle"></i> メモ</span>
+        <% end %>
+      </div>
+      <table class="table table-hover my-3 text-center">
+        <thead class="table-active">
+          <tr>
+            <th>
+              <%= @todo_list.title %>
+            </th>
+            <th style="width:10%;">
+              <%= link_to todo_list_path(@todo_list.id), method: :delete, "data-confirm" => "リストごと消しますか?" do %>
+                <i class="fas fa-times-circle text-danger"></i>
+              <% end %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @todo_contents.each do |todo| %>
+            <tr>
+              <td><%= todo.content %></td>
+              <td>
+                <%= link_to todo_content_path(todo.id), method: :delete do %>
+                  <i class="fas fa-times-circle text-danger"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-<%= @todo_list.title %>
-<% @todo_contents.each do |todo| %>
-  <ul>
-    <li><%= todo.content %></li>
-  </ul>
-<% end %>
