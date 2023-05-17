@@ -8,7 +8,7 @@
       <!--投稿フォーム-->
       <div>
         <%= form_with model:@todo_content do |f| %>
-
+          <!--セレクトボタンの押し忘れ回避の為、if文で表示を分ける-->
           <% if @todo_lists.present? %>
             <div class="form-group my-3">
               <%= f.radio_button :select_button, 1, checked: true %> 登録しているメモのタイトルから選択

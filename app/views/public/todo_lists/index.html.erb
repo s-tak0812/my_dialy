@@ -1,23 +1,39 @@
-<h1>todo_lists::index</h1>
+<div class="container my-5">
+  <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+    <div class="d-flex justify-content-center">
+      <h3 class="bg-light"><strong>メモ一覧</strong></h3>
+    </div>
 
-<div><%= link_to "new", new_todo_content_path %></div>
-
-<div>
-  <% @todo_lists.each do |list| %>
-    <ul>
-      <li><%= link_to list.title, todo_list_path(list.id) %></li>
-      <li>
-          <%= link_to todo_list_path(list.id), method: :delete do %>
-            <i class="fas fa-times-circle text-danger"></i>
-          <% end %>
-      </li>
-      <% list.todo_contents.each do |todo| %>
-        <%= todo.content %>
-        <%= link_to todo_content_path(todo.id), method: :delete do %>
-          <i class="fas fa-times-circle text-danger"></i>
-        <% end %>
+    <div class="my-3">
+      <%= link_to new_todo_content_path, class: "btn btn-outline-secondary" do  %>
+        <span class="text-dark h6"><i class="fas fa-plus-circle"></i> メモ</span>
       <% end %>
-    </ul>
-  <% end %>
-</div>
+    </div>
 
+    <% @todo_lists.each do |list| %>
+      <table class="col-10 table table-hover mx-auto my-5 text-center">
+        <thead class="table-active">
+          <tr>
+            <th>
+              <%= link_to list.title, todo_list_path(list.id), class:"btn btn-outline-dark" %>
+            </th>
+            <th style="width:10%;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% list.todo_contents.each do |todo| %>
+            <tr>
+              <td><%= todo.content %></td>
+              <td>
+                <%= link_to todo_content_path(todo.id), method: :delete do %>
+                  <i class="fas fa-times-circle text-danger"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+
+  </div>
+</div>
