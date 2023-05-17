@@ -25,6 +25,7 @@
               <% if blog.date == date %>
                 <%= link_to blog.title, blog_path(blog.id), class:"btn btn-info" %>
                 <div class="h5">
+                  <!--APIによるSentimentの評価値をもとにマークを表示させる-->
                   <%= render 'public/blogs/score_stamp', blog: blog %>
                 </div>
               <% end %>
