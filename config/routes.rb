@@ -48,6 +48,14 @@ Rails.application.routes.draw do
     get 'blogs/search' => 'blogs#search', as: 'blogs_search'
     resources :blogs
 
+    # todo_lists
+    resources :todo_lists, only:[:index, :show, :destroy]
+
+    # todo_contents
+    resources :todo_contents, only:[:create, :destroy]
+    get 'todo_contents' => 'todo_contents#new', as: 'new_todo_content'
+
+
     # customers
     get 'customers/mypage' => 'customers#show'
     get 'customers/information' => 'customers#edit'

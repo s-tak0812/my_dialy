@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        todo_content:
+          attributes:
+            todo_list:
+              required: がありません。

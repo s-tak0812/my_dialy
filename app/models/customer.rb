@@ -9,6 +9,8 @@ class Customer < ApplicationRecord
   has_many:life_cycles, dependent: :destroy
   has_many:schedules, dependent: :destroy
   has_many:contacts, dependent: :destroy
+  has_many:todo_lists, dependent: :destroy
+  has_many:todo_contents, dependent: :destroy
 
   with_options presence: true do
     validates :last_name
