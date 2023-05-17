@@ -1,0 +1,40 @@
+<h1>todo_contens::new</h1>
+
+<!--%= render 'public/shared/error_messages', resource: @todo_list %>-->
+<%= render 'public/shared/error_messages', resource: @todo_content %>
+
+
+<div>
+  <%= form_with model:@todo_content do |f| %>
+
+    <% if @todo_lists.present? %>
+      <p>
+        <%= f.radio_button :select_bottun, 1, checked: true %>
+        <%= f.label "title" %>
+        <%= f.select :todo_list_id, options_from_collection_for_select(@todo_lists,:id,:title) %>
+      </p>
+
+      <p>
+        <%= f.radio_button :select_button, 2 %>
+        <%= f.label "title" %>
+        <%= f.text_field :title %>
+        <%= byebug %>
+      </p>
+    <% else %>
+      <p>
+        <%= f.radio_button :select_button, 2, checked: true %>
+        <%= f.label "title" %>
+        <%= f.text_field :title %>
+      </p>
+    <% end %>
+
+
+    <p>
+      <%= f.label "内容" %>
+      <%= f.text_field :content %>
+    </p>
+
+    <p><%= f.submit %></p>
+
+  <% end %>
+</div>

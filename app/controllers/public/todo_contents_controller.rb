@@ -4,24 +4,32 @@ class Public::TodoContentsController < ApplicationController
 
   def new
     @todo_content = TodoContent.new
+    @todo_lists = current_customer.todo_lists
   end
 
   def create
     @todo_content = current_customer.todo_contents.new(todo_content_params)
-    if params[:todo_list][:select_adress] == "1"
+    if params[:todo_content][:select_button] == "1"
       @todo_list = TodoList.find(params[:todo_content][:todo_list])
-      @todo_content.todo_list_id == @todo_list.id
+      @todo_content.todo_list_id = @todo_list.id
 
-    elsif params[:todo_list][:select_adress] == "2"
+    elsif params[:todo_content][:select_button] == "2"
       @title = params[:title]
-      @todo_list = current_customer.todo_lists.new(todo_list_params)
-      @todo_list.title = @title
-      unless @todo_list.save
+      if @title.nil?
         render :new
+        return
+      else
+        @todo_list = TodoList.new(todo_list_params)
+        @todo_list.customer_id = current_customer.id
+        @todo_list.title = @title
+        @todo_list.save
+        @todo_content.todo_list_id = @todo_list.id
       end
+
 
     else
       redirect_to request.referer
+      return
     end
 
     if @todo_content.save
@@ -41,7 +49,7 @@ class Public::TodoContentsController < ApplicationController
   private
 
   def todo_content_params
-    params.require(:todo_content).permit(:content)
+    params.require(:todo_content).permit(:content, :todo_list_id)
   end
 
   def todo_list_params

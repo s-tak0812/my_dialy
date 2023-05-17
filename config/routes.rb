@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     resources :blogs
 
     # todo_lists
-    resources :todo_lists, only:[:index, :show, :edit, :update, :destroy]
+    resources :todo_lists, only:[:index, :show, :destroy]
 
     # todo_contents
     resources :todo_contents, only:[:new, :create, :destroy]

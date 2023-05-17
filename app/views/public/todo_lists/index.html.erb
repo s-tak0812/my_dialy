@@ -1,0 +1,12 @@
+<h1>todo_lists::index</h1>
+
+<div><%= link_to "new", new_todo_content_path %></div>
+
+<div>
+  <% @todo_lists.each do |todo_list| %>
+    <ul>
+      <li><%= link_to todo_list_path(@todo_list.id) %></li>
+    </ul>
+  <% end %>
+</div>
+

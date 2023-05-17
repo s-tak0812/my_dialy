@@ -1,6 +1,6 @@
 class Public::TodoListsController < ApplicationController
   before_action:authenticate_customer!
-  before_action:ensure_correct_customer, only:[:show, :edit, :update, :destroy]
+  before_action:ensure_correct_customer, only:[:show, :destroy]
 
   def index
     @todo_lists = current_customer.todo_lists
@@ -8,18 +8,7 @@ class Public::TodoListsController < ApplicationController
 
   def show
     @todo_list = TodoList.find(params[:id])
-  end
-
-  def edit
-  end
-
-  def update
-    @todo_list = TodoList.find(params[:id])
-    if @todo_list.update(todo_list_params)
-      redirect_to :index
-    else
-      render :edit
-    end
+    @todo_contens = TodoContent.where(todo_list_id: @todo_list.id)
   end
 
   def destroy
@@ -30,10 +19,6 @@ class Public::TodoListsController < ApplicationController
 
 
   private
-
-  def todo_list_params
-    params.require(:todo_list).permit(:title)
-  end
 
   def ensure_correct_customer
     @todo_content = TodoContent.find(params[:id])
