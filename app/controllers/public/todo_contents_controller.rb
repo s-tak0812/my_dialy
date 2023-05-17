@@ -17,6 +17,7 @@ class Public::TodoContentsController < ApplicationController
     elsif params[:todo_content][:select_button] == "2"
       @title = params[:todo_content][:title]
       if @title.nil?
+        @todo_lists = current_customer.todo_lists
         render :new
         return
       else
@@ -41,9 +42,11 @@ class Public::TodoContentsController < ApplicationController
       # 状態を戻すために削除する
       if @new_todo_list.present?
         @new_todo_list.destroy
+        @todo_lists = current_customer.todo_lists
         render :new
         return
       else
+        @todo_lists = current_customer.todo_lists
         render :new
       end
     end
