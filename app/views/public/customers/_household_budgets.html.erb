@@ -7,27 +7,33 @@
 <table class="table table-bordered">
   <tr>
     <td class="text-center align-middle" style="width:35%;">収入</td>
-    <td class="text-center align-middle">
+    <td class="text-right align-middle">
       <% incomes.each do |money| %>
         <% earn += money.price %>
       <% end %>
       <!--収入合計-->
-      <%= earn.to_s(:delimited) %>
+      <span class="text-success">
+        +<%= earn.to_s(:delimited) %>
+      </span>
+
     </td>
   </tr>
   <tr>
     <td class="text-center align-middle">支出</td>
-    <td class="text-center align-middle">
+    <td class="text-right align-middle">
       <% spendings.each do |money| %>
         <% spend += money.price %>
       <% end %>
       <!--支出合計-->
-      <%= spend.to_s(:delimited) %>
+      <span class="text-danger">
+        -<%= spend.to_s(:delimited) %>
+      </span>
+
     </td>
   </tr>
   <tr>
     <td class="text-center align-middle">合計</td>
-    <td class="text-center align-middle">
+    <td class="text-right align-middle">
       <!--総合計-->
       <%= (earn - spend).to_s(:delimited) %>
     </td>
