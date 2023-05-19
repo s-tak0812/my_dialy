@@ -11,7 +11,8 @@
           <!--セレクトボタンの押し忘れ回避の為、if文で表示を分ける-->
           <% if @todo_lists.present? %>
             <div class="form-group my-3">
-              <%= f.radio_button :select_button, 1, checked: true %> 登録しているメモのタイトルから選択
+              <%= f.radio_button :select_button, "selected", checked: true %>
+              <%= f.label :select_button, "登録しているメモのタイトルから選択", value: "selected" %>
               <div class="my-3">
                 <%= f.select :todo_list_id, options_from_collection_for_select(@todo_lists,:id,:title),
                 class: "form-control-select" %>
@@ -19,22 +20,23 @@
             </div>
 
             <div class="form-group my-3">
-              <%= f.radio_button :select_button, 2 %> メモの新規タイトル
+              <%= f.radio_button :select_button, "new" %>
+              <%= f.label :select_button, "メモの新規タイトル", value: "new" %>
               <div class="my-3">
-                <%= f.text_field :title, class: "form-control todo_list_title" %>
+                <%= f.text_field :title, placeholder: "新規タイトル", class: "form-control todo_list_title" %>
               </div>
             </div>
 
           <% else %>
             <div class="form-group my-3">
-              <%= f.radio_button :select_button, 2, checked: true %> 新規タイトル
-              <%= f.text_field :title, class: "form-control todo_list_title my-2" %>
+              <%= f.hidden_field :select_button, value: "new" %> メモのタイトル
+              <%= f.text_field :title, placeholder: "タイトル", class: "form-control todo_list_title my-2" %>
             </div>
           <% end %>
 
           <div class="form-group my-3">
             <%= f.label "メモ内容" %>
-            <%= f.text_field :content, class: "form-control todo_content_content" %>
+            <%= f.text_area :content, placeholder: "内容", rows: 3, class: "form-control todo_content_content" %>
           </div>
 
           <div class="form-group text-center my-5">

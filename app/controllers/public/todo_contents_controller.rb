@@ -10,11 +10,11 @@ class Public::TodoContentsController < ApplicationController
   def create
     @todo_content = current_customer.todo_contents.new(todo_content_params)
     # todo_list(タイトル)を選択
-    if params[:todo_content][:select_button] == "1"
+    if params[:todo_content][:select_button] == "selected"
       @todo_list = TodoList.find(params[:todo_content][:todo_list_id])
       @todo_content.todo_list_id = @todo_list.id
     # 新しくtodo_listを作る
-    elsif params[:todo_content][:select_button] == "2"
+    elsif params[:todo_content][:select_button] == "new"
       @title = params[:todo_content][:title]
       if @title.nil?
         @todo_lists = current_customer.todo_lists
