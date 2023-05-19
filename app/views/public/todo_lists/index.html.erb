@@ -11,7 +11,7 @@
     </div>
 
     <% @todo_lists.each do |list| %>
-      <table class="col-10 table table-hover mx-auto my-5 text-center">
+      <table class="col-10 table table-hover mx-auto my-5 text-left">
         <thead class="table-active">
           <tr>
             <th>
@@ -23,7 +23,7 @@
         <tbody>
           <% list.todo_contents.each do |todo| %>
             <tr>
-              <td><%= todo.content %></td>
+              <td><%= simple_format(todo.content) %></td>
               <td>
                 <%= link_to todo_content_path(todo.id), method: :delete do %>
                   <i class="fas fa-times-circle text-danger"></i>
