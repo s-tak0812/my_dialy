@@ -9,11 +9,11 @@
         </h3>
       </div>
       <!--Blogのタイトル検索窓-->
-      <div class="d-flex justify-content-start">
+      <div class="d-flex justify-content-start my-4">
         <%= render 'public/blogs/search_blog' %>
       </div>
       <!--検索結果一覧-->
-      <div class="my-5">
+      <div class="col-10 mx-auto my-5">
         <%= render 'public/blogs/result_blog', results: @results %>
       </div>
 

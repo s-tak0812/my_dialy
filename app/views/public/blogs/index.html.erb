@@ -4,12 +4,12 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light"><strong>BLOG</strong></h3>
       </div>
-      <div class="d-flex justify-content-start">
+      <div class="d-flex justify-content-between my-4">
         <!--Blogの検索窓-->
         <%= render 'public/blogs/search_blog' %>
-      </div>
+      <!--</div>-->
 
-      <div class="d-flex justify-content-end">
+      <!--<div class="d-flex justify-content-end">-->
         <!--Blog新規投稿フォームへのリンク-->
         <%= link_to new_blog_path, class: "btn btn-outline-secondary" do  %>
           <span class="text-dark h5"><i class="fas fa-plus-circle"></i> Blog</span>

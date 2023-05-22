@@ -1,5 +1,5 @@
 <div class="container my-5">
-  <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+  <div class="col-12 px-5 px-sm-0 mx-auto">
     <div class="d-flex justify-content-center">
       <h3 class="bg-light"><strong>メモ一覧</strong></h3>
     </div>
@@ -10,30 +10,35 @@
       <% end %>
     </div>
 
-    <% @todo_lists.each do |list| %>
-      <table class="col-10 table table-hover mx-auto my-5 text-left">
-        <thead class="table-active">
-          <tr>
-            <th>
-              <%= link_to list.title, todo_list_path(list.id), class:"btn btn-outline-dark" %>
-            </th>
-            <th style="width:10%;"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% list.todo_contents.each do |todo| %>
-            <tr>
-              <td><%= simple_format(todo.content) %></td>
-              <td>
-                <%= link_to todo_content_path(todo.id), method: :delete do %>
-                  <i class="fas fa-times-circle text-danger"></i>
+    <div class="col-12">
+      <div class="d-flex flex-wrap">
+        <% @todo_lists.each do |list| %>
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <table class="table table-hover text-left">
+              <thead class="table-active">
+                <tr>
+                  <th>
+                    <%= link_to list.title, todo_list_path(list.id), class:"btn btn-outline-dark" %>
+                  </th>
+                  <th style="width:10%;"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% list.todo_contents.each do |todo| %>
+                  <tr>
+                    <td><%= simple_format(todo.content) %></td>
+                    <td>
+                      <%= link_to todo_content_path(todo.id), method: :delete do %>
+                        <i class="fas fa-times-circle text-danger"></i>
+                      <% end %>
+                    </td>
+                  </tr>
                 <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
-
+              </tbody>
+            </table>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

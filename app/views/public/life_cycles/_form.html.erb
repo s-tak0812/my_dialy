@@ -1,7 +1,7 @@
 <%= form_with model: life_cycle do |f| %>
   <div class="form-group my-3">
     <table class="table table-borderless">
-      <tr class="text-center">
+      <tr class="text-left">
         <td style="width:30%;">
           <strong><%= f.label :start_time %></strong><br>
           <%= f.datetime_field :start_time, class: "form-control start_time" %>
