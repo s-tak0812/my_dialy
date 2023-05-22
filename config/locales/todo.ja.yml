@@ -5,4 +5,4 @@ ja:
         todo_content:
           attributes:
             todo_list:
-              required: がありません。
+              required: がありません。または、30文字以上です。

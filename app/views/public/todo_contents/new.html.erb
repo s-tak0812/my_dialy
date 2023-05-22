@@ -23,14 +23,14 @@
               <%= f.radio_button :select_button, "new" %>
               <%= f.label :select_button, "メモの新規タイトル", value: "new" %>
               <div class="my-3">
-                <%= f.text_field :title, placeholder: "新規タイトル", class: "form-control todo_list_title" %>
+                <%= f.text_field :title, placeholder: "新規タイトル(30文字以内)", class: "form-control todo_list_title" %>
               </div>
             </div>
 
           <% else %>
             <div class="form-group my-3">
               <%= f.hidden_field :select_button, value: "new" %> メモのタイトル
-              <%= f.text_field :title, placeholder: "タイトル", class: "form-control todo_list_title my-2" %>
+              <%= f.text_field :title, placeholder: "タイトル(30文字以内)", class: "form-control todo_list_title my-2" %>
             </div>
           <% end %>
 
