@@ -4,6 +4,14 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light"><strong>生活記録</strong></h3>
       </div>
+      <!--新規投稿時のエラー表示-->
+      <div class="text-danger">
+        <% if @life_cycle.errors.any? %>
+          <span class="h6"><strong>投稿に失敗しました <%= @life_cycle.start_time.strftime("%Y-%m-%d") %></strong></span>
+          <%= render 'public/shared/error_messages', resource: @life_cycle %>
+        <% end %>
+      </div>
+
       <div class="my-5">
         <%= month_calendar do |date| %>
           <%= link_to date.day, life_cycles_date_show_path(date), class:"btn btn-sm btn-outline-secondary rounded", "data-turbolinks": false %>

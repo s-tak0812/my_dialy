@@ -60,11 +60,9 @@
         });
       </script>
 
-      <!--新規投稿フォームへのリンク-->
-      <div class="d-flex justify-content-end">
-        <%= link_to new_life_cycle_path, class: "btn btn-outline-secondary" do  %>
-          <span class="text-dark h5"><i class="fas fa-plus-circle"></i> 記録</span>
-        <% end %>
+      <!--新規投稿フォーム-->
+      <div class="d-flex justify-content-center">
+        <%= render 'public/life_cycles/form', life_cycle: @life_cycle, start_params: params[:date].to_date, end_params: params[:date].to_date %>
       </div>
 
       <!--一覧表示-->
