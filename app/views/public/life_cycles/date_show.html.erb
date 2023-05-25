@@ -62,7 +62,8 @@
 
       <!--新規投稿フォーム-->
       <div class="d-flex justify-content-center">
-        <%= render 'public/life_cycles/form', life_cycle: @life_cycle, start_params: params[:date].to_date, end_params: params[:date].to_date %>
+        <%= render 'public/life_cycles/form', life_cycle: @life_cycle,
+        start_params: LifeCycle.new_lc_start_value(params[:date]), end_params: LifeCycle.new_lc_end_value(params[:date]) %>
       </div>
 
       <!--一覧表示-->
