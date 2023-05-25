@@ -16,7 +16,7 @@
             </th>
             <th style="width:10%;">
               <%= link_to todo_list_path(@todo_list.id), method: :delete, "data-confirm" => "リストごと消しますか?" do %>
-                <i class="fas fa-times-circle text-danger"></i>
+                <i class="fas fa-times-circle text-danger" data-toggle="tooltip" data-placement="right" title="リスト削除"></i>
               <% end %>
             </th>
           </tr>
@@ -27,7 +27,7 @@
               <td><%= simple_format(todo.content) %></td>
               <td>
                 <%= link_to todo_content_path(todo.id), method: :delete do %>
-                  <i class="fas fa-times-circle text-danger"></i>
+                  <i class="fas fa-times-circle text-danger" data-toggle="tooltip" data-placement="right" title="削除"></i>
                 <% end %>
               </td>
             </tr>

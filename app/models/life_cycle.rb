@@ -44,4 +44,24 @@ class LifeCycle < ApplicationRecord
     end
   end
 
+  # 新規投稿時にstart_timeのフォームに値を入れておくメソッド
+  def self.new_lc_start_value(date)
+    day_cycle = where(end_time: date.to_date.all_day).order(end_time: :desc).first
+    if day_cycle.present?
+      start_params = day_cycle.end_time + 1.minute
+    else
+      start_params = date.to_date
+    end
+  end
+
+  # 新規投稿時にend_timeのフォームに値を入れておくメソッド
+  def self.new_lc_end_value(date)
+    day_cycle = where(start_time: date.to_date.all_day).order(end_time: :desc).first
+    if day_cycle.present?
+      end_params = day_cycle.end_time + 1.hour
+    else
+      end_params = date.to_date + 1.hour
+    end
+  end
+
 end

@@ -4,10 +4,7 @@ class Public::LifeCyclesController < ApplicationController
 
   def index
     @life_cycles = current_customer.life_cycles
-
-  end
-
-  def new
+    # 新規投稿時のエラーを返すため
     @life_cycle = LifeCycle.new
   end
 
@@ -16,7 +13,9 @@ class Public::LifeCyclesController < ApplicationController
     if @life_cycle.save
       redirect_to life_cycles_date_show_path(@life_cycle.start_time.to_date)
     else
-      render :new
+      # indexに遷移させるため
+      @life_cycles = current_customer.life_cycles
+      render :index
     end
   end
 

@@ -22,12 +22,12 @@
         </td>
         <td class="d-flex justify-content-between">
           <%= link_to edit_household_budget_path(household_budget.id), class:"text-success mx-2" do %>
-            <i class="fas fa-edit"></i>
+            <i class="fas fa-edit" data-toggle="tooltip" data-placement="right" title="編集"></i>
           <% end %>
 
           <%= link_to household_budget_path(household_budget.id), method: :delete,
           "data-confirm" => '消しますか?', class:"text-danger mr-2" do %>
-            <i class="fas fa-times-circle"></i>
+            <i class="fas fa-times-circle" data-toggle="tooltip" data-placement="right" title="削除"></i>
           <% end %>
         </td>
       </tr>
