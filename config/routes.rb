@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     # life_cycles
     # 日付の絞り込み検索
     get 'life_cycles/date_show/:date' => 'life_cycles#date_show', as: 'life_cycles_date_show'
-    resources :life_cycles, only:[:index, :new, :create, :update, :destroy]
+    resources :life_cycles, only:[:index, :create, :update, :destroy]
     # render後のエラー回避
     get 'life_cycles/:id' => 'life_cycles#edit', as: 'edit_life_cycle'
 

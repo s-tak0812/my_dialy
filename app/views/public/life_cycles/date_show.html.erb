@@ -60,11 +60,10 @@
         });
       </script>
 
-      <!--新規投稿フォームへのリンク-->
-      <div class="d-flex justify-content-end">
-        <%= link_to new_life_cycle_path, class: "btn btn-outline-secondary" do  %>
-          <span class="text-dark h5"><i class="fas fa-plus-circle"></i> 記録</span>
-        <% end %>
+      <!--新規投稿フォーム-->
+      <div class="d-flex justify-content-center">
+        <%= render 'public/life_cycles/form', life_cycle: @life_cycle,
+        start_params: LifeCycle.new_lc_start_value(params[:date]), end_params: LifeCycle.new_lc_end_value(params[:date]) %>
       </div>
 
       <!--一覧表示-->
@@ -83,12 +82,12 @@
               <td><%= life_cycle.start_time.strftime("%H:%M") %> ~ <%= life_cycle.end_time.strftime("%H:%M") %></td>
               <td>
                 <%= link_to edit_life_cycle_path(life_cycle.id), class:"text-success mr-5" do %>
-                  <i class="fas fa-edit"></i>
+                  <i class="fas fa-edit" data-toggle="tooltip" data-placement="right" title="編集"></i>
                 <% end %>
 
                 <%= link_to life_cycle_path(life_cycle.id), method: :delete,
                 "data-confirm" => '消しますか?', class:"text-danger mr-2" do %>
-                  <i class="fas fa-times-circle"></i>
+                  <i class="fas fa-times-circle" data-toggle="tooltip" data-placement="right" title="削除"></i>
                 <% end %>
               </td>
             </tr>
