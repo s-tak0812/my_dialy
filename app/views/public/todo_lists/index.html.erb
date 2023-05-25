@@ -29,7 +29,7 @@
                     <td><%= simple_format(todo.content) %></td>
                     <td>
                       <%= link_to todo_content_path(todo.id), method: :delete do %>
-                        <i class="fas fa-times-circle text-danger"></i>
+                        <i class="fas fa-times-circle text-danger" data-toggle="tooltip" data-placement="right" title="削除"></i>
                       <% end %>
                     </td>
                   </tr>
