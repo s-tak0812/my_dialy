@@ -2,7 +2,7 @@ class Schedule < ApplicationRecord
   belongs_to:customer
 
   with_options presence: true do
-    validates :title
+    validates :title, length:{maximum:20}
     validates :start_time
     validates :end_time
   end
