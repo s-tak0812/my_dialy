@@ -1,18 +1,19 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th style="width:30%;">タイトル</th>
-      <th>内容</th>
-      <th style="width:20%;">時間</th>
+      <th style="width:70%;">タイトル</th>
+      <th>時間</th>
     </tr>
   </thead>
 
   <tbody>
     <% schedules.each do |schedule| %>
       <tr>
-        <td><%= schedule.title %></td>
-        <td><%= schedule.content %></td>
-        <td><%= schedule.start_time.strftime('%R') %> ~ <%= schedule.end_time.strftime('%R') %></td>
+        <td>
+          <%= link_to schedule.title, edit_schedule_path(schedule.id), class:"text-dark btn btn-sm btn-outline-warning" %>        </td>
+        <td>
+          <%= schedule.start_time.strftime('%R') %> ~ <%= schedule.end_time.strftime('%R') %>
+        </td>
       </tr>
     <% end %>
   </tbody>
