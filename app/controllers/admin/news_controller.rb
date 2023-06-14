@@ -2,8 +2,7 @@ class Admin::NewsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @news_index = News.order('id DESC')
-    @news_pagination = @news_index.page(20)
+    @news_index = News.order('id DESC').page(params[:page])
   end
 
   def show

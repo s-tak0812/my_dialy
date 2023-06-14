@@ -2,8 +2,7 @@ class Public::NewsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @news_index = News.order('id DESC')
-    @news_pagination = @news_index.page(20)
+    @news_index = News.order('id DESC').page(params[:page])
   end
 
   def show
