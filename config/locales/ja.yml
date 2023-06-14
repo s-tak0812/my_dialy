@@ -87,9 +87,12 @@ ja:
         others: その他
         tax: 税金
         food_and_drink: 飲食
-        entertainment: 娯楽
+        entertainment: 趣味・娯楽
         utility_costs: 光熱費
         income: 収入
+        medicals: 医療費
+        clothes: 衣服
+        necessities: 必需品
 
     life_cycle:
       title:

@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-center">
         <h3 class="bg-light">
           <strong>
-            <%= @from %> ~ <%= @to %>の家計簿
+            <%= @from.to_time.strftime('%Y/%m/%d') %> ~ <%= @to.to_time.strftime('%Y/%m/%d') %>の家計簿
           </strong>
         </h3>
       </div>
