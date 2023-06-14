@@ -1,0 +1,16 @@
+<%= form_with model:news, url:  do |f| %>
+
+  <div class="form-group my-3">
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: "タイトル", autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group my-3">
+    <%= f.label :content %>
+    <%= f.text_area :content, placeholder: "内容", class: 'form-control', rows:"15" %>
+  </div>
+
+  <div class="form-group text-center my-5">
+    <%= f.submit class: 'btn btn-outline-success' %>
+  </div>
+<% end %>

@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 2023_06_14_101108) do
   end
 
   create_table "news", force: :cascade do |t|
+    t.string "title"
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

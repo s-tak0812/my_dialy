@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center">
+  <h3 class="bg-light">
+    <strong>お知らせ</strong>
+  </h3>
+</div>
+
+<table class="table my-5">
+  <thead class="table-active">
+    <tr>
+      <th class="text-center">
+        <%= news.title %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="px-5">
+        <%= render 'public/news/format', news: @news %>
+      </td>
+    </tr>
+  </tbody>
+</table>
