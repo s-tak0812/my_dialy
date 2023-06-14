@@ -69,29 +69,13 @@ class Public::HouseholdBudgetsController < ApplicationController
     # 絞り込みたいtitleを受け取る
     @sort = params[:sort]
 
-    # 識別する
-    if @sort == "tax"
-      @sort_title = "税金"
-      @household_budgets = household_budgets.tax_order
-    elsif @sort == "food_and_drink"
-      @sort_title = "飲食"
-      @household_budgets = household_budgets.food_and_drink_order
-    elsif @sort == "entertainment"
-      @sort_title = "娯楽"
-      @household_budgets = household_budgets.entertainment_order
-    elsif @sort == "utility_costs"
-      @sort_title = "光熱費"
-      @household_budgets = household_budgets.utility_costs_order
-    elsif @sort == "income"
-      @sort_title = "収入"
-      @household_budgets = household_budgets.income_order
-    else
-      @sort_title = "その他"
-      @household_budgets = household_budgets.others_order
-    end
+    # 項目の日本語表記
+    @sort_title = HouseholdBudget.sort_title_ja(@sort)
+    # 項目での絞込検索
+    @household_budgets = household_budgets.sort_by_title(@sort)
 
-      # Kaminari用
-      @household_budgets_pagination = @household_budgets.page(params[:page])
+    # Kaminari用
+    @household_budgets_pagination = @household_budgets.page(params[:page])
 
   end
 

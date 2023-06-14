@@ -10,7 +10,7 @@ class HouseholdBudget < ApplicationRecord
   # priceカラムは数字のみ保存させる
   validates :price, numericality: { only_integer: true }
 
-  enum title: { others: 0, tax: 1, food_and_drink: 2, entertainment: 3, utility_costs: 4, income: 5 }
+  enum title: { others: 0, income: 1, tax: 2, food_and_drink: 3, entertainment: 4, utility_costs: 5, medicals: 6, clothes: 7,  necessities: 8}
 
   # 今月の内容を取り出す
   scope :current_month, -> { where(date: Time.current.all_month) }
@@ -23,11 +23,33 @@ class HouseholdBudget < ApplicationRecord
   scope :incomes, -> { where(is_active: true)}
 
   # title別ソート機能
-  scope :tax_order, -> { order(price: :desc).where(title: :tax) }
-  scope :food_and_drink_order, -> { order(price: :desc).where(title: :food_and_drink) }
-  scope :entertainment_order, -> { order(price: :desc).where(title: :entertainment) }
-  scope :utility_costs_order, -> { order(price: :desc).where(title: :utility_costs) }
-  scope :income_order, -> { order(price: :desc).where(title: :income) }
-  scope :others_order, -> { order(price: :desc).where(title: :others) }
+  scope :sort_by_title, ->(title) { order(price: :desc).where(title: title)}
+
+  
+  private
+  
+  # 一定期間から項目別で絞込をした際の項目の日本語表記
+  def self.sort_title_ja(title)
+    case title
+    when "income"
+      "収入"
+    when "tax"
+      "税金"
+    when "food_and_drink"
+      "飲食"
+    when "entertainment"
+      "趣味娯楽"
+    when "utility_costs"
+      "光熱費"
+    when "medicals"
+      "医療費"
+    when "clothes"
+      "衣服"
+    when "necessities"
+      "必需品"
+    else
+      "その他"
+    end
+  end
 
 end
