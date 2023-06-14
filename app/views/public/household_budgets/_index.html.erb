@@ -2,15 +2,17 @@
 <table class="table table-hover my-3 text-center">
   <thead class="table-active">
     <tr>
+      <th style="width:20%;">日時</th>
       <th>項目</th>
       <th>金額</th>
-      <th>ステータス</th>
+      <th>収・支</th>
       <th style="width:20%;"></th>
     </tr>
   </thead>
   <tbody>
     <% household_budgets.each do |household_budget| %>
       <tr>
+        <td><%= household_budget.date.strftime('%m/%d') %></td>
         <td><%= household_budget.title_i18n %></td>
         <td><%= household_budget.price.to_s(:delimited) %></td>
         <td>

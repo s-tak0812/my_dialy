@@ -1,10 +1,10 @@
 <div class="container my-5">
   <div class="row">
-    <div class="col-sm-12 col-md-10 col-lg-10 px-5 px-sm-0 mx-auto">
-      <div class="d-flex justify-content-center">
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center my-5">
         <h3 class="bg-light">
           <strong>
-            <%= @day_params %>の家計簿
+            <%= @day_params.to_time.strftime('%Y/%m/%d') %>の家計簿
           </strong>
         </h3>
       </div>
