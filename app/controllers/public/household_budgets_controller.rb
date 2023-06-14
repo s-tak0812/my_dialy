@@ -74,8 +74,8 @@ class Public::HouseholdBudgetsController < ApplicationController
     # 項目での絞込検索
     @household_budgets = household_budgets.sort_by_title(@sort)
 
-      # Kaminari用
-      @household_budgets_pagination = @household_budgets.page(params[:page])
+    # Kaminari用
+    @household_budgets_pagination = @household_budgets.page(params[:page])
 
   end
 
