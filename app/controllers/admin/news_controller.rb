@@ -18,7 +18,7 @@ class Admin::NewsController < ApplicationController
     if @news.save
       redirect_to admin_news_path(@news.id)
     else
-      render :new
+      render :new 
     end
   end
 

@@ -20,17 +20,6 @@
           <tr>
             <td class="px-5">
               <%= render 'public/news/format', news: @news %>
-
-              <!--<p><strong><%#= Time.current.strftime('%Y/%m/%d') %></strong></p>-->
-
-              <!--<p>管理人です。</p>-->
-
-              <!--<p>いつもご利用いただきありがとうございます。</p>-->
-
-              <!--<p><%#= simple_format(@news.content) %></p>-->
-
-              <!--<p>引き続き、今後ともよろしくお願いいたします。</p>-->
-
             </td>
           </tr>
         </tbody>
@@ -44,7 +33,7 @@
         <% end %>
       </div>
       <div class="d-flex justify-content-between mb-3">
-        <%= link_to "編集", :back, class:"btn btn-outline-secondary" %>
+        <%= link_to "戻る", :back, class:"btn btn-outline-secondary" %>
         <%= link_to "一覧に戻る", admin_news_index_path, class:"btn btn-outline-secondary" %>
       </div>
     </div>
