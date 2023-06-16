@@ -3,11 +3,22 @@
     <div class="d-flex justify-content-center">
       <div class="pt-3">
         <% if customer_signed_in? %>
-          <%= link_to "お問い合わせ >>", contacts_path, class:"btn btn-outline-secondary" %>
+          <div class="text-center mb-4">
+            <%= link_to news_index_path do %>
+              <i class="far fa-bell text-warning"></i>
+              <span class="text-dark">お知らせ</span>
+            <% end %>
+          </div>
+
+          <div>
+            <%= link_to contacts_path, class:"btn btn-outline-secondary" do %>
+              <i class="far fa-paper-plane"></i> 問い合わせ
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
-    <p class="text-center mt-3">© 2023 My Dialy -version 1.4</p>
+    <p class="text-center mt-3">© 2023 My Dialy -version 1.5</p>
     <p class="text-center">
       <a href="https://github.com/s-tak0812/my_dialy">
         <i class="fab fa-github text-dark h5"></i>

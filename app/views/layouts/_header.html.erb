@@ -11,16 +11,33 @@
 
           <!--管理者ログイン後-->
           <% if admin_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
+
+            <li class="nav-item pt-2 text-danger">
+              <i class="fas fa-exclamation"></i> 管理者モード
             </li>
 
             <li class="nav-item">
-              <%= link_to "お問い合わせ一覧", admin_contacts_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
+              <%= link_to admin_customers_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' do %>
+                <i class="fas fa-user"></i> customer
+              <% end %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to admin_contacts_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' do %>
+                <i class="far fa-paper-plane"></i> contact
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to admin_news_index_path, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' do %>
+                <i class="far fa-bell"></i> news
+              <% end %>
             </li>
 
             <li class="nav-item mr-5">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' %>
+              <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link pr-1 pl-1 ml-4 btn btn-outline-primary' do %>
+                <i class="fas fa-sign-out-alt"></i>  sign out
+              <% end %>
             </li>
 
           <!--顧客ログイン後-->

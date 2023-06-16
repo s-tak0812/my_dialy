@@ -1,0 +1,14 @@
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-8 px-5 px-sm-0 mx-auto">
+      <%= render 'public/news/show', news: @news %>
+      <div class="d-flex justify-content-center my-3">
+        <%= link_to "一覧に戻る", admin_news_index_path, class:"btn btn-outline-secondary" %>
+      </div>
+      <div class="d-flex justify-content-between mb-3">
+        <%= link_to "編集", edit_admin_news_path(@news.id), class:"btn btn-outline-success" %>
+        <%= link_to "削除", admin_news_path(@news.id), method: :delete, "data-confirm" => '消しますか?', class:"btn btn-outline-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
