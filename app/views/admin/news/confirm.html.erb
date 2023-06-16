@@ -1,0 +1,41 @@
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-8 px-5 px-sm-0 mx-auto">
+
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light">
+          <strong>お知らせ</strong>
+        </h3>
+      </div>
+
+      <table class="table my-5">
+        <thead class="table-active">
+          <tr>
+            <th class="text-center">
+              <%= @news.title %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="px-5">
+              <%= render 'public/news/format', news: @news %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-center my-3">
+        <%= form_with model:@news, url: admin_news_index_path(@news), method: :post do |f| %>
+          <%= f.hidden_field :title, value: @news.title %>
+          <%= f.hidden_field :content, value: @news.content %>
+          <%= f.submit class: 'btn btn-outline-success' %>
+        <% end %>
+      </div>
+      <div class="d-flex justify-content-between mb-3">
+        <%= link_to "戻る", :back, class:"btn btn-outline-secondary" %>
+        <%= link_to "一覧に戻る", admin_news_index_path, class:"btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

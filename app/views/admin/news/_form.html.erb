@@ -1,0 +1,21 @@
+<%= form_with model:news, url: url do |f| %>
+
+  <div class="form-group my-3">
+    <strong><%= f.label :title %></strong>
+    <%= f.text_field :title, placeholder: "タイトル", autofocus: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group my-3">
+    <strong><%= f.label :content %></strong>
+    <p>管理人です。</p>
+    <p>いつもご利用いただきありがとうございます。</p>
+
+    <%= f.text_area :content, placeholder: "内容", class: 'form-control', rows:"15" %>
+
+    <p>引き続き、今後ともよろしくお願いいたします。</p>
+  </div>
+
+  <div class="form-group text-center my-5">
+    <%= f.submit class: 'btn btn-outline-success' %>
+  </div>
+<% end %>

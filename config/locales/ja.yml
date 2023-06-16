@@ -44,6 +44,10 @@ ja:
         content: 内容
         todo_list: タイトル
 
+      news:
+        title: タイトル
+        content: 内容
+
   date:
     formats:
       default: "%Y/%m/%d"

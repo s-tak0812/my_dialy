@@ -1,0 +1,12 @@
+<div class="container my-5">
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <div class="d-flex justify-content-center">
+        <h3 class="bg-light"><strong>新規お知らせ</strong></h3>
+      </div>
+      <!--投稿フォーム-->
+      <%= render 'public/shared/error_messages', resource: @news %>
+      <%= render 'admin/news/form', news: @news, url: admin_news_confirm_path(@news) %>
+    </div>
+  </div>
+</div>
