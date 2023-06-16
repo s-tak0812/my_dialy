@@ -6,10 +6,12 @@ Rails.application.routes.draw do
 
     # customers
     resources :customers, only:[:index, :edit, :update, :destroy]
-    
+
     # news
+    post 'news/confirm' => 'news#confirm', as: 'news_confirm'
     resources :news
 
+    # user検索結果
     get 'searches/search'
 
     # homes
@@ -57,7 +59,7 @@ Rails.application.routes.draw do
     # todo_contents
     resources :todo_contents, only:[:create, :destroy]
     get 'todo_contents' => 'todo_contents#new', as: 'new_todo_content'
-    
+
     # news
     resources :news, only:[:index, :show]
 

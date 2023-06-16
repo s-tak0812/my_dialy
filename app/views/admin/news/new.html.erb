@@ -6,7 +6,7 @@
       </div>
       <!--投稿フォーム-->
       <%= render 'public/shared/error_messages', resource: @news %>
-      <%= render 'admin/news/form', news: @news, url: admin_news_index_path(@news) %>
+      <%= render 'admin/news/form', news: @news, url: admin_news_confirm_path(@news) %>
     </div>
   </div>
 </div>

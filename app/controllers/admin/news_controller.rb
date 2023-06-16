@@ -35,6 +35,13 @@ class Admin::NewsController < ApplicationController
     end
   end
 
+  def confirm
+    @news = News.new(news_params)
+    if @news.invalid?
+      render :new
+    end
+  end
+
   def destroy
     @news = News.find(params[:id])
     @news.destroy

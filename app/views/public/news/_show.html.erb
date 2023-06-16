@@ -15,6 +15,7 @@
   <tbody>
     <tr>
       <td class="px-5">
+        <p><strong><%= news.created_at.strftime('%Y/%m/%d') %></strong></p>
         <%= render 'public/news/format', news: @news %>
       </td>
     </tr>
