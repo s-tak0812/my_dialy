@@ -2,11 +2,14 @@ class Public::TodoContentsController < ApplicationController
   before_action:authenticate_customer!
   before_action:ensure_correct_customer, only:[:destroy]
 
+  # todo_listのindexにあるtodo_listとtodo_contentの新規投稿ができるリンク
   def new
     @todo_content = TodoContent.new
     @todo_lists = current_customer.todo_lists
   end
 
+  # todo_listとtodo_contentの新規投稿をする
+  # または、既存のtodo_listに対してtodo_contentを新規投稿する
   def create
     @todo_content = current_customer.todo_contents.new(todo_content_params)
     # todo_list(タイトル)を選択
@@ -49,6 +52,24 @@ class Public::TodoContentsController < ApplicationController
         @todo_lists = current_customer.todo_lists
         render :new
       end
+    end
+  end
+
+  # todo_listのshowにあるtodo_contentの新規投稿ができるリンク
+  def new_content
+    @todo_content = TodoContent.new
+    @todo_list = TodoList.find(params[:id])
+  end
+
+  # todo_contentのみの新規投稿
+  def content_create
+    @todo_content = current_customer.todo_contents.new(todo_content_params)
+
+    if @todo_content.save
+      redirect_to todo_list_path(@todo_content.todo_list_id)
+    else
+      @todo_list = TodoList.find(params[:id])
+      render :new_content
     end
   end
 
