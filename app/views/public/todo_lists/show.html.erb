@@ -3,8 +3,8 @@
     <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
 
       <div class="my-3">
-        <%= link_to new_todo_content_path, class: "btn btn-outline-secondary" do  %>
-          <span class="text-dark h6"><i class="fas fa-plus-circle"></i> メモ</span>
+        <%= link_to new_content_path(@todo_list.id), class: "btn btn-outline-secondary" do  %>
+          <span class="text-dark h6"><i class="fas fa-plus-circle"></i> ここに追加</span>
         <% end %>
       </div>
 
