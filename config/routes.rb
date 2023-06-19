@@ -58,7 +58,12 @@ Rails.application.routes.draw do
 
     # todo_contents
     resources :todo_contents, only:[:create, :destroy]
+    # render後のエラー回避
+    # todo_listとtodo_contentを新規投稿するURL
     get 'todo_contents' => 'todo_contents#new', as: 'new_todo_content'
+    # todo_listのshowからtodo_contentのみの新規投稿を行うURL
+    get 'todo_lists/:id/new_content' => 'todo_contents#new_content', as: 'new_content'
+    post 'todo_lists/:id' => 'todo_contents#content_create', as: 'content_create'
 
     # news
     resources :news, only:[:index, :show]
