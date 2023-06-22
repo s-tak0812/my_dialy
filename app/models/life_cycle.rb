@@ -48,9 +48,9 @@ class LifeCycle < ApplicationRecord
   def self.new_lc_start_value(date)
     day_cycle = where(end_time: date.to_date.all_day).order(end_time: :desc).first
     if day_cycle.present?
-      start_params = day_cycle.end_time + 1.minute
+      start_value = day_cycle.end_time + 1.minute
     else
-      start_params = date.to_date
+      start_value = date.to_date
     end
   end
 
@@ -58,9 +58,22 @@ class LifeCycle < ApplicationRecord
   def self.new_lc_end_value(date)
     day_cycle = where(start_time: date.to_date.all_day).order(end_time: :desc).first
     if day_cycle.present?
-      end_params = day_cycle.end_time + 1.hour
+      start_value = day_cycle.end_time + 1.minute
+      end_value = day_cycle.end_time + 1.hour
+      # start_valueとend_valueの日にちがdateと違う場合
+      if start_value.to_date != date.to_date && end_value.to_date != date.to_date
+        # dateに投稿されている中で一番遅い時間から1時間後の値を入力させる
+        end_value
+      # end_valueのみの日にちがdateと違う場合
+      elsif end_value.to_date != date.to_date
+        # dateの23:59を入力させる
+        end_value = date.to_date + 23.hour + 59.minute
+      else
+        end_value
+      end
+
     else
-      end_params = date.to_date + 1.hour
+      end_value = date.to_date + 1.hour
     end
   end
 

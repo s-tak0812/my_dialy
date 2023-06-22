@@ -42,58 +42,78 @@
 
       <!--直近1週間の1日の平均グラフ-->
       <div class="d-flex justify-content-center my-5">
-        <h4 class="bg-light"><strong>過去1週間の生活1日平均</strong></h4>
+        <h4 class="bg-light"><strong>項目ごとの過去1週間の生活1日平均</strong></h4>
       </div>
 
-      <canvas id="myChart" class="my-5"></canvas>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-      <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
-      <script>
-        const labels = <%= @chart_data_labels.to_json.html_safe %>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-          type: 'pie',
-          data: {
-              labels: labels,
-              datasets: [{
-                  data: <%= @chart_data_sets.to_json.html_safe %>,
-                  backgroundColor: [
-                            'rgba(153, 229, 255, 0.6)',
-                            'rgba(255, 255, 101, 0.6)',
-                            'rgba(255, 101, 101, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(204, 153, 255, 0.6)',
-                            'rgba(104, 255, 101, 0.6)',
-                            'rgba(178, 178, 178, 0.6)'
-                  ],
-              }]
-          },
-
-          options: {
-            responsive: true,
-            plugins: {
-              datalabels: {
-                formatter: function(context) {
-                  return labels[context.dataIndex]
-                },
-              },
-              labels: {
-                      // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
-                      render: 'label',
-
-                      // font size, default is defaultFontSize
-                      fontSize: 15,
-
-                      // position to draw label, available value is 'default', 'border' and 'outside'
-                      // bar chart ignores this
-                      // default is 'default'
-                      position: 'border',
-              }
+      <!--@life_cyclesがある場合はグラフを表示し、ない場合は当日のLifeCycleのリンクを表示する-->
+      <% if @life_cycles.present? %>
+        <canvas id="myChart" class="my-5"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+        <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
+        <script>
+          const labels = <%= @chart_data_labels.to_json.html_safe %>
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: <%= @chart_data_sets.to_json.html_safe %>,
+                    backgroundColor: [
+                              'rgba(153, 229, 255, 0.6)',
+                              'rgba(255, 255, 101, 0.6)',
+                              'rgba(255, 101, 101, 0.6)',
+                              'rgba(75, 192, 192, 0.6)',
+                              'rgba(204, 153, 255, 0.6)',
+                              'rgba(104, 255, 101, 0.6)',
+                              'rgba(178, 178, 178, 0.6)'
+                    ],
+                }]
             },
-          },
-        });
-      </script>
+
+            options: {
+              responsive: true,
+              plugins: {
+                datalabels: {
+                  formatter: function(context) {
+                    return labels[context.dataIndex]
+                  },
+                },
+                labels: {
+                        // render 'label', 'value', 'percentage', 'image' or custom function, default is 'percentage'
+                        render: 'label',
+
+                        // font size, default is defaultFontSize
+                        fontSize: 15,
+
+                        // position to draw label, available value is 'default', 'border' and 'outside'
+                        // bar chart ignores this
+                        // default is 'default'
+                        position: 'border',
+                }
+              },
+            },
+          });
+        </script>
+
+      <% else %>
+
+        <div class="text-center my-5">
+          <div>
+            直近の記録がありません<i class="fas fa-sad-tear text-success"></i>
+            <br>
+            <br>
+            さっそく記録を取ってみましょう！
+          </div>
+          <div class="my-5">
+            <%= link_to life_cycles_date_show_path(Time.current.to_date), class: "text-dark h5" do %>
+              <i class="fas fa-walking text-info"></i> <strong>今日の記録を取る</strong>
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
 
     </div>
   </div>

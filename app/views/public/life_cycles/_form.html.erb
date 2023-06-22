@@ -4,11 +4,11 @@
       <tr class="text-left">
         <td style="width:30%;">
           <strong><%= f.label :start_time %></strong><br>
-          <%= f.datetime_field :start_time, value:start_params.strftime('%Y-%m-%dT%T'), class: "form-control start_time" %>
+          <%= f.datetime_field :start_time, value:start_value.strftime('%Y-%m-%dT%T'), class: "form-control start_time" %>
         </td>
         <td style="width:30%;">
           <strong><%= f.label :end_time %></strong>
-          <%= f.datetime_field :end_time, value:end_params.strftime('%Y-%m-%dT%T'), class: "form-control end_time" %>
+          <%= f.datetime_field :end_time, value:end_value.strftime('%Y-%m-%dT%T'), class: "form-control end_time" %>
         </td>
         <td style="width:30%;">
           <strong><%= f.label :title %></strong> <br>

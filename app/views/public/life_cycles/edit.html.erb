@@ -6,7 +6,7 @@
       </div>
       <!--投稿フォーム-->
       <%= render 'public/shared/error_messages', resource: @life_cycle %>
-      <%= render 'public/life_cycles/form', life_cycle: @life_cycle, start_params: @life_cycle.start_time, end_params: @life_cycle.end_time %>
+      <%= render 'public/life_cycles/form', life_cycle: @life_cycle, start_value: @life_cycle.start_time, end_value: @life_cycle.end_time %>
     </div>
   </div>
 
