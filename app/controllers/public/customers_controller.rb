@@ -21,11 +21,11 @@ class Public::CustomersController < ApplicationController
 
     # life_cycle
     # 直近1週間のlife_cycleのデータ取得
-    life_cycles = current_customer.life_cycles.last_7_days
+    @life_cycles = @customer.life_cycles.last_7_days
     # title別で１日平均を求める
     # 直近1週間の内に投稿されたデータをtitle別で合計し
     # title別で投稿されている日数(同日に同titleで複数投稿があった場合も”1”とする)で割る
-    data = life_cycles.group_by(&:title).map do |k, v|
+    data = @life_cycles.group_by(&:title).map do |k, v|
       total_hours = v.sum { |lc| (lc.end_time.to_time - lc.start_time.to_time) / 3600 }
       [k, total_hours / v.map { |lc| lc.start_time.to_date }.uniq.size]
     end
