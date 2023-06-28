@@ -13,7 +13,7 @@
               <%= f.label :プロフィール画像 %>
             </td>
             <td>
-              <%= image_tag @customer.get_profile_image, size:"80x80" %>
+              <%= image_tag @customer.get_profile_image, size:"100x100" %>
             </td>
             <td class="form-group align-bottom">
               <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*' %>
