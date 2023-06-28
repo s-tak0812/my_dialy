@@ -30,7 +30,7 @@
           <% else %>
             <div class="form-group my-3">
               <%= f.hidden_field :select_button, value: "new" %> メモのタイトル
-              <%= f.text_field :title, placeholder: "タイトル(30文字以内)", class: "form-control todo_list_title my-2" %>
+              <%= f.text_field :title, placeholder: "タイトル(30文字以内)", autofocus: true, class: "form-control todo_list_title my-2" %>
             </div>
           <% end %>
 
