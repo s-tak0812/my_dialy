@@ -102,11 +102,14 @@ ja:
       title:
         others: その他
         sleeping: 睡眠
+        go_work: 通勤・通学
         work: 仕事
         enjoying: 娯楽
         study: 勉強
         meal: 食事
         housework: 家事
+        preparation: 準備・身支度
+        bath: 風呂
 
   views:
     pagination:
