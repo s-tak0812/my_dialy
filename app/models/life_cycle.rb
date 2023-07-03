@@ -7,7 +7,7 @@ class LifeCycle < ApplicationRecord
     validates :end_time
   end
 
-  enum title: { その他: 0, 睡眠: 1, 仕事: 2, 娯楽: 3, 勉強: 4, 食事: 5, 家事: 6 }
+  enum title: { その他: 0, 睡眠: 1, 通勤・通学: 2, 仕事: 3, 趣味・娯楽: 4, 勉学: 5, 食事: 6, 家事: 7, 準備・身支度: 8, 風呂: 9}
 
   validate :end_time_cannot_be_earlier_than_start_time
   validate :start_and_end_time_on_same_day
