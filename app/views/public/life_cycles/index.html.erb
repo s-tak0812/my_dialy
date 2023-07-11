@@ -7,7 +7,7 @@
       <!--新規投稿時のエラー表示-->
       <div class="text-danger">
         <% if @life_cycle.errors.any? %>
-          <span class="h6"><strong>投稿に失敗しました <%= @life_cycle.start_time.strftime("%Y-%m-%d") %></strong></span>
+          <span class="h6"><strong>投稿に失敗しました <%= @life_cycle.start_time.strftime("%Y/%m/%d") %></strong></span>
           <%= render 'public/shared/error_messages', resource: @life_cycle %>
         <% end %>
       </div>
