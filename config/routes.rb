@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     # news
     post 'news/confirm' => 'news#confirm', as: 'news_confirm'
+
     resources :news
 
     # user検索結果
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
     # life_cycles
     # 日付の絞り込み検索
     get 'life_cycles/date_show/:date' => 'life_cycles#date_show', as: 'life_cycles_date_show'
+
     resources :life_cycles, only:[:index, :create, :update, :destroy]
     # render後のエラー回避
     get 'life_cycles/:id' => 'life_cycles#edit', as: 'edit_life_cycle'
@@ -42,8 +44,11 @@ Rails.application.routes.draw do
     get 'household_budgets/day_to_day' => 'household_budgets#day_to_day', as: 'household_budgets_day_to_day'
     # 期間の絞り込み検索
     get 'household_budgets/days_sort' => 'household_budgets#days_sort', as: 'household_budgets_days_sort'
-    # 日付の絞り込み検索
+    # 日にちごとのページ
     get 'household_budgets/date_show/:date' => 'household_budgets#date_show', as: 'household_budgets_date_show'
+    # 日にち検索
+    get 'household_budgets/search' => 'household_budgets#search', as: 'household_budgets_search'
+
     resources :household_budgets, only:[:index, :create, :update, :destroy]
     # render後のエラー回避
     get 'household_budgets/:id' => 'household_budgets#edit', as: 'edit_household_budget'
@@ -51,6 +56,7 @@ Rails.application.routes.draw do
     # blogs
     # Blogのタイトル検索
     get 'blogs/search' => 'blogs#search', as: 'blogs_search'
+
     resources :blogs
 
     # todo_lists
