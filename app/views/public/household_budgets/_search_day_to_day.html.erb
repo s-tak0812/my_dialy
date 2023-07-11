@@ -2,11 +2,11 @@
   <table class="table table-borderless">
     <tr class="text-center">
       <td style="width:30%;">
-        <%= f.date_field :from, class: "form-control" %>
+        <%= f.date_field :from, value: Time.now.beginning_of_year.strftime("%Y-%m-%d"), class: "form-control" %>
       </td>
       <td class="align-middle">から</td>
       <td style="width:30%;">
-        <%= f.date_field :to, class: "form-control" %>
+        <%= f.date_field :to, value: Time.now.end_of_year.strftime("%Y-%m-%d"), class: "form-control" %>
       </td>
       <td class="align-middle">まで</td>
       <td>

@@ -1,0 +1,12 @@
+<%= form_with url: household_budgets_search_path, method: :get, local: true do |f| %>
+  <table class="table table-borderless">
+    <tr class="text-center">
+      <td style="width: 60%;">
+        <%= f.date_field :date, value:Time.now.strftime("%Y-%m-%d"), class: "form-control" %>
+      </td>
+      <td>
+        <%= f.submit "移動する", class: "btn btn-outline-primary" %>
+      </td>
+    </tr>
+  </table>
+<% end %>

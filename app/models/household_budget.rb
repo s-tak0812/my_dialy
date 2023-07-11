@@ -25,9 +25,14 @@ class HouseholdBudget < ApplicationRecord
   # title別ソート機能
   scope :sort_by_title, ->(title) { order(price: :desc).where(title: title)}
 
-  
+
+  def self.search_for(date)
+    HouseholdBudget.where(date: date)
+  end
+
+
   private
-  
+
   # 一定期間から項目別で絞込をした際の項目の日本語表記
   def self.sort_title_ja(title)
     case title
