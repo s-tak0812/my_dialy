@@ -14,7 +14,7 @@ class Public::HouseholdBudgetsController < ApplicationController
   def create
     @household_budget = current_customer.household_budgets.new(household_budget_params)
     if @household_budget.save
-      redirect_to household_budgets_path
+      redirect_to household_budget_date_show_path(@household_budget.date)
     else
       @spendings = current_customer.household_budgets.spendings
       @incomes = current_customer.household_budgets.incomes
@@ -44,6 +44,8 @@ class Public::HouseholdBudgetsController < ApplicationController
   def date_show
     @day_params = params[:date]
     @household_budgets = current_customer.household_budgets.where(date: @day_params).order('price DESC')
+
+    @household_budget = HouseholdBudget.new
   end
 
   # 期間の絞り込み検索
@@ -79,6 +81,13 @@ class Public::HouseholdBudgetsController < ApplicationController
 
   end
 
+  # 日にち検索
+  def search
+    day_params = params[:date]
+    result = HouseholdBudget.search_for(day_params)
+    # formから受け取った値からdate_showに遷移する
+    redirect_to household_budgets_date_show_path(day_params)
+  end
 
   private
 

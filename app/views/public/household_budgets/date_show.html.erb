@@ -1,13 +1,23 @@
 <div class="container my-5">
   <div class="row">
     <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
-      <div class="d-flex justify-content-center my-5">
+      <div class="d-flex justify-content-center mt-3 mb-2">
         <h3 class="bg-light">
           <strong>
             <%= @day_params.to_time.strftime('%Y/%m/%d') %>の家計簿
           </strong>
         </h3>
       </div>
+
+
+      <div class="row">
+        <div class="col-12 mx-auto">
+          <!--投稿フォーム-->
+          <%= render 'public/household_budgets/form', household_budget: @household_budget, date_value: @day_params %>
+        </div>
+      </div>
+
+
       <!--内訳一覧-->
       <%= render 'public/household_budgets/index', household_budgets: @household_budgets %>
     </div>
