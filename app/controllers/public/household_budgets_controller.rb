@@ -14,7 +14,7 @@ class Public::HouseholdBudgetsController < ApplicationController
   def create
     @household_budget = current_customer.household_budgets.new(household_budget_params)
     if @household_budget.save
-      redirect_to household_budget_date_show_path(@household_budget.date)
+      redirect_to household_budgets_date_show_path(@household_budget.date)
     else
       @spendings = current_customer.household_budgets.spendings
       @incomes = current_customer.household_budgets.incomes
